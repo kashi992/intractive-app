@@ -1,0 +1,71 @@
+.heroSwiper {
+    width: 100%;
+    height: 100%;
+    perspective: unset;
+}
+
+.heroSwiper img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.heroSwiper .slideImg {
+    width: 191px;
+    border-radius: 50%;
+    margin-left: auto;margin-right: auto;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+.heroSwiper .slideImg::before {
+    content: "";
+    background-color: #377b7a;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+.heroSwiper .slideImg:hover::before {
+   opacity: 0.5;
+   visibility: visible;
+}
+
+.heroWrap {
+flex: 1;
+display: flex;
+    flex-direction: column;
+}
+.heroWrap .container {
+    max-width: 77%;
+    height: 100%;
+}
+.heroSwiper .swiper-slide{
+   width: fit-content !important;
+   align-content: center;
+}
+.heroSwiper .swiper-slide p{
+  font-size: 30px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  text-align: center;
+  max-width: 310px;
+  width: 100%;
+  margin-left: auto;margin-right: auto;
+  min-height: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.heroSwiper .swiper-wrapper{
+ justify-content: space-between;
+}
