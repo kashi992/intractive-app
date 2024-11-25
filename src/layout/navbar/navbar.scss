@@ -1,4 +1,24 @@
 header .headerLogos{
-border-bottom: 2px solid #707070;
-padding: 50px 0;
-}
+    border-bottom: 2px solid #707070;
+    padding: 50px 0;
+    height: 145px;
+    }
+    
+    // Responsive start 
+    @media screen and (max-width: 1680px) {
+        header .headerLogos {
+            padding: 24px 0;
+            height: 100px;
+        }
+    }
+    
+    @media screen and (max-width: 1370px) {
+    
+    }
+    
+    @media screen and (max-width: 575px) {
+        header .headerLogos {
+            padding: 15px 0;
+            height: 70px;
+        }
+    }
