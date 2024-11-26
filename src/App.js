@@ -1,12 +1,11 @@
-import './assets/styles/main.scss';
-import HeroSlider from './layout/hero-section';
-import Navbar from './layout/navbar/navbar';
+import Navbar from "./layout/navbar/navbar";
+import Routers from "./router/routers";
 
 function App() {
   return (
     <section className="mainWraper">
-   <Navbar/>
-   <HeroSlider/>
+      <Navbar />
+      <Routers />
     </section>
   );
 }
