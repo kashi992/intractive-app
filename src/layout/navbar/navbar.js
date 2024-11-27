@@ -9,7 +9,7 @@ const Navbar = () => {
         <div className="headerLogos min-[1370px]:w-[40%] md:w-[50%] w-full">
           <img src={img} alt="" className="h-full w-full object-contain"/>
         </div>
-        <p className="min-[1200px]:text-2xl text-xl font-semibold sf">‘Soundlinr of belonging’</p>
+        <p className="min-[1200px]:text-2xl text-xl font-semibold sf">‘Soundline of belonging’</p>
       </div>
     </header>
   );
