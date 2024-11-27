@@ -99,13 +99,12 @@ body {
     align-items: center;
   }
   .mainWraper{
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
     z-index: 1;
-    overflow-x: hidden;
     display: flex;
-     flex-direction: column;
-     overflow: hidden;
+    flex-direction: column;
+    overflow: hidden;
     &::before{
         content: "";
         background-image: url(../images/heroBg.png);
@@ -114,12 +113,13 @@ body {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 150vw;
-        height: 150vw;
+        width: 100%;
+        height: 100%;
         transform: translate(-50%, -50%);
         z-index: -2;
     }
     &::after{
+      display: none;
         content: "";
         background: rgba($color: #fff, $alpha: 0.7);
         position: absolute;
