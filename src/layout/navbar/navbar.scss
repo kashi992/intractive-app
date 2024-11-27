@@ -10,7 +10,10 @@ header .container {
     header .container {
         padding-top: 24px;
         padding-bottom: 24px;
-        height: 100px;
+        height: 80px;
+    }
+    header .headerLogos {
+        padding: 24px 0;
     }
 }
 
@@ -20,6 +23,9 @@ header .container {
     header .container {
         padding-top: 15px;
         padding-bottom: 15px;
-        height: 70px;
+        height: auto;
+    }
+    header .headerLogos {
+        padding: 0;
     }
 }

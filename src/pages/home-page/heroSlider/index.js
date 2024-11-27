@@ -180,6 +180,30 @@ const HeroSlider = () => {
             pagination={false}
             modules={[EffectCoverflow, Pagination]}
             className="heroSwiper"
+            breakpoints={{
+              // when window width is <= 499px
+              0: {
+                slidesPerView: 1.7,
+                spaceBetweenSlides: 30,
+                centeredSlides: false
+              },
+              575: {
+                slidesPerView: 3,
+                spaceBetween: 50,
+                centeredSlides: false
+              },
+              // when window width is <= 999px
+              999: {
+                slidesPerView: 4,
+                spaceBetween: 100,
+                centeredSlides: false
+              },
+              // when window width is <= 999px
+              1200: {
+                slidesPerView: 5,
+                spaceBetween: 100,
+              }
+            }}
           >
             {slides.map((slide) => (
               <SwiperSlide
@@ -200,19 +224,19 @@ const HeroSlider = () => {
         {viewState === "thumbnails" && (
           <div className="thumbnailsView h-full relative flex flex-col justify-center">
             <div
-              className="backButton absolute top-8 left-0 text-2xl flex items-center gap-2 hover:border-b-2 border-black cursor-pointer"
+              className="backButton absolute md:top-8 top-2 left-0 min-[1370px]:text-2xl text-xl flex items-center gap-2 hover:border-b-2 border-black cursor-pointer"
               onClick={handleBackToSlider}
             >
-              <LeftChevron className="w-4" iconClr="#000" /> <span>Back</span>
+              <LeftChevron className="min-[1370px]:w-4 w-3" iconClr="#000" /> <span>Back</span>
             </div>
-            <h2 className="text-5xl font-bold text-center mb-12">
+            <h2 className="min-[1370px]:text-5xl md:text-3xl text-xl font-bold text-center md:mb-12 mb-4">
               {selectedSlide.title}
             </h2>
-            <div className="thumbnails grid grid-cols-2 gap-8 items-center">
+            <div className="thumbnails grid min-[1200px]:grid-cols-2 grid-cols-1 md:gap-8 gap-3 items-center">
               {selectedSlide.videos.map((video) => (
                 <div
                   key={video.id}
-                  className="thumbnail relative cursor-pointer min-[1680px]:h-[380px] h-[350px]"
+                  className="thumbnail relative cursor-pointer min-[1680px]:h-[380px] min-[1370px]:h-[350px] md:h-[300px] h-[200px]"
                   onClick={() => handleThumbnailClick(video)} // Open video view
                 >
                   <img
@@ -223,7 +247,7 @@ const HeroSlider = () => {
                   <img
                     src={playBtn}
                     alt=""
-                    className="absolute top-0 left-0 bottom-0 right-0 pointer-events-none m-auto"
+                    className="absolute top-0 left-0 bottom-0 right-0 pointer-events-none m-auto min-[1370px]:w-[110px] w-[80px]"
                   />
                 </div>
               ))}
@@ -233,10 +257,10 @@ const HeroSlider = () => {
 
         {viewState === "video" && (
           <div className="videoView h-full relative flex flex-col justify-center">
-            <div className="relative">
+            <div className="relative min-[1680px]:w-[65%] min-[1200px]:w-[60%] w-full mx-auto">
               <video
                 ref={videoRef}
-                className="min-[1680px]:w-[65%] w-[55%] mx-auto"
+                className="w-full h-full"
                 src={activeVideo.video}
                 onClick={handlePause}
               />
@@ -250,19 +274,19 @@ const HeroSlider = () => {
                 </div>
               )}
                <button
-             className="absolute right-[80px] top-0 z-10"
+             className="absolute right-0 min-[1200px]:top-0 top-[-70px] z-10 min-[1200px]:translate-x-[175%]"
               onClick={handleBackToThumbnails}
             >
-             <CrossIcon className="w-16 opacity-80" iconClr="#fff"/>
+             <CrossIcon className="min-[1370px]:w-16 w-10 opacity-80" iconClr="#fff"/>
             </button>
             </div>
-            <h2 className="sf text-4xl text-center font-semibold mt-6 mb-3 text-[#50beb1]">
+            <h2 className="sf min-[1370px]:text-4xl text-2xl text-center font-semibold min-[1370px]:mt-6 mt-2 min-[1370px]:mb-3 mb-1 text-[#50beb1]">
                 {activeVideo.title || selectedSlide.title}
               </h2>
             {selectedSlide.videosContent.map((data, index) => (
               <p
                 key={index}
-                className="text-center text-white text-[25px] font-semibold"
+                className="text-center text-white min-[1680px]:text-[25px] min-[1680px]:text-[20px] font-semibold text-[18px]"
               >
                 {data.videoTitle}
               </p>

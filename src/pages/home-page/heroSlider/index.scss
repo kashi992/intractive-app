@@ -211,7 +211,7 @@
         background-color: rgba(0, 0, 0, 0.5);
         position: absolute;
         width: 100vw;
-        height: 100vw;
+        height: 1000vw;
         z-index: -1;
         left: 50%;
         transform: translateX(-50%);
@@ -231,6 +231,9 @@
 }
 // Responsive start 
 @media screen and (max-width: 1680px) {
+    .heroWrap {
+        height: calc(100% - 80px);
+    }
     .heroSwiper .slideImg {
         width: 135px;
         height: 135px;
@@ -240,11 +243,6 @@
         font-size: 24px;
         margin-bottom: 15px;
         min-height: 55px;
-    }
-
-    header .headerLogos {
-        padding: 24px 0;
-        height: 100px;
     }
 
     .custom-video-container.__video {
@@ -257,13 +255,7 @@
 }
 
 @media screen and (max-width: 1370px) {
-    .heroSwiper .slideImg {
-        width: 110px;
-        height: 110px;
-    }
-
     .heroSwiper .swiper-slide h2 {
-        font-size: 18px;
         margin-bottom: 10px;
         min-height: 45px;
     }
@@ -298,16 +290,21 @@
         height: 1000vh;
         top: -100%;
     }
+    .heroSwiper .swiper-slide .sliderContent {
+        display: grid;
+        grid-template-rows: 55px 1fr;
+        align-items: center;
+        gap: 6px;
+    }
+    .heroSwiper .swiper-slide h2 {
+        margin-bottom: 0;
+        min-height: auto;
+        justify-content: end;
+    }
 }
 
 @media screen and (max-width: 991.99px) {
-    .heroSwiper .slideImg {
-        width: 80px;
-        height: 80px;
-    }
-
     .heroSwiper .swiper-slide h2 {
-        font-size: 16px;
         margin-bottom: 8px;
         min-height: auto;
     }
@@ -320,5 +317,11 @@
 
     .heroWrap {
         height: calc(100% - 70px);
+    }
+    .heroSwiper .swiper-slide h2{
+        font-size: 20px;
+    }
+    .thumbnailsView {
+        padding: 75px 0;
     }
 }

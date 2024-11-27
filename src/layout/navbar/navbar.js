@@ -5,11 +5,11 @@ import img from "../../assets/images/header_logos.png"
 const Navbar = () => {
   return (
     <header className="bg-white">
-      <div className="container flex justify-between items-center border-b-2 border-[#707070]">
-        <div className="headerLogos min-[1680px]:max-w-[750px] max-w-[550px] w-full">
-          <img src={img} alt="" className="h-full w-full"/>
+      <div className="container flex md:justify-between justify-center items-center border-b-2 border-[#707070] md:flex-nowrap flex-wrap md:gap-0 gap-3">
+        <div className="headerLogos min-[1370px]:w-[40%] md:w-[50%] w-full">
+          <img src={img} alt="" className="h-full w-full object-contain"/>
         </div>
-        <p className="text-2xl font-semibold sf">‘Soundlinr of belonging’</p>
+        <p className="min-[1200px]:text-2xl text-xl font-semibold sf">‘Soundlinr of belonging’</p>
       </div>
     </header>
   );
