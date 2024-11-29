@@ -3,7 +3,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-import { EffectCoverflow, Pagination } from "swiper/modules";
+import "swiper/css/navigation"; // Import Swiper navigation styles
+import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import "./index.scss"; // For custom styles
 import img1 from "../../../assets/images/heroLogo1.png";
 import img2 from "../../../assets/images/heroLogo2.png";
@@ -177,13 +178,14 @@ const HeroSlider = () => {
             slidesPerView={5}
             spaceBetween={100}
             loop={false}
-            pagination={false}
-            modules={[EffectCoverflow, Pagination]}
+            pagination={true}
+            navigation 
+            modules={[EffectCoverflow, Pagination, Navigation]}
             className="heroSwiper"
             breakpoints={{
               // when window width is <= 499px
               0: {
-                slidesPerView: 1.7,
+                slidesPerView: 1,
                 spaceBetweenSlides: 30,
                 centeredSlides: false
               },

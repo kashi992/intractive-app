@@ -5,7 +5,7 @@ import img from "../../assets/images/header_logos.png"
 const Navbar = () => {
   return (
     <header className="bg-white">
-      <div className="container flex md:justify-between justify-center items-center border-b-2 border-[#707070] md:flex-nowrap flex-wrap md:gap-0 gap-3">
+      <div className="container flex md:justify-between justify-center items-center md:flex-nowrap flex-wrap md:gap-0 gap-3">
         <div className="headerLogos min-[1370px]:w-[40%] md:w-[50%] w-full">
           <img src={img} alt="" className="h-full w-full object-contain"/>
         </div>
