@@ -9,9 +9,8 @@ header .container {
         background-color: #707070;
         position: absolute;
         height: 2px;
-        width: 90.63%;
-        left: 50%;
-        transform: translateX(-50%);
+        width: 93.63%;
+        right: 20px;
         bottom: 0;
     }
     &::after{
@@ -36,12 +35,20 @@ header .container {
     header .headerLogos {
         padding: 24px 0;
     }
+    header .container::after {
+        height: 45px;
+    }
 }
 
 @media screen and (max-width: 1370px) {}
 @media screen and (max-width: 1198.99px) {
     header .container {
         max-width: 100%;
+    }
+}
+@media screen and (max-width: 991.99px) {
+    header .container::before {
+        width: 90.63%;
     }
 }
 

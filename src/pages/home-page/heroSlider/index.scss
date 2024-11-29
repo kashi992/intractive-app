@@ -116,21 +116,13 @@
 
     .swiper-button-prev,
     .swiper-button-next {
-        color: hwb(0 100% 0%);
-        width: 90px;
-        height: 90px;
-        background-color: #000;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
+        color: #000;
         z-index: 9;
         margin: 0;
         top: 50%;
         transform: translateY(-50%);
         &::after {
-            font-size: 40px;
+            font-size: 50px;
         }
     }
 
@@ -279,10 +271,8 @@
 
     .heroSwiper .swiper-button-prev,
     .heroSwiper .swiper-button-next {
-        width: 70px;
-        height: 70px;
         &::after {
-            font-size: 30px;
+            font-size: 40px;
         }
     }
 
@@ -319,14 +309,6 @@
         width: 110px;
         height: 110px;
     }
-    .heroSwiper .swiper-button-prev, .heroSwiper .swiper-button-next {
-        width: 60px;
-        height: 60px;
-        &::after{
-            font-size: 25px;
-        }
-    }
-
 }
 @media screen and (max-width: 1370px) {
     .heroSwiper .swiper-slide h2 {

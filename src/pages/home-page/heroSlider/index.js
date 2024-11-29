@@ -176,6 +176,7 @@ const HeroSlider = () => {
             grabCursor={true}
             centeredSlides={false}
             slidesPerView={5}
+            slidesPerGroup= {2}
             spaceBetween={100}
             loop={false}
             pagination={true}
@@ -198,12 +199,13 @@ const HeroSlider = () => {
               999: {
                 slidesPerView: 4,
                 spaceBetween: 100,
-                centeredSlides: false
+                centeredSlides: false,
               },
               // when window width is <= 999px
               1200: {
                 slidesPerView: 5,
                 spaceBetween: 100,
+                slidesPerGroup: 3,
               }
             }}
           >
@@ -234,7 +236,7 @@ const HeroSlider = () => {
             <h2 className="min-[1370px]:text-5xl md:text-3xl text-xl font-bold text-center md:mb-12 mb-4">
               {selectedSlide.title}
             </h2>
-            <div className="thumbnails grid min-[1200px]:grid-cols-2 grid-cols-1 md:gap-8 gap-3 items-center">
+            <div className="thumbnails grid lg:grid-cols-2 grid-cols-1 md:gap-8 gap-3 items-center">
               {selectedSlide.videos.map((video) => (
                 <div
                   key={video.id}
