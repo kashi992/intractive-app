@@ -25,6 +25,7 @@ header .container {
         left: 65%;
         transform: translateX(-50%);
         bottom: 0;
+        display: none !important;
     }
     .bgBottom{
         height: 2px;
