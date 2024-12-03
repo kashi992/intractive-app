@@ -257,6 +257,30 @@
     justify-content: center;
     flex: 1;
     flex-direction: column;
+    position: relative;
+    z-index: 1;
+    padding: 0 40px;
+
+    &::before {
+        content: "";
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        width: 100vw;
+        height: 1000vw;
+        z-index: -1;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .thumbnail.thumbnail_one{
+        grid-column: 1/3;
+        max-width: 1150px;
+        width: 100%;
+        margin-left: auto;margin-right: auto;
+        .thumbImg{
+            max-width: 100%;
+            width: 100%;
+        }
+    }
 }
 
 .videoView {
@@ -268,6 +292,10 @@
 
 // Responsive start 
 @media screen and (max-width: 1680px) {
+    .thumbnailsView .thumbnail.thumbnail_one .thumbImg{
+        height: 450px;
+    object-fit: contain;
+    }
 
     .heroSwiper .swiper-button-prev,
     .heroSwiper .swiper-button-next {
@@ -311,6 +339,9 @@
     }
 }
 @media screen and (max-width: 1370px) {
+    .thumbnailsView .thumbnail.thumbnail_one .thumbImg {
+        height: 360px;
+    }
     .heroSwiper .swiper-slide h2 {
         min-height: 45px;
     }
@@ -327,6 +358,13 @@
 }
 
 @media screen and (max-width: 1198.99px) {
+    .thumbnailsView .thumbnail.thumbnail_one .thumbImg {
+        height: 100%;
+        width: 100%;
+    }
+    .thumbnailsView {
+        padding: 0;
+    }
     .video-element {
         width: 95%;
     }

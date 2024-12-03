@@ -20,10 +20,15 @@ import dummy3 from "../../../assets/videos/dumy.mp4";
 import dummy4 from "../../../assets/videos/dumy.mp4";
 import dummy5 from "../../../assets/videos/dumy.mp4";
 import dummy6 from "../../../assets/videos/dumy.mp4";
+import collabVideo1 from "../../../assets/videos/Five_Docks_Interfacing_example.mp4";
 import LeftChevron from "../../../assets/images/LeftChevron";
 import playBtn from "../../../assets/images/playBtn.png";
 import CrossIcon from "../../../assets/images/CrossIcon";
 import pdfFile from "../../../assets/images/ExecutiveSummary.pdf"; // PDF file for download
+import cm1 from "../../../assets/images/constructionMethology1.png";
+import cm2 from "../../../assets/images/constructionMethology2.png";
+import crossIcon from "../../../assets/images/crossIcon.png";
+import vis1 from "../../../assets/images/visionThumb.png";
 
 const HeroSlider = () => {
   const [viewState, setViewState] = useState("slider"); // States: "slider", "thumbnails", "video"
@@ -37,7 +42,7 @@ const HeroSlider = () => {
       id: 1,
       image: img1,
       title: "The Vision",
-      videos: [{ id: 1, video: dummy1, thumbnail: thumbnail1 }],
+      videos: [{ id: 1, video: dummy1, thumbnail: vis1, text: "Scott Hunter & Cathy Hayes" , thumbnail_one: true }],
       videosContent: [
         {
           videoTitle:
@@ -51,8 +56,8 @@ const HeroSlider = () => {
       image: img2,
       title: "Construction Methodology",
       videos: [
-        { id: 1, video: dummy2, thumbnail: thumbnail1 },
-        { id: 2, video: dummy3, thumbnail: thumbnail1 },
+        { id: 1, video: dummy2, thumbnail: cm1, text: "Interview with Simon Tibbett", thumbnail_one: false },
+        { id: 2, video: dummy3, thumbnail: cm2, text: "Westmead - 4D Construction Methodology", thumbnail_one: false },
       ],
       videosContent: [
         {
@@ -66,8 +71,8 @@ const HeroSlider = () => {
       image: img3,
       title: "Collaboration",
       videos: [
-        { id: 1, video: dummy4, thumbnail: thumbnail1 },
-        { id: 2, video: dummy5, thumbnail: thumbnail1 },
+        { id: 1, video: collabVideo1, thumbnail: thumbnail1, thumbnail_one: false },
+        { id: 2, video: collabVideo1, thumbnail: thumbnail1, thumbnail_one: false },
       ],
       videosContent: [
         {
@@ -81,8 +86,8 @@ const HeroSlider = () => {
       image: img4,
       title: "Maintenance Facility",
       videos: [
-        { id: 1, video: dummy1, thumbnail: thumbnail1 },
-        { id: 2, video: dummy3, thumbnail: thumbnail1 },
+        { id: 1, video: dummy1, thumbnail: thumbnail1, thumbnail_one: false },
+        { id: 2, video: dummy3, thumbnail: thumbnail1, thumbnail_one: false },
       ],
       videosContent: [
         {
@@ -96,8 +101,8 @@ const HeroSlider = () => {
       image: img5,
       title: "Community + Sustainability",
       videos: [
-        { id: 1, video: dummy4, thumbnail: thumbnail1 },
-        { id: 2, video: dummy5, thumbnail: thumbnail1 },
+        { id: 1, video: dummy4, thumbnail: thumbnail1, thumbnail_one: false },
+        { id: 2, video: dummy5, thumbnail: thumbnail1, thumbnail_one: false },
       ],
       videosContent: [
         {
@@ -110,7 +115,7 @@ const HeroSlider = () => {
       id: 6,
       image: img6,
       title: "Systems Engineering",
-      videos: [{ id: 1, video: dummy6, thumbnail: thumbnail1 }],
+      videos: [{ id: 1, video: dummy6, thumbnail: thumbnail1, thumbnail_one: true }],
       videosContent: [
         {
           videoTitle:
@@ -227,41 +232,47 @@ const HeroSlider = () => {
 
         {viewState === "thumbnails" && (
           <div className="thumbnailsView h-full relative flex flex-col justify-center">
+            
+            <div className="thumbnails grid relative lg:grid-cols-2 grid-cols-1 gap-8 items-center">
             <div
-              className="backButton absolute md:top-8 top-2 left-0 min-[1370px]:text-2xl text-xl flex items-center gap-2 hover:border-b-2 border-black cursor-pointer"
+              className="backButton absolute min-[1680px]:top-[-110px] top-[-65px] min-[1680px]:right-[-50px] xl:right-[-35px] right-0 flex items-center justify-end cursor-pointer"
               onClick={handleBackToSlider}
             >
-              <LeftChevron className="min-[1370px]:w-4 w-3" iconClr="#000" /> <span>Back</span>
+              <img src={crossIcon} alt="" className="min-[1680px]:w-[80px] min-[1680px]:h-[80px] min-[1370px]:h-[50px] min-[1370px]:w-[50px] w-[40px] h-[40px] rounded-full" />
+              {/* <LeftChevron className="min-[1370px]:w-4 w-3" iconClr="#000" /> <span>Back</span> */}
             </div>
-            <h2 className="min-[1370px]:text-5xl md:text-3xl text-xl font-bold text-center md:mb-12 mb-4">
-              {selectedSlide.title}
-            </h2>
-            <div className="thumbnails grid lg:grid-cols-2 grid-cols-1 md:gap-8 gap-3 items-center">
               {selectedSlide.videos.map((video) => (
                 <div
                   key={video.id}
-                  className="thumbnail relative cursor-pointer min-[1680px]:h-[380px] min-[1370px]:h-[350px] md:h-[300px] h-[200px]"
+                  className={`thumbnail cursor-pointer ${video.thumbnail_one ? 'thumbnail_one' : ''}`}
                   onClick={() => handleThumbnailClick(video)} // Open video view
                 >
+                  <div className="relative">
                   <img
                     src={video.thumbnail}
                     alt={`Thumbnail ${video.id}`}
-                    className="w-full h-full"
+                    className={`w-full min-[1370px]:h-full h-[300px] object-cover ${video.thumbnail_one === true ? 'thumbImg' : ''}`}
+                    style={{aspectRatio: 827/465}}
                   />
                   <img
                     src={playBtn}
                     alt=""
                     className="absolute top-0 left-0 bottom-0 right-0 pointer-events-none m-auto min-[1370px]:w-[110px] w-[80px]"
                   />
+                  </div>
+                  <p className="sf min-[1680px]:text-[30px] min-[1370px]:text-[24px] text-[18px] text-white text-center min-[1370px]:mt-5 mt-2 font-bold">{video.text}</p>
                 </div>
               ))}
             </div>
+            <h2 className="min-[1680px]:text-[40px] min-[1370px]:text-[30px] text-[20px] text-[#4ec0b0] md:text-3xl text-xl font-bold text-center min-[1600px]:mt-6 min-[1370px]:mt-4 lg:mt-3 mt-[50px]">
+              {selectedSlide.title}
+            </h2>
           </div>
         )}
 
         {viewState === "video" && (
           <div className="videoView h-full relative flex flex-col justify-center">
-            <div className="relative min-[1680px]:w-[65%] min-[1200px]:w-[60%] w-full mx-auto">
+            <div className="relative min-[1680px]:w-[65%] min-[1200px]:w-[55%] w-full mx-auto">
               <video
                 ref={videoRef}
                 className="w-full h-full"
@@ -281,7 +292,8 @@ const HeroSlider = () => {
              className="absolute right-0 min-[1200px]:top-0 top-[-70px] z-10 min-[1200px]:translate-x-[175%]"
               onClick={handleBackToThumbnails}
             >
-             <CrossIcon className="min-[1370px]:w-16 w-10 opacity-80" iconClr="#fff"/>
+           <img src={crossIcon} alt="" className="min-[1680px]:w-[80px] min-[1680px]:h-[80px] min-[1370px]:h-[50px] min-[1370px]:w-[50px] w-[40px] h-[40px] rounded-full" />
+             {/* <CrossIcon className="min-[1370px]:w-16 w-10 opacity-80" iconClr="#fff"/> */}
             </button>
             </div>
             <h2 className="sf min-[1370px]:text-4xl text-2xl text-center font-semibold min-[1370px]:mt-6 mt-2 min-[1370px]:mb-3 mb-1 text-[#50beb1]">
