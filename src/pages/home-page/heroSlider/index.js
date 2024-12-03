@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -253,6 +254,7 @@ const HeroSlider = () => {
                     src={video.thumbnail}
                     alt={`Thumbnail ${video.id}`}
                     className={`w-full min-[1370px]:h-full h-[300px] object-cover ${video.thumbnail_one === true ? 'thumbImg' : ''}`}
+                    effect="blur" // Blur effect while loading
                     style={{aspectRatio: 827/465}}
                   />
                   <img
