@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -248,7 +249,7 @@ const HeroSlider = () => {
                   onClick={() => handleThumbnailClick(video)} // Open video view
                 >
                   <div className="relative">
-                  <img
+                  <LazyLoadImage
                     src={video.thumbnail}
                     alt={`Thumbnail ${video.id}`}
                     className={`w-full min-[1370px]:h-full h-[300px] object-cover ${video.thumbnail_one === true ? 'thumbImg' : ''}`}
