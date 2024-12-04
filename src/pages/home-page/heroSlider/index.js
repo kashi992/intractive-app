@@ -22,13 +22,11 @@ import dummy3 from "../../../assets/videos/dumy.mp4";
 import dummy4 from "../../../assets/videos/dumy.mp4";
 import dummy5 from "../../../assets/videos/dumy.mp4";
 import dummy6 from "../../../assets/videos/dumy.mp4";
-import collabVideo1 from "../../../assets/videos/Five_Docks_Interfacing_example.mp4";
-import LeftChevron from "../../../assets/images/LeftChevron";
+import collabVideo1 from "../../../assets/videos/241204_SydneyMetro_test_v02b.mp4";
 import playBtn from "../../../assets/images/playBtn.png";
-import CrossIcon from "../../../assets/images/CrossIcon";
 import pdfFile from "../../../assets/images/ExecutiveSummary.pdf"; // PDF file for download
 import cm1 from "../../../assets/images/constructionMethology1.png";
-import cm2 from "../../../assets/images/constructionMethology2.png";
+import cm2 from "../../../assets/images/constructionMethology2.JPEG";
 import crossIcon from "../../../assets/images/crossIcon.png";
 import vis1 from "../../../assets/images/visionThumb.png";
 
@@ -73,8 +71,7 @@ const HeroSlider = () => {
       image: img3,
       title: "Collaboration",
       videos: [
-        { id: 1, video: collabVideo1, thumbnail: thumbnail1, thumbnail_one: false },
-        { id: 2, video: collabVideo1, thumbnail: thumbnail1, thumbnail_one: false },
+        { id: 1, video: collabVideo1, thumbnail: thumbnail1, thumbnail_one: true },
       ],
       videosContent: [
         {
@@ -249,7 +246,7 @@ const HeroSlider = () => {
                   className={`thumbnail cursor-pointer ${video.thumbnail_one ? 'thumbnail_one' : ''}`}
                   onClick={() => handleThumbnailClick(video)} // Open video view
                 >
-                  <div className="relative">
+                  <div className="relative mx-auto w-fit">
                   <LazyLoadImage
                     src={video.thumbnail}
                     alt={`Thumbnail ${video.id}`}
@@ -280,17 +277,25 @@ const HeroSlider = () => {
                 ref={videoRef}
                 className="w-full h-full"
                 src={activeVideo.video}
-                onClick={handlePause}
+                onClick={() => {
+                  if (isPlaying) {
+                    handlePause(); // Pause when the video is playing
+                  } else {
+                    handlePlay(); // Play when the video is paused
+                  }
+                }}
+                controls
               />
               {!isPlaying && (
-                <div className="play-button" onClick={handlePlay}>
+                <div className={`play-button`} onClick={setIsPlaying(true)}>
                   <img
                     src={playBtn}
                     alt=""
-                    className=""
+                    className="min-[1370px]:w-[110px] w-[80px]"
                   />
                 </div>
               )}
+              
                <button
              className="absolute right-0 min-[1200px]:top-0 top-[-70px] z-10 min-[1200px]:translate-x-[175%]"
               onClick={handleBackToThumbnails}
