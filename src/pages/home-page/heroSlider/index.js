@@ -287,8 +287,6 @@ const HeroSlider = () => {
                   />
                 </div>
               )}
-               
-              
                <button
              className="absolute right-0 min-[1200px]:top-0 top-[-70px] z-10 min-[1200px]:translate-x-[175%]"
               onClick={handleBackToThumbnails}
