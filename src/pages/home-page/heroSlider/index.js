@@ -161,16 +161,14 @@ const HeroSlider = () => {
     if (videoRef.current) {
       videoRef.current.play(); // Play the video
       setIsPlaying(true); // Set playback state to true
-      console.log("isPlaying2", isPlaying);
     }
   };
-  const handlePause = () => {
-    if (videoRef.current) {
-      videoRef.current.pause(); // Play the video
-      setIsPlaying(false); // Set playback state to true
-      console.log("isPlaying2", isPlaying);
-    }
-  };
+  // const handlePause = () => {
+  //   if (videoRef.current) {
+  //     videoRef.current.pause(); // Play the video
+  //     // setIsPlaying(false); // Set playback state to true
+  //   }
+  // };
 
   return (
     <section className="heroWrap">
@@ -277,17 +275,11 @@ const HeroSlider = () => {
                 ref={videoRef}
                 className="w-full h-full"
                 src={activeVideo.video}
-                onClick={() => {
-                  if (isPlaying) {
-                    handlePause(); // Pause when the video is playing
-                  } else {
-                    handlePlay(); // Play when the video is paused
-                  }
-                }}
+                onClick={() => setIsPlaying(false)}
                 controls
               />
               {!isPlaying && (
-                <div className={`play-button`} onClick={setIsPlaying(true)}>
+               <div className={`play-button`} onClick={handlePlay}>
                   <img
                     src={playBtn}
                     alt=""
@@ -295,6 +287,7 @@ const HeroSlider = () => {
                   />
                 </div>
               )}
+               
               
                <button
              className="absolute right-0 min-[1200px]:top-0 top-[-70px] z-10 min-[1200px]:translate-x-[175%]"
