@@ -22,6 +22,7 @@ import dummy3 from "../../../assets/videos/dumy.mp4";
 import dummy4 from "../../../assets/videos/dumy.mp4";
 import dummy5 from "../../../assets/videos/dumy.mp4";
 import dummy6 from "../../../assets/videos/dumy.mp4";
+import mfv1 from "../../../assets/videos/dharug_country_1.mp4";
 import collabVideo1 from "../../../assets/videos/241204_SydneyMetro_test_v02b.mp4";
 import playBtn from "../../../assets/images/playBtn.png";
 import pdfFile from "../../../assets/images/ExecutiveSummary.pdf"; // PDF file for download
@@ -56,7 +57,7 @@ const HeroSlider = () => {
       image: img2,
       title: "Construction Methodology",
       videos: [
-        { id: 1, video: dummy2, thumbnail: cm1, text: "Interview with Simon Tibbett", thumbnail_one: false },
+        { id: 1, video: dummy2, thumbnail: cm1, text: "TVS Ventilation System", thumbnail_one: false },
         { id: 2, video: dummy3, thumbnail: cm2, text: "Westmead - 4D Construction Methodology", thumbnail_one: false },
       ],
       videosContent: [
@@ -85,7 +86,7 @@ const HeroSlider = () => {
       image: img4,
       title: "Maintenance Facility",
       videos: [
-        { id: 1, video: dummy1, thumbnail: thumbnail1, thumbnail_one: false },
+        { id: 1, video: mfv1, thumbnail: thumbnail1, thumbnail_one: false },
         { id: 2, video: dummy3, thumbnail: thumbnail1, thumbnail_one: false },
       ],
       videosContent: [
@@ -190,7 +191,8 @@ const HeroSlider = () => {
               0: {
                 slidesPerView: 1,
                 spaceBetweenSlides: 30,
-                centeredSlides: false
+                centeredSlides: false,
+                slidesPerGroup: 1,
               },
               575: {
                 slidesPerView: 3,
