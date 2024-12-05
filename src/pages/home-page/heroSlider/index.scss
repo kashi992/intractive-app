@@ -289,9 +289,6 @@
     flex: 1;
     flex-direction: column;
 }
-.custom-video-player::-webkit-media-controls-overlay-play-button {
-    display: none !important;
-  }
   
 // Responsive start 
 @media screen and (max-width: 1680px) {
