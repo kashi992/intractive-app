@@ -30,6 +30,7 @@ import cm1 from "../../../assets/images/constructionMethology1.png";
 import cm2 from "../../../assets/images/constructionMethology2.JPEG";
 import crossIcon from "../../../assets/images/crossIcon.png";
 import vis1 from "../../../assets/images/visionThumb.png";
+import collabThumb1 from "../../../assets/images/collabThumb1.png";
 
 const HeroSlider = () => {
   const [viewState, setViewState] = useState("slider"); // States: "slider", "thumbnails", "video"
@@ -58,7 +59,7 @@ const HeroSlider = () => {
       title: "Construction Methodology",
       videos: [
         { id: 1, video: dummy2, thumbnail: cm1, text: "TVS Ventilation System", thumbnail_one: false },
-        { id: 2, video: dummy3, thumbnail: cm2, text: "Westmead - 4D Construction Methodology", thumbnail_one: false },
+        { id: 2, video: dummy3, thumbnail: cm2, text: "The Bays - 4D Construction Methodology", thumbnail_one: false },
       ],
       videosContent: [
         {
@@ -70,9 +71,9 @@ const HeroSlider = () => {
     {
       id: 3,
       image: img3,
-      title: "Collaboration",
+      title: "Interface and Integration",
       videos: [
-        { id: 1, video: collabVideo1, thumbnail: thumbnail1, thumbnail_one: true },
+        { id: 1, video: collabVideo1, thumbnail: collabThumb1, thumbnail_one: true },
       ],
       videosContent: [
         {
@@ -124,10 +125,22 @@ const HeroSlider = () => {
       ],
     },
     {
-      id: 7,
-      image: img7,
-      title: "Executive Summary",
+      id: 8,
+      image: img6,
+      title: "Connecting with Country",
+      videos: [{ id: 1, video: dummy6, thumbnail: thumbnail1, thumbnail_one: true }],
+      videosContent: [
+        {
+          videoTitle:
+            "Hear from our Project Director Scott Hunter and Cathy Hayes",
+        },
+      ],
     },
+    // {
+    //   id: 7,
+    //   image: img7,
+    //   title: "Executive Summary",
+    // },
   ];
 
   const handleSlideClick = (slide) => {
@@ -275,7 +288,7 @@ const HeroSlider = () => {
             <div className="relative min-[1680px]:w-[65%] min-[1200px]:w-[55%] w-full mx-auto">
               <video
                 ref={videoRef}
-                className="w-full h-full"
+                className="w-full h-full custom-video-player"
                 src={activeVideo.video}
                 onClick={() => setIsPlaying(false)}
                 controls
