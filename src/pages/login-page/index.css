@@ -5,7 +5,6 @@
   height: calc(100% - 145px);
   flex: 1;
 }
-
 .login-form {
   background: #fff;
   border-radius: 10px;
@@ -14,16 +13,15 @@
   border-radius: 10px;
   width: 500px;
   text-align: center;
-  h2{
-      font-size: 40px;
-      font-weight: 700;
-  }
-  p{
-   margin-top: 10px;
-   margin-bottom: 20px;
-  }
 }
-
+.login-form h2 {
+  font-size: 40px;
+  font-weight: 700;
+}
+.login-form p {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
 .login-form input {
   width: 100%;
   padding: 10px;
@@ -32,12 +30,11 @@
   height: 55px;
   font-size: 20px;
   margin-bottom: 30px;
-  &::placeholder{
-      font-size: inherit;
-      color: inherit;
-  }
 }
-
+.login-form input::placeholder {
+  font-size: inherit;
+  color: inherit;
+}
 .login-form button {
   padding: 10px;
   background-color: #294245;
@@ -50,18 +47,14 @@
   font-weight: 500;
   width: 100%;
 }
-
 .error-message {
   color: red;
   font-weight: 500;
 }
-
-
-//   Responsive start 
 @media screen and (max-width: 1680px) {
   .login-form {
-      padding: 24px;
-      gap: 20px;
+    padding: 24px;
+    gap: 20px;
   }
   .login-container {
     height: calc(100% - 80px);
@@ -69,34 +62,34 @@
 }
 @media screen and (max-width: 1370px) {
   .login-form input {
-      height: 50px;
-      font-size: 16px;
-    }
-    .login-form button {
-      height: 50px;
-      font-size: 16px;
-    }
-    .login-form {
-      width: 400px;
-      gap: 16px;
-      padding: 24px;
+    height: 50px;
+    font-size: 16px;
+  }
+  .login-form button {
+    height: 50px;
+    font-size: 16px;
+  }
+  .login-form {
+    width: 400px;
+    gap: 16px;
+    padding: 24px;
   }
   .login-form h2 {
-      font-size: 30px;
-      font-weight: 700;
+    font-size: 30px;
+    font-weight: 700;
   }
 }
 @media screen and (max-width: 575px) {
   .login-form {
-      width: 95%;
-      gap: 16px;
-      padding: 10px 16px 16px;
+    width: 95%;
+    gap: 16px;
+    padding: 10px 16px 16px;
   }
   .login-form input {
     font-size: 15px;
     margin-bottom: 15px;
-}
-.login-form p {
-  font-size: 14px;
-}
+  }
+  .login-form p {
+    font-size: 14px;
+  }
 }

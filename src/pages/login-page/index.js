@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./index.scss"; // Create this file for styling the login form
+import "./index.css"; // Create this file for styling the login form
 
 const LoginForm = ({ onLogin }) => {
   const [credentials, setCredentials] = useState({ username: "", password: "" });

@@ -7,7 +7,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation"; // Import Swiper navigation styles
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
-import "./index.scss"; // For custom styles
+import "./index.css"; // For custom styles
 import img1 from "../../../assets/images/heroLogo1.png";
 import img2 from "../../../assets/images/heroLogo2.png";
 import img3 from "../../../assets/images/heroLogo3.png";
@@ -44,7 +44,7 @@ const HeroSlider = () => {
       id: 1,
       image: img1,
       title: "The Vision",
-      videos: [{ id: 1, video: dummy1, thumbnail: vis1, text: "Scott Hunter & Cathy Hayes" , thumbnail_one: true }],
+      videos: [{ id: 1, video: dummy1, thumbnail: vis1, text: "Scott Hunter & Cathy Hayes", thumbnail_one: true }],
       videosContent: [
         {
           videoTitle:
@@ -52,9 +52,35 @@ const HeroSlider = () => {
         },
       ],
     },
-
     {
       id: 2,
+      image: img6,
+      title: "Customer and systems engineering",
+      videos: [{ id: 1, video: dummy6, thumbnail: thumbnail1, thumbnail_one: true }],
+      videosContent: [
+        {
+          videoTitle:
+            "Hear from our Project Director Scott Hunter and Cathy Hayes",
+        },
+      ],
+    },
+    {
+      id: 3,
+      image: img4,
+      title: "Sydney Metro Facility",
+      videos: [
+        { id: 1, video: mfv1, thumbnail: thumbnail1, thumbnail_one: false },
+        { id: 2, video: dummy3, thumbnail: thumbnail1, thumbnail_one: false },
+      ],
+      videosContent: [
+        {
+          videoTitle:
+            "Hear from our Project Director Scott Hunter and Cathy Hayes",
+        },
+      ],
+    },
+    {
+      id: 4,
       image: img2,
       title: "Construction Methodology",
       videos: [
@@ -69,38 +95,9 @@ const HeroSlider = () => {
       ],
     },
     {
-      id: 3,
-      image: img3,
-      title: "Interface and Integration",
-      videos: [
-        { id: 1, video: collabVideo1, thumbnail: collabThumb1, thumbnail_one: true },
-      ],
-      videosContent: [
-        {
-          videoTitle:
-            "Hear from our Project Director Scott Hunter and Cathy Hayes",
-        },
-      ],
-    },
-    {
-      id: 4,
-      image: img4,
-      title: "Maintenance Facility",
-      videos: [
-        { id: 1, video: mfv1, thumbnail: thumbnail1, thumbnail_one: false },
-        { id: 2, video: dummy3, thumbnail: thumbnail1, thumbnail_one: false },
-      ],
-      videosContent: [
-        {
-          videoTitle:
-            "Hear from our Project Director Scott Hunter and Cathy Hayes",
-        },
-      ],
-    },
-    {
       id: 5,
       image: img5,
-      title: "Community + Sustainability",
+      title: "Community",
       videos: [
         { id: 1, video: dummy4, thumbnail: thumbnail1, thumbnail_one: false },
         { id: 2, video: dummy5, thumbnail: thumbnail1, thumbnail_one: false },
@@ -115,7 +112,7 @@ const HeroSlider = () => {
     {
       id: 6,
       image: img6,
-      title: "Systems Engineering",
+      title: "Social inclusion",
       videos: [{ id: 1, video: dummy6, thumbnail: thumbnail1, thumbnail_one: true }],
       videosContent: [
         {
@@ -124,18 +121,20 @@ const HeroSlider = () => {
         },
       ],
     },
-    {
-      id: 8,
-      image: img6,
-      title: "Connecting with Country",
-      videos: [{ id: 1, video: dummy6, thumbnail: thumbnail1, thumbnail_one: true }],
-      videosContent: [
-        {
-          videoTitle:
-            "Hear from our Project Director Scott Hunter and Cathy Hayes",
-        },
-      ],
-    },
+    // {
+    //   id: 7,
+    //   image: img3,
+    //   title: "Interface and Integration",
+    //   videos: [
+    //     { id: 1, video: collabVideo1, thumbnail: collabThumb1, thumbnail_one: true },
+    //   ],
+    //   videosContent: [
+    //     {
+    //       videoTitle:
+    //         "Hear from our Project Director Scott Hunter and Cathy Hayes",
+    //     },
+    //   ],
+    // },
     // {
     //   id: 7,
     //   image: img7,
@@ -191,12 +190,12 @@ const HeroSlider = () => {
           <Swiper
             grabCursor={true}
             centeredSlides={false}
-            slidesPerView={5}
-            slidesPerGroup= {2}
-            spaceBetween={100}
+            slidesPerView={4}
+            slidesPerGroup={2}
+            spaceBetween={80}
             loop={false}
             pagination={true}
-            navigation 
+            navigation
             modules={[EffectCoverflow, Pagination, Navigation]}
             className="heroSwiper"
             breakpoints={{
@@ -214,14 +213,23 @@ const HeroSlider = () => {
               },
               // when window width is <= 999px
               999: {
-                slidesPerView: 4,
-                spaceBetween: 100,
+                slidesPerView: 3,
+                spaceBetween: 60,
                 centeredSlides: false,
               },
               // when window width is <= 999px
               1200: {
-                slidesPerView: 5,
-                spaceBetween: 100,
+                spaceBetween: 80,
+                slidesPerGroup: 3,
+              },
+              1680: {
+                slidesPerView: 4,
+                spaceBetween: 80,
+                slidesPerGroup: 3,
+              },
+              1920: {
+                slidesPerView: 4,
+                spaceBetween: 80,
                 slidesPerGroup: 3,
               }
             }}
@@ -244,15 +252,15 @@ const HeroSlider = () => {
 
         {viewState === "thumbnails" && (
           <div className="thumbnailsView h-full relative flex flex-col justify-center">
-            
+
             <div className="thumbnails grid relative lg:grid-cols-2 grid-cols-1 gap-8 items-center">
-            <div
-              className="backButton absolute min-[1680px]:top-[-110px] top-[-65px] min-[1680px]:right-[-50px] xl:right-[-35px] right-0 flex items-center justify-end cursor-pointer"
-              onClick={handleBackToSlider}
-            >
-              <img src={crossIcon} alt="" className="min-[1680px]:w-[80px] min-[1680px]:h-[80px] min-[1370px]:h-[50px] min-[1370px]:w-[50px] w-[40px] h-[40px] rounded-full" />
-              {/* <LeftChevron className="min-[1370px]:w-4 w-3" iconClr="#000" /> <span>Back</span> */}
-            </div>
+              <div
+                className="backButton absolute min-[1680px]:top-[-110px] top-[-65px] min-[1680px]:right-[-50px] xl:right-[-35px] right-0 flex items-center justify-end cursor-pointer"
+                onClick={handleBackToSlider}
+              >
+                <img src={crossIcon} alt="" className="min-[1680px]:w-[80px] min-[1680px]:h-[80px] min-[1370px]:h-[50px] min-[1370px]:w-[50px] w-[40px] h-[40px] rounded-full" />
+                {/* <LeftChevron className="min-[1370px]:w-4 w-3" iconClr="#000" /> <span>Back</span> */}
+              </div>
               {selectedSlide.videos.map((video) => (
                 <div
                   key={video.id}
@@ -260,18 +268,18 @@ const HeroSlider = () => {
                   onClick={() => handleThumbnailClick(video)} // Open video view
                 >
                   <div className="relative mx-auto w-fit">
-                  <LazyLoadImage
-                    src={video.thumbnail}
-                    alt={`Thumbnail ${video.id}`}
-                    className={`w-full min-[1370px]:h-full h-[300px] object-cover ${video.thumbnail_one === true ? 'thumbImg' : ''}`}
-                    effect="blur" // Blur effect while loading
-                    style={{aspectRatio: 827/465}}
-                  />
-                  <img
-                    src={playBtn}
-                    alt=""
-                    className="absolute top-0 left-0 bottom-0 right-0 pointer-events-none m-auto min-[1370px]:w-[110px] w-[80px]"
-                  />
+                    <LazyLoadImage
+                      src={video.thumbnail}
+                      alt={`Thumbnail ${video.id}`}
+                      className={`w-full min-[1370px]:h-full h-[300px] object-cover ${video.thumbnail_one === true ? 'thumbImg' : ''}`}
+                      effect="blur" // Blur effect while loading
+                      style={{ aspectRatio: 827 / 465 }}
+                    />
+                    <img
+                      src={playBtn}
+                      alt=""
+                      className="absolute top-0 left-0 bottom-0 right-0 pointer-events-none m-auto min-[1370px]:w-[110px] w-[80px]"
+                    />
                   </div>
                   <p className="sf min-[1680px]:text-[30px] min-[1370px]:text-[24px] text-[18px] text-white text-center min-[1370px]:mt-5 mt-2 font-bold">{video.text}</p>
                 </div>
@@ -294,7 +302,7 @@ const HeroSlider = () => {
                 controls
               />
               {!isPlaying && (
-               <div className={`play-button`} onClick={handlePlay}>
+                <div className={`play-button`} onClick={handlePlay}>
                   <img
                     src={playBtn}
                     alt=""
@@ -302,17 +310,17 @@ const HeroSlider = () => {
                   />
                 </div>
               )}
-               <button
-             className="absolute right-0 min-[1200px]:top-0 top-[-70px] z-10 min-[1200px]:translate-x-[175%]"
-              onClick={handleBackToThumbnails}
-            >
-           <img src={crossIcon} alt="" className="min-[1680px]:w-[80px] min-[1680px]:h-[80px] min-[1370px]:h-[50px] min-[1370px]:w-[50px] w-[40px] h-[40px] rounded-full" />
-             {/* <CrossIcon className="min-[1370px]:w-16 w-10 opacity-80" iconClr="#fff"/> */}
-            </button>
+              <button
+                className="absolute right-0 min-[1200px]:top-0 top-[-70px] z-10 min-[1200px]:translate-x-[175%]"
+                onClick={handleBackToThumbnails}
+              >
+                <img src={crossIcon} alt="" className="min-[1680px]:w-[80px] min-[1680px]:h-[80px] min-[1370px]:h-[50px] min-[1370px]:w-[50px] w-[40px] h-[40px] rounded-full" />
+                {/* <CrossIcon className="min-[1370px]:w-16 w-10 opacity-80" iconClr="#fff"/> */}
+              </button>
             </div>
             <h2 className="sf min-[1370px]:text-4xl text-2xl text-center font-semibold min-[1370px]:mt-6 mt-2 min-[1370px]:mb-3 mb-1 text-[#50beb1]">
-                {activeVideo.title || selectedSlide.title}
-              </h2>
+              {activeVideo.title || selectedSlide.title}
+            </h2>
             {selectedSlide.videosContent.map((data, index) => (
               <p
                 key={index}
@@ -321,7 +329,7 @@ const HeroSlider = () => {
                 {data.videoTitle}
               </p>
             ))}
-           
+
           </div>
         )}
       </div>
