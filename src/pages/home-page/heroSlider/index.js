@@ -55,7 +55,7 @@ const HeroSlider = () => {
     {
       id: 2,
       image: img6,
-      title: "Customer and systems engineering",
+      title: "Customer and Systems Engineering",
       videos: [{ id: 1, video: dummy6, thumbnail: thumbnail1, thumbnail_one: true }],
       videosContent: [
         {
@@ -112,7 +112,7 @@ const HeroSlider = () => {
     {
       id: 6,
       image: img6,
-      title: "Social inclusion",
+      title: "Social Inclusion",
       videos: [{ id: 1, video: dummy6, thumbnail: thumbnail1, thumbnail_one: true }],
       videosContent: [
         {
@@ -121,20 +121,20 @@ const HeroSlider = () => {
         },
       ],
     },
-    // {
-    //   id: 7,
-    //   image: img3,
-    //   title: "Interface and Integration",
-    //   videos: [
-    //     { id: 1, video: collabVideo1, thumbnail: collabThumb1, thumbnail_one: true },
-    //   ],
-    //   videosContent: [
-    //     {
-    //       videoTitle:
-    //         "Hear from our Project Director Scott Hunter and Cathy Hayes",
-    //     },
-    //   ],
-    // },
+    {
+      id: 8,
+      image: img3,
+      title: "Interface and Integration",
+      videos: [
+        { id: 1, video: collabVideo1, thumbnail: collabThumb1, thumbnail_one: true },
+      ],
+      videosContent: [
+        {
+          videoTitle:
+            "Hear from our Project Director Scott Hunter and Cathy Hayes",
+        },
+      ],
+    },
     // {
     //   id: 7,
     //   image: img7,
