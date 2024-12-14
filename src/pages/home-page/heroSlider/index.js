@@ -81,6 +81,20 @@ const HeroSlider = () => {
     },
     {
       id: 4,
+      image: img3,
+      title: "Interface and Integration",
+      videos: [
+        { id: 1, video: collabVideo1, thumbnail: collabThumb1, thumbnail_one: true },
+      ],
+      videosContent: [
+        {
+          videoTitle:
+            "Hear from our Project Director Scott Hunter and Cathy Hayes",
+        },
+      ],
+    },
+    {
+      id: 5,
       image: img2,
       title: "Construction Methodology",
       videos: [
@@ -95,7 +109,7 @@ const HeroSlider = () => {
       ],
     },
     {
-      id: 5,
+      id: 6,
       image: img5,
       title: "Community",
       videos: [
@@ -110,7 +124,7 @@ const HeroSlider = () => {
       ],
     },
     {
-      id: 6,
+      id: 8,
       image: img6,
       title: "Social Inclusion",
       videos: [{ id: 1, video: dummy6, thumbnail: thumbnail1, thumbnail_one: true }],
@@ -121,20 +135,7 @@ const HeroSlider = () => {
         },
       ],
     },
-    {
-      id: 8,
-      image: img3,
-      title: "Interface and Integration",
-      videos: [
-        { id: 1, video: collabVideo1, thumbnail: collabThumb1, thumbnail_one: true },
-      ],
-      videosContent: [
-        {
-          videoTitle:
-            "Hear from our Project Director Scott Hunter and Cathy Hayes",
-        },
-      ],
-    },
+ 
     // {
     //   id: 7,
     //   image: img7,
