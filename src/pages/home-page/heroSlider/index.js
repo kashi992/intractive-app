@@ -17,7 +17,7 @@ import img6 from "../../../assets/images/heroLogo6.png";
 import img7 from "../../../assets/images/pdf.png";
 import thumbnail1 from "../../../assets/images/thumbnail.png";
 import dummy1 from "../../../assets/videos/dumy.mp4";
-import dummy2 from "../../../assets/videos/dumy.mp4";
+import constructionMyVideo from "../../../assets/videos/Rozelle_Anim_preview_2.mp4";
 import dummy3 from "../../../assets/videos/dumy.mp4";
 import dummy4 from "../../../assets/videos/dumy.mp4";
 import dummy5 from "../../../assets/videos/dumy.mp4";
@@ -98,8 +98,8 @@ const HeroSlider = () => {
       image: img2,
       title: "Construction Methodology",
       videos: [
-        { id: 1, video: dummy2, thumbnail: cm1, text: "TVS Ventilation System", thumbnail_one: false },
-        { id: 2, video: dummy3, thumbnail: cm2, text: "The Bays - 4D Construction Methodology", thumbnail_one: false },
+        { id: 1, video: dummy3, thumbnail: cm1, text: "TVS Ventilation System", thumbnail_one: false },
+        { id: 2, video: constructionMyVideo, thumbnail: cm2, text: "The Bays - 4D Construction Methodology", thumbnail_one: false },
       ],
       videosContent: [
         {
