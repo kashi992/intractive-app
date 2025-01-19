@@ -17,7 +17,7 @@ import img6 from "../../../assets/images/heroLogo6.png";
 import img7 from "../../../assets/images/pdf.png";
 import thumbnail1 from "../../../assets/images/thumbnail.png";
 import dummy1 from "../../../assets/videos/dumy.mp4";
-import constructionMyVideo from "../../../assets/videos/Rozelle_Anim_preview_2.mp4";
+import constructionMyVideo from "../../../assets/videos/Rozelle_Anim_preview_6.mp4";
 import dummy3 from "../../../assets/videos/dumy.mp4";
 import dummy4 from "../../../assets/videos/dumy.mp4";
 import dummy5 from "../../../assets/videos/dumy.mp4";
@@ -29,8 +29,11 @@ import pdfFile from "../../../assets/images/ExecutiveSummary.pdf"; // PDF file f
 import cm1 from "../../../assets/images/constructionMethology1.png";
 import cm2 from "../../../assets/images/constructionMethology2.JPEG";
 import crossIcon from "../../../assets/images/crossIcon.png";
+import crossBlack from "../../../assets/images/crossBlack.png";
 import vis1 from "../../../assets/images/visionThumb.png";
 import collabThumb1 from "../../../assets/images/collabThumb1.png";
+import CustomerEngineering from "../customer-engineer/index";
+import { useRoutes } from "react-router-dom";
 
 const HeroSlider = () => {
   const [viewState, setViewState] = useState("slider"); // States: "slider", "thumbnails", "video"
@@ -98,8 +101,7 @@ const HeroSlider = () => {
       image: img2,
       title: "Construction Methodology",
       videos: [
-        { id: 1, video: dummy3, thumbnail: cm1, text: "TVS Ventilation System", thumbnail_one: false },
-        { id: 2, video: constructionMyVideo, thumbnail: cm2, text: "The Bays - 4D Construction Methodology", thumbnail_one: false },
+        { id: 1, video: constructionMyVideo, thumbnail: cm2, text: "The Bays - 4D Construction Methodology", thumbnail_one: true },
       ],
       videosContent: [
         {
@@ -144,12 +146,8 @@ const HeroSlider = () => {
   ];
 
   const handleSlideClick = (slide) => {
-    if (slide.id === 7) {
-      // Trigger PDF download for id: 7
-      const link = document.createElement("a");
-      link.href = pdfFile;
-      link.download = "Executive_Summary.pdf";
-      link.click();
+    if (slide.id === 2) {
+      setViewState("customerEngineering"); // Switch to CustomerEngineering view
     } else {
       setSelectedSlide(slide); // Set the selected slide
       setViewState("thumbnails"); // Switch to thumbnails view
@@ -325,7 +323,7 @@ const HeroSlider = () => {
             {selectedSlide.videosContent.map((data, index) => (
               <p
                 key={index}
-                className="text-center text-white min-[1680px]:text-[25px] min-[1680px]:text-[20px] font-semibold text-[18px]"
+                className="text-center text-white min-[1680px]:text-[20px] font-semibold text-[18px]"
               >
                 {data.videoTitle}
               </p>
@@ -333,7 +331,19 @@ const HeroSlider = () => {
 
           </div>
         )}
+        
       </div>
+      {viewState === "customerEngineering" && (
+          <div className="customerEngineeringView">
+            <button
+              onClick={() => setViewState("slider")}
+              className="backButton absolute left-[20px] top-[20px] z-10 w-[45px]"
+            >
+          <img src={crossBlack} alt="" className="w-full" />
+            </button>
+            <CustomerEngineering />
+          </div>
+        )}
     </section>
   );
 };
