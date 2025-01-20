@@ -337,7 +337,7 @@ const HeroSlider = () => {
           <div className="customerEngineeringView">
             <button
               onClick={() => setViewState("slider")}
-              className="backButton absolute left-[20px] top-[20px] z-10 w-[45px]"
+              className="backButton absolute min-[1500px]:left-[20px] min-[1500px]:top-[20px] left-2 top-2 z-10 min-[1680px]:w-[45px] w-[30px]"
             >
           <img src={crossBlack} alt="" className="w-full" />
             </button>
