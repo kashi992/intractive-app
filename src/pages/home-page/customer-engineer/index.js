@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './index.css'
 import { Link } from 'react-router-dom'
+import bgImg from '../../../assets/images/CustomerEngineeringBg.png'
 
 const buttons = [
   {
@@ -164,15 +165,15 @@ const CustomerEngineering = () => {
                     className={`${activeButton === button.id ? "table-row transition-all duration-300" : "hidden"
                       }`}
                   >
-                    <td className="px-4 py-1 font-semibold">{button.oppName}</td>
-                    <td className="px-4 py-1 bg-[#F9F9F9]">
-                      <ul className="list-disc pb-3 ps-[10px]">
+                    <td className="px-2"><p className='font-bold min-[1680px]:text-[24px] min-[1370px]:text-[18px] text-[16px] leading-none bg-[#F9F9F9] p-1 sf'>{button.oppName}</p></td>
+                    <td className="px-2 bg-[#F9F9F9]">
+                      <ul className="list-disc ps-6 pb-3">
                         {button.desc.map((des, index) => (
-                          <li className=' text-black font-medium' key={index}>{des.points}</li>
+                          <li className=' text-black font-bold sf min-[1680px]:text-[20px] min-[1370px]:text-[18px] text-[16px]' key={index}>{des.points}</li>
                         ))}
                       </ul>
                     </td>
-                    <td className="px-4 py-1">
+                    <td className="px-2">
                       <Link className='cursor-pointer bg-[#DCF2EF] border-2 border-[#4FBFAF] w-[90%] mx-auto md:h-[45px] h-[35px] flex justify-center items-center rounded-[35px] xl:text-[20px] md:text-[16px] text-[12px] text-[#4FBFAF]'>{button.price}</Link>
                     </td>
                   </tr>
@@ -182,7 +183,10 @@ const CustomerEngineering = () => {
           </div>
 
         </div>
-        <div className="mt-auto mb-3">
+        <div className="xl:hidden">
+          <img src={bgImg} alt="" />
+        </div>
+        <div className="xl:mt-auto mb-3">
           <p className='text-[#44817D] min-[1680px]:text-[32px] min-[1370px]:text-[20px] text-[16px] leading-normal font-bold sf bg-white w-fit px-[10px]'>10 Value Enhancements Opportunities have been approved Valued at: </p>
           <h2 className='text-[#44817D] min-[1680px]:text-[40px] min-[1370px]:text-[26px] text-[20px] leading-normal font-bold sf bg-white w-fit px-[10px]'>$157,500,000</h2>
         </div>

@@ -19,7 +19,7 @@
 
 .customerEngineer .customerEngineerInner {
    display: grid;
-   grid-template-columns: 1fr 790px;
+   grid-template-columns: 1fr 900px;
    padding-left: 0;
    max-width: 80%;
    width: 100%;
@@ -28,25 +28,25 @@
 }
 
 .customerEngineer .customerEngineerInner table tr td:first-child {
-   width: 30%;
+   width: 36%;
 }
 
 .customerEngineer .customerEngineerInner table tr td:last-child {
-   width: 30%;
+   width: 24%;
 }
 
 .customerEngineer .customerEngineerInner table tr td {
    width: 40%;
-   vertical-align: text-top;
+   vertical-align: top;
    line-height: 1.2;
 }
 
 .customerEngineer .customerEngineerInner table tr th:first-child {
-   width: 30%;
+   width: 36%;
 }
 
 .customerEngineer .customerEngineerInner table tr th:last-child {
-   width: 30%;
+   width: 24%;
 }
 
 .customerEngineer .customerEngineerInner table tr th {
@@ -55,7 +55,7 @@
 
 .customerEngineer .customerEngineerInner table {
    border-collapse: separate;
-   border-spacing: 0 16px;
+   border-spacing: 0 14px;
 }
 .customerEngineer .customerEngineerInner table tr td ul li::marker {
  color: #44817D;
@@ -106,6 +106,7 @@
 
    .customerEngineer .customerEngineerInner {
       padding-top: 0px;
+      grid-template-columns: 1fr 800px;
    }
 
    .btn05 {
@@ -139,12 +140,15 @@
 }
 
 @media screen and (max-width: 1600px) {
+  
+}
+
+@media screen and (max-width: 1570px) {
    .btn05 {
       margin-top: 16px;
    }
 }
-
-@media screen and (max-width: 1570px) {
+@media screen and (max-width: 1500px) {
    .btn05 {
       margin-top: 30px;
    }
@@ -173,6 +177,16 @@
 }
 
 @media screen and (max-width: 1199.98px) {
+   .customerEngineer::before {
+    display: none;
+  }
+  .customerEngineer {
+   height: auto;
+   min-height: 100vh;
+}
+  .customerEngineer .container{
+gap: 16px;
+}
    .customerEngineer .customerEngineerInner {
       max-width: 100%;
       grid-template-columns: 1fr;
@@ -208,6 +222,9 @@
   .customerEngineer .customerEngineerInner table {
    border-spacing: 0 6px;
    margin-top: 10px;
+}
+.customerEngineer .container {
+   gap: 10px;
 }
 
 }
