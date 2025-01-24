@@ -56,6 +56,21 @@ const HeroSlider = () => {
       ],
     },
     {
+      id: 2-1,
+      image: img4,
+      title: "Safety",
+      videos: [
+        { id: 1, video: dummy3, thumbnail: thumbnail1, thumbnail_one: false },
+        { id: 2, video: dummy3, thumbnail: thumbnail1, thumbnail_one: false },
+      ],
+      videosContent: [
+        {
+          videoTitle:
+            "",
+        },
+      ],
+    },
+    {
       id: 2,
       image: img6,
       title: "Customer and Systems Engineering",
