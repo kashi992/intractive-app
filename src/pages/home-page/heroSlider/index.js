@@ -51,7 +51,7 @@ const HeroSlider = () => {
       id: 1,
       image: img1,
       title: "The Vision",
-      videos: [{ id: 1, video: dummy1, thumbnail: vis1, text: "Scott Hunter & Cathy Hayes", thumbnail_one: true }],
+      videos: [{ id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: vis1, text: "Scott Hunter & Cathy Hayes", thumbnail_one: true }],
       videosContent: [
         {
           videoTitle:
@@ -64,8 +64,8 @@ const HeroSlider = () => {
       image: img4,
       title: "Safety",
       videos: [
-        { id: 1, video: dummy3, thumbnail: thumbnail1, thumbnail_one: false },
-        { id: 2, video: dummy3, thumbnail: thumbnail1, thumbnail_one: false },
+        { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
+        { id: 2, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
       ],
       videosContent: [
         {
@@ -78,7 +78,7 @@ const HeroSlider = () => {
       id: 2,
       image: img6,
       title: "Customer and Systems Engineering",
-      videos: [{ id: 1, video: dummy6, thumbnail: thumbnail1, thumbnail_one: true }],
+      videos: [{ id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: true }],
       videosContent: [
         {
           videoTitle:
@@ -91,8 +91,8 @@ const HeroSlider = () => {
       image: img4,
       title: "Sydney Metro Facility",
       videos: [
-        { id: 1, video: mfv1, thumbnail: thumbnail1, thumbnail_one: false },
-        { id: 2, video: dummy3, thumbnail: thumbnail1, thumbnail_one: false },
+        { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dharug_country_2_1.mp4", thumbnail: thumbnail1, thumbnail_one: false },
+        { id: 2, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
       ],
       videosContent: [
         {
@@ -106,7 +106,7 @@ const HeroSlider = () => {
       image: img3,
       title: "Interface and Integration",
       videos: [
-        { id: 1, video: collabVideo1, thumbnail: collabThumb1, thumbnail_one: true },
+        { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/241216_SydneyMetro_test_v04b.mp4", thumbnail: collabThumb1, thumbnail_one: true },
       ],
       videosContent: [
         {
@@ -120,7 +120,7 @@ const HeroSlider = () => {
       image: img2,
       title: "Construction Methodology",
       videos: [
-        { id: 1, video: constructionMyVideo, thumbnail: cm2, text: "The Bays - 4D Construction Methodology", thumbnail_one: true },
+        { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/Rozelle_Anim_preview_6.mp4", thumbnail: cm2, text: "The Bays - 4D Construction Methodology", thumbnail_one: true },
       ],
       videosContent: [
         {
@@ -134,8 +134,8 @@ const HeroSlider = () => {
       image: img5,
       title: "Community",
       videos: [
-        { id: 1, video: dummy4, thumbnail: thumbnail1, thumbnail_one: false },
-        { id: 2, video: dummy5, thumbnail: thumbnail1, thumbnail_one: false },
+        { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
+        { id: 2, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
       ],
       videosContent: [
         {
@@ -148,7 +148,7 @@ const HeroSlider = () => {
       id: 8,
       image: img6,
       title: "Social Inclusion",
-      videos: [{ id: 1, video: dummy6, thumbnail: thumbnail1, thumbnail_one: true }],
+      videos: [{ id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: true }],
       videosContent: [
         {
           videoTitle:
