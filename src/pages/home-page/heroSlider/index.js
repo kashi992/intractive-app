@@ -59,6 +59,7 @@ const HeroSlider = () => {
       image: img1,
       title: "The Vision",
       videos: [{ id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: vis1, text: "Scott Hunter & Cathy Hayes", thumbnail_one: true }],
+      Thumbtitle: "The Vision",
       videosContent: [
         {
           videoTitle:
@@ -70,6 +71,7 @@ const HeroSlider = () => {
       id: 2-1,
       image: img4,
       title: "Safety",
+      Thumbtitle: "Safety",
       videos: [
         { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: true },
         // { id: 2, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
@@ -85,6 +87,7 @@ const HeroSlider = () => {
       id: 2,
       image: img6,
       title: "Customer and Systems Engineering",
+      Thumbtitle: "Customer and Systems Engineering",
       videos: [{ id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: true }],
       videosContent: [
         {
@@ -97,6 +100,7 @@ const HeroSlider = () => {
       id: 3,
       image: img4,
       title: "Sydney Metro Facility",
+      Thumbtitle: "Connecting with Country.",
       videos: [
         { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dharug_country_2_1.mp4", thumbnail: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/sydneyMetro.jpeg",   text: "A 3D Animation of the Sydney Metro Facility in Clyde." , thumbnail_one: true },
         // { id: 2, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
@@ -112,6 +116,7 @@ const HeroSlider = () => {
       id: 4,
       image: img3,
       title: "Interface and Integration",
+      Thumbtitle: "Interface and Integration",
       videos: [
         { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/241216_SydneyMetro_test_v04b.mp4", thumbnail: collabThumb1, thumbnail_one: true },
       ],
@@ -126,6 +131,7 @@ const HeroSlider = () => {
       id: 5,
       image: img2,
       title: "Construction Methodology",
+      Thumbtitle: "Construction Methodology",
       videos: [
         { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/Rozelle_Anim_preview_6.mp4", thumbnail: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/constructionMethology2.JPEG", text: "The Bays - 4D Construction Methodology", thumbnail_one: true },
       ],
@@ -140,6 +146,7 @@ const HeroSlider = () => {
       id: 6,
       image: img5,
       title: "Community",
+      Thumbtitle: "Community",
       videos: [
         { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: true },
         // { id: 2, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
@@ -155,6 +162,7 @@ const HeroSlider = () => {
       id: 8,
       image: img6,
       title: "Social Inclusion",
+      Thumbtitle: "Social Inclusion",
       videos: [{ id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: true }],
       videosContent: [
         {
@@ -310,8 +318,8 @@ const HeroSlider = () => {
                 </div>
               ))}
             </div>
-            <h2 className="min-[1680px]:text-[40px] min-[1370px]:text-[30px] text-[20px] text-[#4ec0b0] md:text-3xl text-xl font-bold text-center min-[1600px]:mt-6 min-[1370px]:mt-4 lg:mt-3 mt-[50px]">
-              {selectedSlide.title}
+            <h2 className="min-[1680px]:text-[40px] min-[1370px]:text-[30px] text-[20px] text-[#4ec0b0] md:text-3xl text-xl font-bold text-center min-[1600px]:mt-6 min-[1370px]:mt-4 lg:mt-3 mt-[50px] tit">
+              {selectedSlide.Thumbtitle}
             </h2>
           </div>
         )}
