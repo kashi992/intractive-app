@@ -98,7 +98,7 @@ const HeroSlider = () => {
       image: img4,
       title: "Sydney Metro Facility",
       videos: [
-        { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dharug_country_2_1.mp4", thumbnail: sydneyMetro, thumbnail_one: true },
+        { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dharug_country_2_1.mp4", thumbnail: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/sydneyMetro.jpeg",   text: "A 3D Animation of the Sydney Metro Facility in Clyde." , thumbnail_one: true },
         // { id: 2, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
       ],
       videosContent: [
@@ -127,7 +127,7 @@ const HeroSlider = () => {
       image: img2,
       title: "Construction Methodology",
       videos: [
-        { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/Rozelle_Anim_preview_6.mp4", thumbnail: cm2, text: "The Bays - 4D Construction Methodology", thumbnail_one: true },
+        { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/Rozelle_Anim_preview_6.mp4", thumbnail: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/constructionMethology2.JPEG", text: "The Bays - 4D Construction Methodology", thumbnail_one: true },
       ],
       videosContent: [
         {
