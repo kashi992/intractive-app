@@ -16,6 +16,7 @@ import img5 from "../../../assets/images/heroLogo5.png";
 import img6 from "../../../assets/images/heroLogo6.png";
 import img7 from "../../../assets/images/pdf.png";
 import thumbnail1 from "../../../assets/images/thumbnail.png";
+import sydneyMetro from "../../../assets/images/sydneyMetro.jpeg";
 
 // Video URLS
 // import dummy1 from "../../../assets/videos/dumy.mp4";
@@ -70,8 +71,8 @@ const HeroSlider = () => {
       image: img4,
       title: "Safety",
       videos: [
-        { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
-        { id: 2, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
+        { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: true },
+        // { id: 2, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
       ],
       videosContent: [
         {
@@ -97,8 +98,8 @@ const HeroSlider = () => {
       image: img4,
       title: "Sydney Metro Facility",
       videos: [
-        { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dharug_country_2_1.mp4", thumbnail: thumbnail1, thumbnail_one: false },
-        { id: 2, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
+        { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dharug_country_2_1.mp4", thumbnail: sydneyMetro, thumbnail_one: true },
+        // { id: 2, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
       ],
       videosContent: [
         {
@@ -140,8 +141,8 @@ const HeroSlider = () => {
       image: img5,
       title: "Community",
       videos: [
-        { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
-        { id: 2, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
+        { id: 1, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: true },
+        // { id: 2, video: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4", thumbnail: thumbnail1, thumbnail_one: false },
       ],
       videosContent: [
         {
