@@ -1,12 +1,30 @@
 import { Routes,Route} from "react-router-dom"
 import HomePage from "../pages/home-page/HomePage"
 import LoginForm from "../pages/login-page"
+import Vision from "../pages/home-page/vision"
+import HeroSlider from "../pages/home-page/heroSlider"
+import Safety from "../pages/home-page/safety"
+import SystemEngineering from "../pages/home-page/systemEngineering/index"
+import SydneyMetroFacility from "../pages/home-page/SydneyMetroFacility"
+import InterfaceIntegration from "../pages/home-page/InterfaceIntegration"
+import ConstructionMethodology from "../pages/home-page/ConstructionMethodology"
+import Community from "../pages/home-page/Community"
+import SocialInclusion from "../pages/home-page/SocialInclusion"
 
 const Routers = () => {
   return (
   <Routes>
     <Route index element={<HomePage/>} />
     <Route path="/login" element={<LoginForm/>} />
+    <Route path="/home" element={<HeroSlider/>} />
+    <Route path="/vision" element={<Vision/>} />
+    <Route path="/safety" element={<Safety/>} />
+    <Route path="/system-engineering" element={<SystemEngineering/>} />
+    <Route path="/sydney-metro-facility" element={<SydneyMetroFacility/>} />
+    <Route path="/interface-and-integration" element={<InterfaceIntegration/>} />
+    <Route path="/construction-methodology" element={<ConstructionMethodology/>} />
+    <Route path="/community" element={<Community/>} />
+    <Route path="/social-inclusion" element={<SocialInclusion/>} />
   </Routes>
   )
 }

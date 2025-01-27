@@ -315,7 +315,10 @@
     width: 100%;
   }
   .thumbnailsView {
-    padding: 0;
+    padding: 0 15px;
+  }
+  .videoView {
+    padding: 0 15px;
   }
   .video-element {
     width: 95%;
@@ -355,6 +358,9 @@
 
 }
 @media screen and (max-width: 575px) {
+  .videoView {
+    padding: 0 10px;
+}
   .play-button img {
     width: 55px;
   }
@@ -365,7 +371,7 @@
     font-size: 20px;
   }
   .thumbnailsView {
-    padding: 75px 0;
+    padding: 75px 10px;
   }
   .heroSwiper {
     padding: 0 30px;

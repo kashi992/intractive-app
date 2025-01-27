@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./index.css"; // Create this file for styling the login form
-
+import { useNavigate } from "react-router-dom";
 const LoginForm = ({ onLogin }) => {
   const [credentials, setCredentials] = useState({ username: "", password: "" });
+  const navigate = useNavigate();
   const [error, setError] = useState("");
 
   const correctUsername = "collaboration";
@@ -16,6 +17,7 @@ const LoginForm = ({ onLogin }) => {
     ) {
       setError("");
       onLogin(); // Call the parent function to update authentication state
+      navigate('/home');
     } else {
       setError("Invalid username or password!");
     }
