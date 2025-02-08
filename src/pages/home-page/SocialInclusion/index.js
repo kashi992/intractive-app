@@ -24,7 +24,7 @@ const SocialInclusion = () => {
                     <div className="thumbnails grid relative grid-cols-1 gap-8 items-center mx-auto">
                         {/* Back Button */}
                         <div
-                            className="backButton absolute top-0 right-0 translate-x-[150%] flex items-center justify-end cursor-pointer"
+                            className="backButton absolute top-0 right-0 md:translate-x-[150%] md:translate-y-[0%] translate-y-[-150%] flex items-center justify-end cursor-pointer"
                             onClick={() => navigate("/home")}
                         >
                             <img
@@ -43,7 +43,7 @@ const SocialInclusion = () => {
                                 <LazyLoadImage
                                     src={thumbnail1}
                                     alt="Thumbnail vision"
-                                    className="w-full min-[1370px]:h-full md:h-[400px] h-fit object-cover"
+                                    className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
                                     effect="blur"
                                 />
                                 <img
@@ -56,7 +56,7 @@ const SocialInclusion = () => {
                             </p>
                         </div>
                     </div>
-                    <h2 className="min-[1680px]:text-[40px] min-[1370px]:text-[30px] text-[20px] text-[#4ec0b0] md:text-3xl text-xl font-bold text-center min-[1600px]:mt-6 min-[1370px]:mt-4 lg:mt-3 mt-[50px] tit">
+                    <h2 className="min-[1680px]:text-[40px] min-[1370px]:text-[30px] text-[20px] text-[#4ec0b0] md:text-3xl text-xl font-bold text-center min-[1600px]:mt-6 min-[1370px]:mt-4 lg:mt-3 mt-4">
                     Social Inclusion
                     </h2>
                 </div>
