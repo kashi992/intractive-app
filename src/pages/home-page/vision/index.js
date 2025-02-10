@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import crossIcon from "../../../assets/images/crossIcon.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import playBtn from "../../../assets/images/playBtn.png";
-import vis1 from "../../../assets/images/visionThumb.png";
 import { useNavigate } from "react-router-dom";
 
 const Vision = () => {
@@ -41,7 +40,7 @@ const Vision = () => {
                         >
                             <div className="relative mx-auto w-full">
                                 <LazyLoadImage
-                                    src={vis1}
+                                    src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/the_vision_thumbnail.png"
                                     alt="Thumbnail vision"
                                     className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
                                     effect="blur"
