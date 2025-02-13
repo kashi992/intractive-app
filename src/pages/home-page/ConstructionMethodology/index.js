@@ -40,7 +40,7 @@ const ConstructionMethodology = () => {
                         >
                             <div className="relative mx-auto w-full">
                                 <LazyLoadImage
-                                    src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/constructionMethology2.JPEG"
+                                    src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/Construction_Sequence_Thumbnail.jpg"
                                     alt="Thumbnail vision"
                                     className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
                                     effect="blur"
@@ -69,7 +69,7 @@ const ConstructionMethodology = () => {
                         <video
                         ref={videoRef}
                             className="w-full h-full custom-video-player"
-                            src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/Rozelle_Anim_preview_6.mp4"
+                            src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/Construction_Sequence_feb2025.mp4"
                             controls
                             onClick={() => setIsPlaying(false)}
                         />

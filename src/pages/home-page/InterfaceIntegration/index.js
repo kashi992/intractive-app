@@ -41,7 +41,7 @@ const InterfaceIntegration = () => {
                         >
                             <div className="relative mx-auto w-full">
                                 <LazyLoadImage
-                                    src={collabThumb1}
+                                    src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/InterfaceIntegrationThumbnail.jpg"
                                     alt="Thumbnail vision"
                                     className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
                                     effect="blur"
@@ -69,7 +69,7 @@ const InterfaceIntegration = () => {
                         <video
                         ref={videoRef}
                             className="w-full h-full custom-video-player"
-                            src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/241216_SydneyMetro_test_v04b.mp4"
+                            src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/250213_SydneyMetro_Alice_v8_1.mp4"
                             controls
                             onClick={() => setIsPlaying(false)}
                         />
