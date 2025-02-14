@@ -72,6 +72,7 @@ const Vision = () => {
                             src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/THE_VISION_EDIT_13.mp4"
                             controls
                             onClick={() => setIsPlaying(false)}
+                            poster="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/the_vision_thumbnail.png"
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={handlePlay}>

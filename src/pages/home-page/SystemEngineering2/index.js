@@ -72,6 +72,7 @@ const SystemEngineering2 = () => {
                             src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/250207_UGL_v03c.mp4"
                             controls
                             onClick={() => setIsPlaying(false)}
+                            poster="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/system-engineering-thumbnail.png"
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={handlePlay}>

@@ -72,6 +72,7 @@ const SydneyMetroFacility = () => {
                             src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dharug_country_2_1.mp4"
                             controls
                             onClick={() => setIsPlaying(false)}
+                            poster="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/sydneyMetro.jpeg"
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={handlePlay}>
