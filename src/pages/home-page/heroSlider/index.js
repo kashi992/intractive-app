@@ -7,12 +7,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation"; // Import Swiper navigation styles
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import "./index.css"; // For custom styles
-import img1 from "../../../assets/images/heroLogo1.png";
-import img2 from "../../../assets/images/heroLogo2.png";
-import img3 from "../../../assets/images/heroLogo3.png";
-import img4 from "../../../assets/images/heroLogo4.png";
-import img5 from "../../../assets/images/heroLogo5.png";
-import img6 from "../../../assets/images/heroLogo6.png";
 import { useNavigate } from "react-router-dom";
 
 const HeroSlider = () => {
@@ -20,49 +14,49 @@ const HeroSlider = () => {
   const slides = [
     {
       id: 1,
-      image: img1,
+      image: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/heroLogo1.png",
       title: "The Vision",
       path: "/vision",
     },
     {
       id: 2,
-      image: img4,
+      image: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/heroLogo4.png",
       title: "Safety",
       path: "/safety",
     },
     {
       id: 3,
-      image: img6,
+      image: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/heroLogo6.png",
       title: "Systems Engineering",
       path: "/system-engineering",
     },
     {
       id: 4,
-      image: img4,
+      image: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/heroLogo4.png",
       title: "Sydney Metro Facility",
       path: "/sydney-metro-facility",
     },
     {
       id: 5,
-      image: img3,
+      image: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/heroLogo3.png",
       title: "Interface and Integration",
       path: "/interface-and-integration",
     },
     {
       id: 6,
-      image: img2,
+      image: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/heroLogo2.png",
       title: "Construction Methodology",
       path: "/construction-methodology",
     },
     {
       id: 7,
-      image: img5,
+      image: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/heroLogo5.png",
       title: "Community",
       path: "/community",
     },
     {
       id: 8,
-      image: img6,
+      image: "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/heroLogo6.png",
       title: "Social Inclusion",
       path: "/social-inclusion",
     },

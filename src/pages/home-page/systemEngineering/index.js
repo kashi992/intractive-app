@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import './index.css'
 import { Link } from 'react-router-dom'
 import bgImg from '../../../assets/images/CustomerEngineeringBg.png'
-import crossBlack from "../../../assets/images/crossBlack.png";
 import { useNavigate } from "react-router-dom";
 const buttons = [
   {
@@ -140,7 +139,7 @@ const SystemEngineering = () => {
             className="backButton absolute min-[1500px]:left-[20px] min-[1500px]:top-[20px] left-2 top-2 z-10 min-[1680px]:w-[45px] w-[30px]"
             onClick={() => navigate("/home")}
           >
-            <img src={crossBlack} alt="" className="w-full" />
+            <img src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/crossBlack.png" alt="" className="w-full" />
           </button>
       <div className="container flex flex-col h-full">
         <div className="customerEngineerInner">

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
-import crossIcon from "../../../assets/images/crossIcon.png";
+
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import playBtn from "../../../assets/images/playBtn.png";
+
 import { useNavigate } from "react-router-dom";
 
 const SydneyMetroFacility = () => {
@@ -27,7 +27,7 @@ const SydneyMetroFacility = () => {
                             onClick={() => navigate("/home")}
                         >
                             <img
-                                src={crossIcon}
+                                src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/crossIcon.png"
                                 alt="Back"
                                 className="min-[1680px]:w-[80px] min-[1680px]:h-[80px] min-[1370px]:h-[50px] min-[1370px]:w-[50px] w-[40px] h-[40px] rounded-full"
                             />
@@ -46,7 +46,7 @@ const SydneyMetroFacility = () => {
                                     effect="blur"
                                 />
                                 <img
-                                    src={playBtn}
+                                    src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/playBtn.png"
                                     alt="Play"
                                     className="absolute top-0 left-0 bottom-0 right-0 pointer-events-none m-auto min-[1370px]:w-[110px] w-[80px]"
                                 />
@@ -77,7 +77,7 @@ const SydneyMetroFacility = () => {
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={handlePlay}>
                                 <img
-                                    src={playBtn}
+                                    src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/playBtn.png"
                                     alt=""
                                     className="min-[1370px]:w-[110px] md:w-[80px] w-[55px] m-auto"
                                 />
@@ -89,7 +89,7 @@ const SydneyMetroFacility = () => {
                             onClick={() => setViewState("thumbnail")}
                         >
                             <img
-                                src={crossIcon}
+                                src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/crossIcon.png"
                                 alt="Back"
                                 className="min-[1680px]:w-[80px] min-[1680px]:h-[80px] min-[1370px]:h-[50px] min-[1370px]:w-[50px] w-[40px] h-[40px] rounded-full"
                             />

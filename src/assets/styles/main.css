@@ -110,7 +110,7 @@ body {
     overflow: hidden;
     &::before{
         content: "";
-        background-image: url(../images/heroBg.png);
+        background-image: url(https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/heroBg.png);
         background-repeat: no-repeat;
         background-size: cover;
         position: absolute;
