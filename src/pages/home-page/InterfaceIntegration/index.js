@@ -68,7 +68,7 @@ const InterfaceIntegration = () => {
                         <video
                         ref={videoRef}
                             className="w-full h-full custom-video-player"
-                            src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/250213_SydneyMetro_Alice_v8_1+(2).mp4"
+                            src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/250213_SydneyMetro_Alice_v8_1%2B(2)+(1).mp4"
                             controls
                             onClick={() => setIsPlaying(false)}
                             poster="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/InterfaceIntegrationThumbnail.jpg"
