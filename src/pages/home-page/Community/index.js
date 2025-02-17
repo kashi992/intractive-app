@@ -26,7 +26,7 @@ const Community = () => {
                             onClick={() => navigate("/home")}
                         >
                             <img
-                                src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/crossIcon.png"
+                                src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/crossIcon.png"
                                 alt="Back"
                                 className="min-[1680px]:w-[80px] min-[1680px]:h-[80px] min-[1370px]:h-[50px] min-[1370px]:w-[50px] w-[40px] h-[40px] rounded-full"
                             />
@@ -39,13 +39,13 @@ const Community = () => {
                         >
                             <div className="relative mx-auto w-full">
                                 <LazyLoadImage
-                                    src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/thumbnail.png"
+                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/thumbnail.png"
                                     alt="Thumbnail vision"
                                     className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
                                     effect="blur"
                                 />
                                 <img
-                                    src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/playBtn.png"
+                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/playBtn.png"
                                     alt="Play"
                                     className="absolute top-0 left-0 bottom-0 right-0 pointer-events-none m-auto min-[1370px]:w-[110px] w-[80px]"
                                 />
@@ -67,15 +67,15 @@ const Community = () => {
                         <video
                         ref={videoRef}
                             className="w-full h-full custom-video-player"
-                            src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/dumy.mp4"
+                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/dumy.mp4"
                             controls
                             onClick={() => setIsPlaying(false)}
-                            poster="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/thumbnail.png"
+                            poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/thumbnail.png"
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={handlePlay}>
                                 <img
-                                    src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/playBtn.png"
+                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/playBtn.png"
                                     alt=""
                                     className="min-[1370px]:w-[110px] md:w-[80px] w-[55px] m-auto"
                                 />
@@ -87,7 +87,7 @@ const Community = () => {
                             onClick={() => setViewState("thumbnail")}
                         >
                             <img
-                                src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/crossIcon.png"
+                                src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/crossIcon.png"
                                 alt="Back"
                                 className="min-[1680px]:w-[80px] min-[1680px]:h-[80px] min-[1370px]:h-[50px] min-[1370px]:w-[50px] w-[40px] h-[40px] rounded-full"
                             />
