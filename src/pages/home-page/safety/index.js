@@ -1,6 +1,4 @@
-import React, { useState, useRef } from "react";
-
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import React, { useState, useRef, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -9,12 +7,18 @@ const Safety = () => {
     const navigate = useNavigate();
     const [isPlaying, setIsPlaying] = useState(''); // Controls playback state
     const videoRef = useRef(null);
-    const handlePlay = () => {
-        if (videoRef.current) {
-            videoRef.current.play(); // Play the video
-            setIsPlaying(true); // Set playback state to true
+    // Play video when switching to "video" view
+    useEffect(() => {
+        if (viewState === "video" && videoRef.current) {
+            videoRef.current.play();
+            setIsPlaying(true);
+
+            // Add event listeners for play and pause detection
+            videoRef.current.addEventListener("play", () => setIsPlaying(true));
+            videoRef.current.addEventListener("pause", () => setIsPlaying(false));
         }
-    };
+    }, [viewState]);
+    
 
     return (
         <>
@@ -39,11 +43,11 @@ const Safety = () => {
                             onClick={() => setViewState("video")}
                         >
                             <div className="relative mx-auto w-full">
-                                <LazyLoadImage
+                                <img
                                     src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/thumbnail.png"
                                     alt="Thumbnail vision"
                                     className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
-                                    effect="blur"
+                                    
                                 />
                                 <img
                                     src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/playBtn.png"
@@ -71,11 +75,11 @@ const Safety = () => {
                             className="w-full h-full custom-video-player"
                             src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/dumy.mp4"
                             controls
-                            onClick={() => setIsPlaying(false)}
+                            
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/thumbnail.png"
                         />
                         {!isPlaying && (
-                            <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={handlePlay}>
+                            <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={() => videoRef.current.play()}>
                                 <img
                                     src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/playBtn.png"
                                     alt=""

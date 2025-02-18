@@ -1,7 +1,4 @@
-import React, { useState, useRef } from "react";
-
-import { LazyLoadImage } from "react-lazy-load-image-component";
-
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Vision = () => {
@@ -9,12 +6,17 @@ const Vision = () => {
     const navigate = useNavigate();
     const [isPlaying, setIsPlaying] = useState(''); // Controls playback state
     const videoRef = useRef(null);
-    const handlePlay = () => {
-        if (videoRef.current) {
-            videoRef.current.play(); // Play the video
-            setIsPlaying(true); // Set playback state to true
+    // Play video when switching to "video" view
+    useEffect(() => {
+        if (viewState === "video" && videoRef.current) {
+            videoRef.current.play();
+            setIsPlaying(true);
+
+            // Add event listeners for play and pause detection
+            videoRef.current.addEventListener("play", () => setIsPlaying(true));
+            videoRef.current.addEventListener("pause", () => setIsPlaying(false));
         }
-    };
+    }, [viewState]);
 
     return (
         <>
@@ -39,11 +41,10 @@ const Vision = () => {
                             onClick={() => setViewState("video")}
                         >
                             <div className="relative mx-auto w-full">
-                                <LazyLoadImage
+                                <img
                                     src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/the_vision_thumbnail.png"
-                                    alt="Thumbnail vision"
+                                    alt="Thumbnail vision1"
                                     className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
-                                    effect="blur"
                                 />
                                 <img
                                     src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/playBtn.png"
@@ -64,18 +65,19 @@ const Vision = () => {
 
             {viewState === "video" && (
                 <div className="videoView h-full relative flex flex-col justify-center">
-                    <div className="relative min-[1680px]:w-[65%] min-[1200px]:w-[55%] w-full mx-auto">
+                    <div className="relative min-[1680px]:w-[65%] min-[1200px]:w-[55%] w-full mx-auto"                   >
                         {/* Video Player */}
                         <video
-                        ref={videoRef}
+                            ref={videoRef}
                             className="w-full h-full custom-video-player"
                             src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/THE_VISION_EDIT_13.mp4"
                             controls
-                            onClick={() => setIsPlaying(false)}
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/the_vision_thumbnail.png"
                         />
                         {!isPlaying && (
-                            <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={handlePlay}>
+                            <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`}
+                            onClick={() => videoRef.current.play()}
+                            >
                                 <img
                                     src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/playBtn.png"
                                     alt=""
