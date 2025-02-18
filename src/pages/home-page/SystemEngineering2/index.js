@@ -44,7 +44,7 @@ const SystemEngineering2 = () => {
                         >
                             <div className="relative mx-auto w-full">
                                 <img
-                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/system-engineering-thumbnail.png"
+                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/system-engineering-thumbnail.jpg"
                                     alt="Thumbnail Systems Engineering"
                                     className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
                                     
