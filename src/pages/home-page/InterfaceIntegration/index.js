@@ -72,7 +72,7 @@ const InterfaceIntegration = () => {
                         <video
                         ref={videoRef}
                             className="w-full h-full custom-video-player"
-                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/250213_SydneyMetro_Alice_v8_1+(3).mp4"
+                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/250213_SydneyMetro_Alice_v12.mp4"
                             controls
                             
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/InterfaceIntegrationThumbnail.jpg"
