@@ -44,8 +44,8 @@ const SocialInclusion = () => {
                         >
                             <div className="relative mx-auto w-full">
                                 <img
-                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/thumbnail.png"
-                                    alt="Thumbnail vision"
+                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/INCLUSION_EDIT_04_1.jpg"
+                                    alt="Thumbnail Social Inclusion"
                                     className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
                                     
                                 />
@@ -72,10 +72,10 @@ const SocialInclusion = () => {
                         <video
                         ref={videoRef}
                             className="w-full h-full custom-video-player"
-                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/dumy.mp4"
+                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/INCLUSION_EDIT_04_1.mp4"
                             controls
                             
-                            poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/thumbnail.png"
+                            poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/INCLUSION_EDIT_04_1.jpg"
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={() => videoRef.current.play()}>
@@ -104,7 +104,6 @@ const SocialInclusion = () => {
                     Social Inclusion
                     </h2>
                     <p className="text-center text-white min-[1680px]:text-[20px] font-semibold text-[18px]">
-                    Hear from our Project Director Scott Hunter and Cathy Hayes
                     </p>
                 </div>
             )}
