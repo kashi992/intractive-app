@@ -46,7 +46,7 @@ const SocialInclusion = () => {
                                 <img
                                     src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/INCLUSION_EDIT_04_1.jpg"
                                     alt="Thumbnail Social Inclusion"
-                                    className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
+                                    className="w-fit min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
                                     
                                 />
                                 <img
