@@ -7,7 +7,7 @@ const LoginForm = ({ onLogin }) => {
   const [error, setError] = useState("");
 
   const correctUsername = "collaboration";
-  const correctPassword = "rs9_returnables";
+  const correctPassword = "rS9";
 
   const handleLogin = (e) => {
     e.preventDefault();
