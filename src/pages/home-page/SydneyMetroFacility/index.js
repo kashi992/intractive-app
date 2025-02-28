@@ -23,7 +23,7 @@ const SydneyMetroFacility = () => {
     return (
         <>
             {viewState === "thumbnail" && (
-                <div className="thumbnailsView h-full relative flex flex-col justify-center">
+                <div className="thumbnailsView h-full relative flex flex-col justify-center container">
                     <div className="thumbnails grid relative grid-cols-1 gap-8 items-center mx-auto">
                         {/* Back Button */}
                         <div
@@ -46,7 +46,7 @@ const SydneyMetroFacility = () => {
                                 <img
                                     src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/sydneyMetro.jpeg"
                                     alt="Thumbnail vision"
-                                    className="w-fit min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
+                                    className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
                                     
                                 />
                                 <img
@@ -67,7 +67,7 @@ const SydneyMetroFacility = () => {
             )}
 
             {viewState === "video" && (
-                <div className="videoView h-full relative flex flex-col justify-center">
+                <div className="videoView h-full relative flex flex-col justify-center container">
                     <div className="relative min-[1680px]:w-[65%] min-[1200px]:w-[55%] w-full mx-auto">
                         {/* Video Player */}
                         <video
