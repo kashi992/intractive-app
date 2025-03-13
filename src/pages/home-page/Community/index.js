@@ -71,7 +71,7 @@ const Community = () => {
                         <video
                         ref={videoRef}
                             className="w-full h-full custom-video-player"
-                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/Community.mp4"
+                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/COMMUNITY_EDIT_04.mp4"
                             controls
                             
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/CommunityThumbnail.jpg"
