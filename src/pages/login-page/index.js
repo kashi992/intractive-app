@@ -6,8 +6,8 @@ const LoginForm = ({ onLogin }) => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
-  const correctUsername = "collaboration";
-  const correctPassword = "rS9";
+  const correctUsername = "cpbugljv";
+  const correctPassword = "rs9";
 
   const handleLogin = (e) => {
     e.preventDefault();
