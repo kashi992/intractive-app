@@ -25,7 +25,7 @@ const ConstructionMethodology = () => {
         <>
             {viewState === "thumbnail" && (
                 <div className="thumbnailsView h-full relative flex flex-col justify-center container">
-                    <div className="thumbnails grid relative xl:grid-cols-2 gap-8 items-center mx-auto" style={{maxWidth: '100%'}}>
+                    <div className="thumbnails _thumbnails grid relative xl:grid-cols-2 gap-8 items-center mx-auto">
                         {/* Back Button */}
                         <div
                             className="backButton absolute top-0 right-0 md:translate-x-[150%] md:translate-y-[0%] translate-y-[-150%] flex items-center justify-end cursor-pointer"
@@ -50,7 +50,7 @@ const ConstructionMethodology = () => {
                                 <img
                                     src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/Construction_Sequence_Thumbnail.jpg"
                                     alt="Thumbnail vision"
-                                    className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
+                                    className="w-full min-[1680px]:h-[450px] min-[1370px]:h-[370px] xl:h-[300px] h-fit object-cover"
                                     
                                 />
                                 <img
@@ -75,7 +75,7 @@ const ConstructionMethodology = () => {
                                 <img
                                     src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/ConstructionMethodologyThumb2.jpg"
                                     alt="Thumbnail vision"
-                                    className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
+                                    className="w-full min-[1680px]:h-[450px] min-[1370px]:h-[370px] xl:h-[300px] h-fit object-cover"
                                     
                                 />
                                 <img

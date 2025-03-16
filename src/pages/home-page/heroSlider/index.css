@@ -259,6 +259,12 @@
   width: 100%;
   margin-left: auto;margin-right: auto;
 }
+.thumbnails._thumbnails {
+  max-width: 90%;
+}
+.thumbnails img{
+ object-fit: fill;
+}
 @media screen and (max-width: 1680px) {
   .thumbnails {
     max-width: 780px;
@@ -321,6 +327,9 @@
   }
 }
 @media screen and (max-width: 1198.99px) {
+  .thumbnails._thumbnails {
+    max-width: 83%;
+}
   .thumbnailsView .thumbnail.thumbnail_one .thumbImg {
     height: 100%;
     width: 100%;
@@ -369,6 +378,9 @@
 
 }
 @media screen and (max-width: 575px) {
+  .thumbnails._thumbnails {
+    max-width: 100%;
+}
   .videoView {
     padding: 0 10px;
 }
