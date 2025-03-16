@@ -73,7 +73,7 @@ const Safety = () => {
                         <video
                         ref={videoRef}
                             className="w-full h-full custom-video-player"
-                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/Scott_Hunter_Safety_grade_v6+(2).mp4"
+                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Scott_Hunter_safety_130325.mp4"
                             controls
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/safetyThumb.jpg"
                         />

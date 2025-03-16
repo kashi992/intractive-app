@@ -72,9 +72,8 @@ const SystemEngineering2 = () => {
                         <video
                         ref={videoRef}
                             className="w-full h-full custom-video-player"
-                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/250207_UGL_v03c+(1)+(1).mp4"
+                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Systems_Engineering_WIP.mp4"
                             controls
-                            
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/system-engineering-thumbnail.png"
                         />
                         {!isPlaying && (

@@ -72,7 +72,7 @@ const SocialInclusion = () => {
                         <video
                         ref={videoRef}
                             className="w-full h-full custom-video-player"
-                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/INCLUSION_MASTER+(1).mp4"
+                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23INCLUSION_MASTER_12032025.mp4.mp4"
                             controls
                             
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/INCLUSION_EDIT_04_1.jpg"

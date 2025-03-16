@@ -73,7 +73,7 @@ const SydneyMetroFacility = () => {
                         <video
                         ref={videoRef}
                             className="w-full h-full custom-video-player"
-                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/dharug_country_2_1.mp4"
+                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23FlyThrough_ANIMATIC.mp4"
                             controls
                             
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/sydneyMetro.jpeg"

@@ -72,9 +72,8 @@ const InterfaceIntegration = () => {
                         <video
                         ref={videoRef}
                             className="w-full h-full custom-video-player"
-                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/Interface_Integration_14032025_finalVO+(2).mp4"
+                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/Interface_Integration_14032025_finalVO+(3).mp4"
                             controls
-                            
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/InterfaceIntegrationThumbnail.jpg"
                         />
                         {!isPlaying && (
