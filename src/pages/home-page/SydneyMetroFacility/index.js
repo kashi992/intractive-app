@@ -44,7 +44,7 @@ const SydneyMetroFacility = () => {
                         >
                             <div className="relative mx-auto w-full">
                                 <img
-                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/sydneyMetro.jpeg"
+                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/SydneyMetroThumb2.jpg"
                                     alt="Thumbnail vision"
                                     className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
                                     
@@ -75,8 +75,7 @@ const SydneyMetroFacility = () => {
                             className="w-full h-full custom-video-player"
                             src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23FlyThrough_ANIMATIC.mp4"
                             controls
-                            
-                            poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/sydneyMetro.jpeg"
+                            poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/SydneyMetroThumb2.jpg"
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={() => videoRef.current.play()}>

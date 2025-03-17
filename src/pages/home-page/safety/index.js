@@ -44,10 +44,9 @@ const Safety = () => {
                         >
                             <div className="relative mx-auto w-full">
                                 <img
-                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/safetyThumb.jpg"
+                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/SafetyThumb2.jpg"
                                     alt="Thumbnail Safety"
                                     className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
-                                    
                                 />
                                 <img
                                     src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/playBtn.png"
@@ -75,7 +74,7 @@ const Safety = () => {
                             className="w-full h-full custom-video-player"
                             src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Scott_Hunter_safety_130325.mp4"
                             controls
-                            poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/safetyThumb.jpg"
+                            poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/SafetyThumb2.jpg"
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={() => videoRef.current.play()}>

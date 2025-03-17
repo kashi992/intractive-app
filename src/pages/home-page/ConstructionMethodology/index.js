@@ -50,7 +50,7 @@ const ConstructionMethodology = () => {
                                 <img
                                     src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/Construction_Sequence_Thumbnail.jpg"
                                     alt="Thumbnail vision"
-                                    className="w-full min-[1680px]:h-[450px] min-[1370px]:h-[370px] xl:h-[300px] h-fit object-cover"
+                                    className="w-full min-[1680px]:h-[450px] min-[1370px]:h-[370px] xl:h-[300px] lg:h-[400px] md:h-[300px] object-cover h-[200px]"
                                     
                                 />
                                 <img
@@ -75,7 +75,7 @@ const ConstructionMethodology = () => {
                                 <img
                                     src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/ConstructionMethodologyThumb2.jpg"
                                     alt="Thumbnail vision"
-                                    className="w-full min-[1680px]:h-[450px] min-[1370px]:h-[370px] xl:h-[300px] h-fit object-cover"
+                                    className="w-full min-[1680px]:h-[450px] min-[1370px]:h-[370px] xl:h-[300px] lg:h-[400px] md:h-[300px] object-cover h-[200px]"
                                     
                                 />
                                 <img
@@ -104,7 +104,7 @@ const ConstructionMethodology = () => {
                       className="w-full h-full custom-video-player"
                       src={
                           selectedVideo === 1
-                              ? "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Construction_Sequence_March25.mp4"
+                              ? "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/Final_Con_Sequence.mp4"
                               : "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Jess_Construction_Meth.mp4.mp4"
                       }
                       controls
