@@ -26,7 +26,7 @@ const Community = () => {
                     <div className="thumbnails grid relative grid-cols-1 gap-8 items-center mx-auto">
                         {/* Back Button */}
                         <div
-                            className="backButton absolute top-0 right-0 translate-x-[150%] flex items-center justify-end cursor-pointer"
+                            className="backButton absolute top-0 right-0 md:translate-x-[150%] md:translate-y-[0%] translate-y-[-150%] flex items-center justify-end cursor-pointer"
                             onClick={() => navigate("/home")}
                         >
                             <img
