@@ -42,8 +42,8 @@ const Vision = () => {
                         >
                             <div className="relative mx-auto w-full">
                                 <img
-                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/the_vision_thumbnail.jpg"
-                                    alt="Thumbnail vision1"
+                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/visionThumb2.jpg"
+                                    alt="Thumbnail vision"
                                     className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
                                 />
                                 <img
@@ -72,7 +72,7 @@ const Vision = () => {
                             className="w-full h-full custom-video-player"
                             src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23THE_VISION_MasterEDIT_170325.mp4.mp4.mp4"
                             controls
-                            poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/the_vision_thumbnail.jpg"
+                            poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/visionThumb2.jpg"
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`}
