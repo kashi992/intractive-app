@@ -46,7 +46,7 @@ const SystemEngineering2 = () => {
                                 <img
                                     src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/SystemEngineeringThumb2.jpg"
                                     alt="Thumbnail Systems Engineering"
-                                    className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-fit object-cover"
+                                    className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-[200px] object-cover"
                                     
                                 />
                                 <img
