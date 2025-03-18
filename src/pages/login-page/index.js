@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css"; // Create this file for styling the login form
 import { useNavigate } from "react-router-dom";
 const LoginForm = ({ onLogin }) => {
@@ -8,7 +8,6 @@ const LoginForm = ({ onLogin }) => {
 
   const correctUsername = "cpbugljv";
   const correctPassword = "rs9";
-  const expiryDuration = 5 * 60 * 1000; // 5 minutes in milliseconds
   const handleLogin = (e) => {
     e.preventDefault();
     if (
@@ -27,20 +26,18 @@ const LoginForm = ({ onLogin }) => {
 
   // Function to update last active time
   const updateLastActiveTime = () => {
-    localStorage.setItem("lastActiveTime", new Date().getTime());
+    if (localStorage.getItem("authToken")) {
+      localStorage.setItem("lastActiveTime", new Date().getTime());
+    }
   };
 
-  // Use useEffect to add event listeners only once
   useEffect(() => {
     document.addEventListener("mousemove", updateLastActiveTime);
     document.addEventListener("keydown", updateLastActiveTime);
-    window.addEventListener("beforeunload", updateLastActiveTime);
 
     return () => {
-      // Cleanup event listeners when component unmounts
       document.removeEventListener("mousemove", updateLastActiveTime);
       document.removeEventListener("keydown", updateLastActiveTime);
-      window.removeEventListener("beforeunload", updateLastActiveTime);
     };
   }, []);
 
