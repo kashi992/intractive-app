@@ -10,12 +10,15 @@ import InterfaceIntegration from "../pages/home-page/InterfaceIntegration"
 import ConstructionMethodology from "../pages/home-page/ConstructionMethodology"
 import Community from "../pages/home-page/Community"
 import SocialInclusion from "../pages/home-page/SocialInclusion"
+import ProtectedRoute from "./ProtectedRoute"; // Import ProtectedRoute
 
 const Routers = () => {
   return (
   <Routes>
     <Route index element={<HomePage/>} />
     <Route path="/login" element={<LoginForm/>} />
+
+    <Route element={<ProtectedRoute />}>
     <Route path="/home" element={<HeroSlider/>} />
     <Route path="/vision" element={<Vision/>} />
     <Route path="/safety" element={<Safety/>} />
@@ -25,6 +28,8 @@ const Routers = () => {
     <Route path="/construction-methodology" element={<ConstructionMethodology/>} />
     <Route path="/community" element={<Community/>} />
     <Route path="/social-inclusion" element={<SocialInclusion/>} />
+    </Route>
+  
   </Routes>
   )
 }

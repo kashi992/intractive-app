@@ -1,7 +1,7 @@
 import React from "react";
 import "./navbar.css";
-
 const Navbar = () => {
+
   return (
     <header className="bg-white">
       <div className="container flex md:justify-between justify-center items-center md:flex-nowrap flex-wrap md:gap-0 gap-3">

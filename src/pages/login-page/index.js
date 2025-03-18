@@ -16,7 +16,8 @@ const LoginForm = ({ onLogin }) => {
       credentials.password === correctPassword
     ) {
       setError("");
-      onLogin(); // Call the parent function to update authentication state
+      localStorage.setItem("authToken", "loggedin"); // Store login state
+      // onLogin(); // Call the parent function to update authentication state
       navigate('/home');
     } else {
       setError("Invalid username or password!");
