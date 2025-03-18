@@ -8,7 +8,7 @@ const LoginForm = ({ onLogin }) => {
 
   const correctUsername = "cpbugljv";
   const correctPassword = "rs9";
-
+  const expiryDuration = 5 * 60 * 1000; // 5 minutes in milliseconds
   const handleLogin = (e) => {
     e.preventDefault();
     if (
@@ -17,12 +17,32 @@ const LoginForm = ({ onLogin }) => {
     ) {
       setError("");
       localStorage.setItem("authToken", "loggedin"); // Store login state
+      localStorage.setItem("lastActiveTime", new Date().getTime()); // Store last active time
       // onLogin(); // Call the parent function to update authentication state
       navigate('/home');
     } else {
       setError("Invalid username or password!");
     }
   };
+
+  // Function to update last active time
+  const updateLastActiveTime = () => {
+    localStorage.setItem("lastActiveTime", new Date().getTime());
+  };
+
+  // Use useEffect to add event listeners only once
+  useEffect(() => {
+    document.addEventListener("mousemove", updateLastActiveTime);
+    document.addEventListener("keydown", updateLastActiveTime);
+    window.addEventListener("beforeunload", updateLastActiveTime);
+
+    return () => {
+      // Cleanup event listeners when component unmounts
+      document.removeEventListener("mousemove", updateLastActiveTime);
+      document.removeEventListener("keydown", updateLastActiveTime);
+      window.removeEventListener("beforeunload", updateLastActiveTime);
+    };
+  }, []);
 
   return (
     <div className="login-container">
