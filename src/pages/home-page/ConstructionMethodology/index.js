@@ -48,7 +48,7 @@ const ConstructionMethodology = () => {
                         >
                             <div className="relative mx-auto w-full">
                                 <img
-                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/Construction_Sequence_Thumbnail.jpg"
+                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Construction_sequency_thumb.jpg"
                                     alt="Thumbnail vision"
                                     className="w-full min-[1680px]:h-[450px] min-[1370px]:h-[370px] xl:h-[300px] lg:h-[400px] md:h-[300px] object-cover h-[200px]"
                                     
@@ -104,13 +104,13 @@ const ConstructionMethodology = () => {
                       className="w-full h-full custom-video-player"
                       src={
                           selectedVideo === 1
-                              ? "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Construction_Sequence_180325+(1).mp4"
+                              ? "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Construction_Sequence_220325.mp4"
                               : "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Jess_Construction_Meth.mp4.mp4"
                       }
                       controls
                       poster={
                         selectedVideo === 1
-                            ? "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/Construction_Sequence_Thumbnail.jpg"
+                            ? "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Construction_sequency_thumb.jpg"
                             : "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/ConstructionMethodologyThumb2.jpg"
                     }
                   />
