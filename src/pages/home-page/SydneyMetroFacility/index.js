@@ -61,7 +61,7 @@ const SydneyMetroFacility = () => {
                         </div>
                     </div>
                     <h2 className="min-[1680px]:text-[40px] min-[1370px]:text-[30px] text-[20px] text-[#4ec0b0] md:text-3xl text-xl font-bold text-center min-[1600px]:mt-6 min-[1370px]:mt-4 lg:mt-3 mt-4">
-                    Connecting with Country.
+                    Connecting with Country
                     </h2>
                 </div>
             )}

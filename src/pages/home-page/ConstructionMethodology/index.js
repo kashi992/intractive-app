@@ -103,7 +103,7 @@ const ConstructionMethodology = () => {
                       className="w-full h-full custom-video-player"
                       src={
                           selectedVideo === 1
-                              ? "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Construction_Sequence_220325.mp4"
+                              ? "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Construction_Sequence_240325_xxx.mp4"
                               : "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Jess_Construction_Meth.mp4.mp4"
                       }
                       controls

@@ -103,7 +103,6 @@ const SocialInclusion = () => {
                     Social Inclusion
                     </h2>
                     <p className="text-center text-white min-[1680px]:text-[20px] font-semibold text-[18px]">
-                    An Interview with Social Procurement Manager Alison Fritz
                     </p>
                 </div>
             )}
