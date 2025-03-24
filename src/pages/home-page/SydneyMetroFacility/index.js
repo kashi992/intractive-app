@@ -104,7 +104,7 @@ const SydneyMetroFacility = () => {
                     Sydney Metro Facility
                     </h2>
                     <p className="text-center text-white min-[1680px]:text-[20px] font-semibold text-[18px]">
-                    Hear from our Project Director Scott Hunter and Cathy Hayes
+                    
                     </p>
                 </div>
             )}

@@ -53,7 +53,6 @@ const Vision = () => {
                                 />
                             </div>
                             <p className="sf min-[1680px]:text-[30px] min-[1370px]:text-[24px] text-[18px] text-white text-center min-[1370px]:mt-5 mt-2 font-bold">
-                                Scott Hunter & Cathy Hayes
                             </p>
                         </div>
                     </div>
@@ -103,7 +102,7 @@ const Vision = () => {
                         The Vision
                     </h2>
                     <p className="text-center text-white min-[1680px]:text-[20px] font-semibold text-[18px]">
-                        Hear from our Project Director Scott Hunter and Cathy Hayes
+                        
                     </p>
                 </div>
             )}
