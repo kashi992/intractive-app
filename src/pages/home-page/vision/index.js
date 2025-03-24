@@ -70,7 +70,7 @@ const Vision = () => {
                         <video
                             ref={videoRef}
                             className="w-full h-full custom-video-player"
-                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23THE_VISION_MasterEDIT_170325.mp4.mp4.mp4"
+                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/_1+THE_VISION_1.mp4"
                             controls
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/visionThumb2.jpg"
                         />
