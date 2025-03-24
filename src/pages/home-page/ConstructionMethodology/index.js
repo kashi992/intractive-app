@@ -25,7 +25,7 @@ const ConstructionMethodology = () => {
         <>
             {viewState === "thumbnail" && (
                 <div className="thumbnailsView h-full relative flex flex-col justify-center container">
-                    <div className="thumbnails _thumbnails grid relative xl:grid-cols-2 gap-8 items-center mx-auto">
+                    <div className="thumbnails _thumbnails grid relative xl:grid-cols-2 gap-8 mx-auto">
                         {/* Back Button */}
                         <div
                             className="backButton absolute top-0 right-0 md:translate-x-[150%] md:translate-y-[0%] translate-y-[-150%] flex items-center justify-end cursor-pointer"
@@ -85,7 +85,6 @@ const ConstructionMethodology = () => {
                                 />
                             </div>
                             <p className="sf min-[1680px]:text-[30px] min-[1370px]:text-[24px] text-[18px] text-white text-center min-[1370px]:mt-5 mt-2 font-bold">
-                            The Bays - 4D Construction Methodology
                             </p>
                         </div>
                     </div>
