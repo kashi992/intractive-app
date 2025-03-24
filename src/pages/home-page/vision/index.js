@@ -102,7 +102,7 @@ const Vision = () => {
                         The Vision
                     </h2>
                     <p className="text-center text-white min-[1680px]:text-[20px] font-semibold text-[18px]">
-                    Hear from Project Director Scott Hunter and Cathy Hayes
+                Meet Project Director Scott Hunter and Leadership Team
                     </p>
                 </div>
             )}
