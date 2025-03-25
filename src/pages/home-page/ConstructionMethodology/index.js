@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const ConstructionMethodology = () => {
     const [viewState, setViewState] = useState("thumbnail"); // States: "thumbnail", "video"
     const [selectedVideo, setSelectedVideo] = useState(null);
+    const location = useLocation();
     const navigate = useNavigate();
+    const fromSlideIndex = location.state?.fromSlideIndex || 0;
     const [isPlaying, setIsPlaying] = useState(''); // Controls playback state
     const videoRef = useRef(null);
     // Play video when switching to "video" view
@@ -29,7 +30,7 @@ const ConstructionMethodology = () => {
                         {/* Back Button */}
                         <div
                             className="backButton absolute top-0 right-0 md:translate-x-[150%] md:translate-y-[0%] translate-y-[-150%] flex items-center justify-end cursor-pointer"
-                            onClick={() => navigate("/home")}
+                            onClick={() => navigate("/home", { state: { returnToSlide: fromSlideIndex } })}
                         >
                             <img
                                 src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/crossIcon.png"

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './index.css'
 import { Link } from 'react-router-dom'
 import bgImg from '../../../assets/images/CustomerEngineeringBg.png'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 const buttons = [
   {
     id: "VESM001",
@@ -137,7 +137,7 @@ const SystemEngineering = () => {
     <section className='customerEngineer'>
        <button
             className="backButton absolute min-[1500px]:left-[20px] min-[1500px]:top-[20px] left-2 top-2 z-10 min-[1680px]:w-[45px] w-[30px]"
-            onClick={() => navigate("/home")}
+            onClick={() => navigate("/home", { state: { returnToSlide: fromSlideIndex } })}
           >
             <img src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/crossBlack.png" alt="" className="w-full" />
           </button>
