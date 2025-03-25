@@ -48,8 +48,8 @@ const ConstructionMethodology = () => {
                         >
                             <div className="relative mx-auto w-full">
                                 <img
-                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Construction_sequency_thumb.jpg"
-                                    alt="Thumbnail vision"
+                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/constructionSequenceThumb.jpg"
+                                    alt="Thumbnail vision Construction Methodology 1"
                                     className="w-full min-[1680px]:h-[450px] min-[1370px]:h-[370px] xl:h-[300px] lg:h-[400px] md:h-[300px] object-cover h-[200px]"
                                     
                                 />
@@ -73,8 +73,8 @@ const ConstructionMethodology = () => {
                         >
                             <div className="relative mx-auto w-full">
                                 <img
-                                    src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/ConstructionMethodologyThumb2.jpg"
-                                    alt="Thumbnail vision"
+                                    src="https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/constructionMeth2Thumb.jpg"
+                                    alt="Thumbnail Construction Methodology 2"
                                     className="w-full min-[1680px]:h-[450px] min-[1370px]:h-[370px] xl:h-[300px] lg:h-[400px] md:h-[300px] object-cover h-[200px]"
                                     
                                 />
@@ -104,13 +104,13 @@ const ConstructionMethodology = () => {
                       src={
                           selectedVideo === 1
                               ? "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Construction_Sequence_240325_xxx.mp4"
-                              : "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Jess_Construction_Meth.mp4.mp4"
+                              : "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/Jess_con_meth_Final_250325.mp4"
                       }
                       controls
                       poster={
                         selectedVideo === 1
-                            ? "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Construction_sequency_thumb.jpg"
-                            : "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/ConstructionMethodologyThumb2.jpg"
+                            ? "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/constructionSequenceThumb.jpg"
+                            : "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/constructionMeth2Thumb.jpg"
                     }
                   />
                   {!isPlaying && (

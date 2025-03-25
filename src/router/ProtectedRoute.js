@@ -3,7 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoute = () => {
     const isAuthenticated = localStorage.getItem("authToken");
-    const expiryDuration = 10 * 60 * 1000; // 5 minutes in milliseconds
+    const expiryDuration = 30 * 60 * 1000;
 
     useEffect(() => {
         const updateLastActiveTime = () => {
