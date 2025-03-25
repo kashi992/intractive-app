@@ -37,10 +37,10 @@ const HeroSlider = () => {
     },
     {
       id: 4,
-      image:
+        image:
         "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/heroLogo5.png",
-      title: "Community",
-      path: "/community",
+      title: "Sydney Metro Facility",
+      path: "/sydney-metro-facility",
     },
     {
       id: 5,
@@ -56,12 +56,13 @@ const HeroSlider = () => {
       title: "Construction Methodology",
       path: "/construction-methodology",
     },
+
     {
       id: 7,
       image:
-        "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/heroLogo4.png",
-      title: "Sydney Metro Facility",
-      path: "/sydney-metro-facility",
+      "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/heroLogo4.png",
+      title: "Community",
+      path: "/community",
     },
     {
       id: 8,
