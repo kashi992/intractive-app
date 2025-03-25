@@ -44,7 +44,7 @@ const SocialInclusion = () => {
                         >
                             <div className="relative mx-auto w-full">
                                 <img
-                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/SocialInclusionThumb2.jpg"
+                                    src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/socialInclusionThumb.jpg"
                                     alt="Thumbnail Social Inclusion"
                                     className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-[200px] object-cover"
                                     
@@ -72,9 +72,9 @@ const SocialInclusion = () => {
                         <video
                         ref={videoRef}
                             className="w-full h-full custom-video-player"
-                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23INCLUSION_MASTER_12032025.mp4.mp4"
+                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23INCLUSION_MASTER_250325.mp4.mp4"
                             controls
-                            poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/SocialInclusionThumb2.jpg"
+                            poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/socialInclusionThumb.jpg"
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={() => videoRef.current.play()}>
