@@ -32,9 +32,9 @@ const HeroSlider = () => {
     },
     {
       id: 4,
-      image: "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/heroLogo4.png",
-      title: "Sydney Metro Facility",
-      path: "/sydney-metro-facility",
+      image: "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/heroLogo5.png",
+      title: "Community",
+      path: "/community",
     },
     {
       id: 5,
@@ -50,9 +50,9 @@ const HeroSlider = () => {
     },
     {
       id: 7,
-      image: "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/heroLogo5.png",
-      title: "Community",
-      path: "/community",
+      image: "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/heroLogo4.png",
+      title: "Sydney Metro Facility",
+      path: "/sydney-metro-facility",
     },
     {
       id: 8,

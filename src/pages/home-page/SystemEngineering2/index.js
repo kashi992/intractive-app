@@ -72,7 +72,7 @@ const SystemEngineering2 = () => {
                         <video
                         ref={videoRef}
                             className="w-full h-full custom-video-player"
-                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23+3+Systems_Engineering.mp4"
+                            src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Systems_Engineering_250325.mp4"
                             controls
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23+3+Systems_Engineering_thumb.jpg"
                         />
