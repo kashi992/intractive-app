@@ -52,7 +52,7 @@ const LoginForm = ({ onLogin }) => {
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleLogin}>
-        <h2>Login Form</h2>
+        <h2>admin Login Form</h2>
         <p>We believe in delivering Everyday Extraordinary - a solution that brings the 'extra' and improves the lives of everyday people - every single day.</p>
         <input
           type="text"
