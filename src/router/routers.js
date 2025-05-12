@@ -11,12 +11,14 @@ import ConstructionMethodology from "../pages/home-page/ConstructionMethodology"
 import Community from "../pages/home-page/Community"
 import SocialInclusion from "../pages/home-page/SocialInclusion"
 import ProtectedRoute from "./ProtectedRoute"; // Import ProtectedRoute
+import Dashboard from "../pages/dashboard"
 
 const Routers = () => {
   return (
   <Routes>
     <Route index element={<HomePage/>} />
     <Route path="/login" element={<LoginForm/>} />
+    <Route path="/dashboard" element={<Dashboard/>} />
 
     <Route element={<ProtectedRoute />}>
     <Route path="/home" element={<HeroSlider/>} />

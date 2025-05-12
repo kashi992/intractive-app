@@ -6,6 +6,8 @@ const LoginForm = ({ onLogin }) => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
+  const correctAdminUsername = "admin";
+  const correctAdminPassword = "admin";
   const correctUsername = "cpbugljv";
   const correctPassword = "rs9";
   const handleLogin = (e) => {
@@ -19,7 +21,13 @@ const LoginForm = ({ onLogin }) => {
       localStorage.setItem("lastActiveTime", new Date().getTime()); // Store last active time
       // onLogin(); // Call the parent function to update authentication state
       navigate('/home');
-    } else {
+    }
+    else if (credentials.username === correctAdminUsername && credentials.password === correctAdminPassword) {
+      localStorage.setItem("authToken", "adminToken");
+      navigate("/dashboard");  // Redirect to dashboard
+    }
+
+    else {
       setError("Invalid username or password!");
     }
   };
