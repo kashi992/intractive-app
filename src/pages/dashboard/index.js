@@ -14,7 +14,7 @@ const Dashboard = () => {
       .then(data => {
         setVisitorCount(data.count);
         setVisitorLogs(data.logs);
-      });
+      }).catch(error => console.error("Error fetching visitors:", error));
   }, []);
 
   return (
