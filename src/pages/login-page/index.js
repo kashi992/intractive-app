@@ -7,7 +7,7 @@ const LoginForm = ({ onLogin }) => {
   const [error, setError] = useState("");
 
   const correctAdminUsername = "admin";
-  const correctAdminPassword = "admin";
+  const correctAdminPassword = "123";
   const correctUsername = "cpbugljv";
   const correctPassword = "rs9";
   const handleLogin = (e) => {
@@ -52,7 +52,7 @@ const LoginForm = ({ onLogin }) => {
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleLogin}>
-        <h2>admin Login Form</h2>
+        <h2>Login Form</h2>
         <p>We believe in delivering Everyday Extraordinary - a solution that brings the 'extra' and improves the lives of everyday people - every single day.</p>
         <input
           type="text"
