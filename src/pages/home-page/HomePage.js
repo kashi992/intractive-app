@@ -10,21 +10,33 @@ const HomePage = () => {
     setIsAuthenticated(true);
     navigate('/');
   };
-const hasLogged = useRef(false);  // ✅ Ref to prevent double logging
+
+  const hasLogged = useRef(false);  // ✅ Ref to prevent double logging
 
   useEffect(() => {
     if (hasLogged.current) return; // 🛑 Already logged once
     hasLogged.current = true;      // ✅ Mark as logged
 
+    // Fetch IP information from ipinfo.io
     fetch("https://ipinfo.io/json?token=0451d8a1ae05e5")
       .then(res => res.json())
       .then(data => {
-        fetch("https://intractive-app-backend.vercel.app/track-visitor", {
+        // Send visitor data to backend hosted on Vercel
+        fetch("https://intractive-app-backend.vercel.app/track-visitor", {  // Updated with your backend link
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data)
-        });
-      });
+        })
+        .then(response => {
+          if (response.ok) {
+            console.log('Visitor logged successfully');
+          } else {
+            console.error('Error logging visitor:', response.statusText);
+          }
+        })
+        .catch(error => console.error('Error making request to track visitor:', error));
+      })
+      .catch(error => console.error('Error fetching IP info:', error));
   }, []);
 
   return (
