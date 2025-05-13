@@ -10,7 +10,7 @@ const Dashboard = () => {
   const [error, setError] = useState(null); // Error state for handling fetch errors
 
 useEffect(() => {
-  fetch("https://6e5zpkl6352moh5kzqfuyhn6la0zxjkv.lambda-url.us-east-1.on.aws/")
+  fetch("https://lfmb69wdi3.execute-api.us-east-1.amazonaws.com/default/getVisitors")
     .then(res => res.json())
     .then(data => {
       setVisitorCount(data.count);
