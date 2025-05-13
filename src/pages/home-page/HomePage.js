@@ -21,7 +21,7 @@ const HomePage = () => {
     fetch("https://ipinfo.io/json?token=0451d8a1ae05e5")
       .then(res => res.json())
       .then(data => {
-        fetch("https://tyempbe53lww4zcvwx4v4xldqm0fwpme.lambda-url.us-east-1.on.aws/", {
+        fetch("https://ayiq5xvjya.execute-api.us-east-1.amazonaws.com/default/trackVisitor", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data)
