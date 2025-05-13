@@ -10,7 +10,7 @@ const Dashboard = () => {
   const [error, setError] = useState(null); // Error state for handling fetch errors
 
 useEffect(() => {
-    fetch("https://intractive-app-backend.vercel.app/get-visitors")
+    fetch("https://main.drhn4w7umhvrj.amplifyapp.com/get-visitors")
       .then(res => {
         if (!res.ok) {
           throw new Error('Failed to fetch visitor data');

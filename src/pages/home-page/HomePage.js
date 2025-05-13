@@ -22,7 +22,7 @@ const HomePage = () => {
       .then(res => res.json())
       .then(data => {
         // Send visitor data to backend hosted on Vercel
-        fetch("https://intractive-app-backend.vercel.app/track-visitor", {  // Updated with your backend link
+        fetch("https://main.drhn4w7umhvrj.amplifyapp.com/track-visitor", {  // Updated with your backend link
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data)
