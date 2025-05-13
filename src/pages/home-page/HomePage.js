@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import HeroSlider from './heroSlider'
 import LoginForm from '../login-page/index'
 import { useNavigate } from 'react-router-dom'
@@ -21,31 +21,22 @@ const HomePage = () => {
     fetch("https://ipinfo.io/json?token=0451d8a1ae05e5")
       .then(res => res.json())
       .then(data => {
-        // Send visitor data to backend hosted on Vercel
-        fetch("https://main.drhn4w7umhvrj.amplifyapp.com/track-visitor", {  // Updated with your backend link
+        fetch("https://tyempbe53lww4zcvwx4v4xldqm0fwpme.lambda-url.us-east-1.on.aws/", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data)
-        })
-        .then(response => {
-          if (response.ok) {
-            console.log('Visitor logged successfully');
-          } else {
-            console.error('Error logging visitor:', response.statusText);
-          }
-        })
-        .catch(error => console.error('Error making request to track visitor:', error));
-      })
-      .catch(error => console.error('Error fetching IP info:', error));
+        });
+      });
+
   }, []);
 
   return (
     <>
-        {!isAuthenticated ? (
+      {!isAuthenticated ? (
         <LoginForm onLogin={handleLogin} />
       ) : (
 
-        <HeroSlider/>
+        <HeroSlider />
       )}
     </>
   )

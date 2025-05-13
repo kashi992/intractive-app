@@ -10,22 +10,15 @@ const Dashboard = () => {
   const [error, setError] = useState(null); // Error state for handling fetch errors
 
 useEffect(() => {
-    fetch("https://main.drhn4w7umhvrj.amplifyapp.com/get-visitors")
-      .then(res => {
-        if (!res.ok) {
-          throw new Error('Failed to fetch visitor data');
-        }
-        return res.json();
-      })
-      .then(data => {
-        setVisitorCount(data.count);
-        setVisitorLogs(data.logs);
-      })
-      .catch(error => {
-        setError(error.message);
-        console.error("Error fetching visitors:", error);
-      });
-  }, []);
+  fetch("https://6e5zpkl6352moh5kzqfuyhn6la0zxjkv.lambda-url.us-east-1.on.aws/")
+    .then(res => res.json())
+    .then(data => {
+      setVisitorCount(data.count);
+      setVisitorLogs(data.logs);
+    })
+    .catch(error => console.error("Error fetching visitors:", error));
+}, []);
+
 
   return (
     <div className="dashboardWrap flex w-full">
