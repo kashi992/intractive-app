@@ -24,25 +24,27 @@ const LoginForm = () => {
       setError("");
       localStorage.setItem("authToken", "userToken");
       localStorage.setItem("lastActiveTime", new Date().getTime());
-      
+
       fetch("https://ipinfo.io/json?token=0451d8a1ae05e5")
-  .then(res => res.json())
-  .then(data => {
-    const visitorData = {
-      ip: data.ip,
-      city: data.city,
-      region: data.region,
-      country: data.country,
-      time: new Date().toISOString()
-    };
+        .then(res => res.json())
+        .then(data => {
+          const visitorData = {
+            ip: data.ip,
+            city: data.city,
+            region: data.region,
+            country: data.country,
+            time: new Date().toISOString()
+          };
 
-    // Get current log or initialize
-    const existingLogs = JSON.parse(localStorage.getItem("visitorLogs") || "[]");
-    existingLogs.push(visitorData);
-    localStorage.setItem("visitorLogs", JSON.stringify(existingLogs));
-  })
-  .catch(err => console.error("IPInfo fetch failed:", err));
-
+          fetch("https://ozxbfdemyg.execute-api.us-east-1.amazonaws.com/prod/trackVisitor", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(visitorData)
+          })
+            .then(res => res.json())
+            .then(console.log) // Optional: log response
+            .catch(err => console.error("trackVisitor error", err));
+        });
       navigate("/home");
     } else if (
       activeTab === "admin" &&
@@ -73,41 +75,41 @@ const LoginForm = () => {
       document.removeEventListener("keydown", updateLastActiveTime);
     };
   }, []);
-  
-useEffect(() => {
-  // Clear input fields when LoginForm mounts
-  setCredentials({ username: "", password: "" });
-  setError("");
-}, []);
+
+  useEffect(() => {
+    // Clear input fields when LoginForm mounts
+    setCredentials({ username: "", password: "" });
+    setError("");
+  }, []);
 
 
   return (
     <div className="login-container">
-     
+
 
       <form className="login-form" onSubmit={handleLogin}>
-         <div className="tabButtons grid grid-cols-2 mb-3">
-        <button
-          className={`tabItem ${activeTab === "user" ? "active" : ""}`}
-          onClick={() => {
-            setActiveTab("user");
-            setCredentials({ username: "", password: "" }); // Clear input fields
-            setError("");
-          }}
-        >
-          User
-        </button>
-        <button
-          className={`tabItem ${activeTab === "admin" ? "active" : ""}`}
-          onClick={() => {
-            setActiveTab("admin");
-            setCredentials({ username: "", password: "" }); // Clear input fields
-            setError("");
-          }}
-        >
-          Admin
-        </button>
-      </div>
+        <div className="tabButtons grid grid-cols-2 mb-3">
+          <button
+            className={`tabItem ${activeTab === "user" ? "active" : ""}`}
+            onClick={() => {
+              setActiveTab("user");
+              setCredentials({ username: "", password: "" }); // Clear input fields
+              setError("");
+            }}
+          >
+            User
+          </button>
+          <button
+            className={`tabItem ${activeTab === "admin" ? "active" : ""}`}
+            onClick={() => {
+              setActiveTab("admin");
+              setCredentials({ username: "", password: "" }); // Clear input fields
+              setError("");
+            }}
+          >
+            Admin
+          </button>
+        </div>
         <h2>{activeTab === "admin" ? "Admin Login" : "User Login"}</h2>
         <p>
           We believe in delivering Everyday Extraordinary - a solution that brings the

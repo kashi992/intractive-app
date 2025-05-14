@@ -18,23 +18,17 @@ const Dashboard = () => {
     localStorage.removeItem("lastActiveTime");
     navigate("/login");
   };
-  // useEffect(() => {
-  //   fetch("https://lfmb69wdi3.execute-api.us-east-1.amazonaws.com/default/getVisitors")
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setVisitorCount(data.count);
-  //       setVisitorLogs(data.logs);
-  //     })
-  //     .catch(error => console.error("Error fetching visitors:", error));
-  // }, []);
 
+  
   useEffect(() => {
-  const logs = JSON.parse(localStorage.getItem("visitorLogs") || "[]");
-  setVisitorLogs(logs);
-  setVisitorCount(logs.length);
+  fetch("https://ozxbfdemyg.execute-api.us-east-1.amazonaws.com/prod/getVisitors")
+    .then(res => res.json())
+    .then(data => {
+      setVisitorCount(data.count);
+      setVisitorLogs(data.logs);
+    })
+    .catch(err => console.error("getVisitors error", err));
 }, []);
-
-
 
   return (
     <div className="dashboardWrap flex w-full">
