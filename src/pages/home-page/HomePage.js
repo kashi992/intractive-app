@@ -11,24 +11,24 @@ const HomePage = () => {
     navigate('/');
   };
 
-  const hasLogged = useRef(false);  // ✅ Ref to prevent double logging
+  // const hasLogged = useRef(false);  // ✅ Ref to prevent double logging
 
-  useEffect(() => {
-    if (hasLogged.current) return; // 🛑 Already logged once
-    hasLogged.current = true;      // ✅ Mark as logged
+  // useEffect(() => {
+  //   if (hasLogged.current) return; // 🛑 Already logged once
+  //   hasLogged.current = true;      // ✅ Mark as logged
 
-    // Fetch IP information from ipinfo.io
-    fetch("https://ipinfo.io/json?token=0451d8a1ae05e5")
-      .then(res => res.json())
-      .then(data => {
-        fetch("https://ayiq5xvjya.execute-api.us-east-1.amazonaws.com/default/trackVisitor", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-        });
-      });
+  //   // Fetch IP information from ipinfo.io
+  //   fetch("https://ipinfo.io/json?token=0451d8a1ae05e5")
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       fetch("https://ayiq5xvjya.execute-api.us-east-1.amazonaws.com/default/trackVisitor", {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify(data)
+  //       });
+  //     });
 
-  }, []);
+  // }, []);
 
   return (
     <>

@@ -50,6 +50,16 @@
 .error-message {
   color: red;
   font-weight: 500;
+  margin-bottom: 0 !important;
+}
+.tabButtons .tabItem{
+border-color: #294245;
+background-color: unset;
+color: #294245;
+}
+.tabButtons .tabItem.active{
+background-color: #294245;
+color: #fff;
 }
 @media screen and (max-width: 1680px) {
   .login-form {

@@ -1,38 +1,63 @@
 import React, { useState, useEffect } from "react";
-import "./index.css"; // Create this file for styling the login form
+import "./index.css";
 import { useNavigate } from "react-router-dom";
-const LoginForm = ({ onLogin }) => {
-  const [credentials, setCredentials] = useState({ username: "", password: "" });
-  const navigate = useNavigate();
-  const [error, setError] = useState("");
 
+const LoginForm = () => {
+  const [credentials, setCredentials] = useState({ username: "", password: "" });
+  const [activeTab, setActiveTab] = useState("user");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  // Credentials
   const correctAdminUsername = "admin";
   const correctAdminPassword = "123";
   const correctUsername = "cpbugljv";
   const correctPassword = "rs9";
+
   const handleLogin = (e) => {
     e.preventDefault();
     if (
+      activeTab === "user" &&
       credentials.username === correctUsername &&
       credentials.password === correctPassword
     ) {
       setError("");
-      localStorage.setItem("authToken", "loggedin"); // Store login state
-      localStorage.setItem("lastActiveTime", new Date().getTime()); // Store last active time
-      // onLogin(); // Call the parent function to update authentication state
-      navigate('/home');
-    }
-    else if (credentials.username === correctAdminUsername && credentials.password === correctAdminPassword) {
-      localStorage.setItem("authToken", "adminToken");
-      navigate("/dashboard");  // Redirect to dashboard
-    }
+      localStorage.setItem("authToken", "userToken");
+      localStorage.setItem("lastActiveTime", new Date().getTime());
+      
+      fetch("https://ipinfo.io/json?token=0451d8a1ae05e5")
+  .then(res => res.json())
+  .then(data => {
+    const visitorData = {
+      ip: data.ip,
+      city: data.city,
+      region: data.region,
+      country: data.country,
+      time: new Date().toISOString()
+    };
 
-    else {
+    // Get current log or initialize
+    const existingLogs = JSON.parse(localStorage.getItem("visitorLogs") || "[]");
+    existingLogs.push(visitorData);
+    localStorage.setItem("visitorLogs", JSON.stringify(existingLogs));
+  })
+  .catch(err => console.error("IPInfo fetch failed:", err));
+
+      navigate("/home");
+    } else if (
+      activeTab === "admin" &&
+      credentials.username === correctAdminUsername &&
+      credentials.password === correctAdminPassword
+    ) {
+      setError("");
+      localStorage.setItem("authToken", "adminToken");
+      localStorage.setItem("lastActiveTime", new Date().getTime());
+      navigate("/dashboard");
+    } else {
       setError("Invalid username or password!");
     }
   };
 
-  // Function to update last active time
   const updateLastActiveTime = () => {
     if (localStorage.getItem("authToken")) {
       localStorage.setItem("lastActiveTime", new Date().getTime());
@@ -48,12 +73,46 @@ const LoginForm = ({ onLogin }) => {
       document.removeEventListener("keydown", updateLastActiveTime);
     };
   }, []);
+  
+useEffect(() => {
+  // Clear input fields when LoginForm mounts
+  setCredentials({ username: "", password: "" });
+  setError("");
+}, []);
+
 
   return (
     <div className="login-container">
+     
+
       <form className="login-form" onSubmit={handleLogin}>
-        <h2>Login Form</h2>
-        <p>We believe in delivering Everyday Extraordinary - a solution that brings the 'extra' and improves the lives of everyday people - every single day.</p>
+         <div className="tabButtons grid grid-cols-2 mb-3">
+        <button
+          className={`tabItem ${activeTab === "user" ? "active" : ""}`}
+          onClick={() => {
+            setActiveTab("user");
+            setCredentials({ username: "", password: "" }); // Clear input fields
+            setError("");
+          }}
+        >
+          User
+        </button>
+        <button
+          className={`tabItem ${activeTab === "admin" ? "active" : ""}`}
+          onClick={() => {
+            setActiveTab("admin");
+            setCredentials({ username: "", password: "" }); // Clear input fields
+            setError("");
+          }}
+        >
+          Admin
+        </button>
+      </div>
+        <h2>{activeTab === "admin" ? "Admin Login" : "User Login"}</h2>
+        <p>
+          We believe in delivering Everyday Extraordinary - a solution that brings the
+          'extra' and improves the lives of everyday people - every single day.
+        </p>
         <input
           type="text"
           placeholder="Username"
