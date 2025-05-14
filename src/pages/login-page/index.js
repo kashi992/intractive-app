@@ -39,13 +39,13 @@ const LoginForm = () => {
           fetch("https://0zxbfdemyg.execute-api.us-east-1.amazonaws.com/prod/trackVisitor", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(visitorData)
+            body: JSON.stringify(visitorData),
           })
-            .then(res => res.json())
-            .then(console.log) // Optional: log response
-            .catch(err => console.error("trackVisitor error", err));
+          .then(res => res.json())
+          .then(console.log) // Optional: log response
+          .catch(err => console.error("trackVisitor error", err));
         });
-      navigate("/home");
+        navigate("/home");
     } else if (
       activeTab === "admin" &&
       credentials.username === correctAdminUsername &&

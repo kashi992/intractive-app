@@ -4,6 +4,7 @@ import './index.css'
 import DashboardIcon from '../../assets/images/DashboardIcon.js'
 import HomeIcon from '../../assets/images/HomeIcon.js'
 import { useLocation, useNavigate } from "react-router-dom";
+import UsersIcon from "../../assets/images/UsersIcon.js";
 
 const Dashboard = () => {
   const [visitorCount, setVisitorCount] = useState(0);
@@ -19,7 +20,6 @@ const Dashboard = () => {
     navigate("/login");
   };
 
-
   useEffect(() => {
     fetch("https://0zxbfdemyg.execute-api.us-east-1.amazonaws.com/prod/getVisitors")
       .then(res => res.json())
@@ -28,9 +28,9 @@ const Dashboard = () => {
         setVisitorLogs(data.logs);
       })
       .catch(err => {
-  console.error("getVisitors error", err);
-  setError("Failed to load visitor logs.");
-});
+        console.error("getVisitors error", err);
+        setError("Failed to load visitor logs.");
+      });
   }, []);
 
   return (
@@ -58,7 +58,7 @@ const Dashboard = () => {
           </div>
         </nav>
       </div>
-      <div className="page-wrapper-sub flex flex-col w-full dark:bg-darkgray">
+      <div className="page-wrapper-sub flex flex-col w-full">
         <header className="sticky top-0 z-[5] bg-white">
           <nav className="dark:border-gray-700 rounded-none bg-transparent dark:bg-transparent py-6 px-4 flex justify-end">
             {isLoggedIn && (
@@ -71,55 +71,48 @@ const Dashboard = () => {
             )}
           </nav>
         </header>
-        <div className="bg-lightgray dark:bg-dark  h-full rounded-[20px] bg-[#F4F7FB]">
+        <div className="bg-lightgray dark:bg-dark  h-full rounded-[20px] bg-[#F4F7FB]" style={{ borderTopRightRadius: '0px' }}>
           <div className="w-full">
             <div className="container py-8">
-              <div className='grid gap-4'>
-                <div className="bg-white rounded-xl shadow-md p-8">
-                  <div className="flex items-center gap-4 mb-8">
-                    <h1>Total Visitors: {visitorCount}</h1>
-                    {/* <h1>Total Visitors:</h1> */}
+              <div className='grid gap-7 dashboardInner'>
+                <div style={{ gridArea: "aa" }}>
+                  <div className="bg-white rounded-xl shadow-md py-6 px-8 w-fit" >
+                    <div className="flex items-center gap-4">
+                      <div className="bg-[#16CDC740] text-secondary p-3 rounded-md">
+                        <UsersIcon className="w-[24px] h-[24px]" iconClr="#16CDC7" />
+                      </div>
+                      <h4 className="sf text-[20px] font-semibold">Total users visitors</h4>
+                    </div>
+                    <h1 className="sf text-[50px] font-bold text-center">{visitorCount}</h1>
                   </div>
                 </div>
-                <div className="bg-white rounded-xl shadow-md p-8">
-                  <div className="flex items-center gap-4 mb-8">
-                    {/* Display error message if fetch failed */}
-                    {error && <p className="text-red-500">{error}</p>}
-                    <table border="1" cellPadding="10">
-                      <thead>
-                        <tr>
-                          <th>IP</th>
-                          <th>City</th>
-                          <th>Region</th>
-                          <th>Country</th>
-                          <th>Visited At</th>
+                <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "bb" }}>
+                  <h2 className="sf text-[30px] font-bold mb-6">Statistics by Geolocation</h2>
+                  {/* Display error message if fetch failed */}
+                  {error && <p className="text-red-500">{error}</p>}
+                  <table className="w-full">
+                    <thead>
+                      <tr>
+                        <th className="font-medium p-4 text-start bg-gray-200">IP</th>
+                        <th className="font-medium p-4 text-start bg-gray-200">City</th>
+                        <th className="font-medium p-4 text-start bg-gray-200">County</th>
+                        <th className="font-medium p-4 text-start bg-gray-200">Country</th>
+                        <th className="font-medium p-4 text-start bg-gray-200">Visited at</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {Array.isArray(visitorLogs) && visitorLogs.map((log, i) => (
+                        <tr key={i}>
+                          <td className="border-b border-gray-300 p-4 font-medium">{log.ip}</td>
+                          <td className="border-b border-gray-300 p-4 font-medium">{log.city}</td>
+                          <td className="border-b border-gray-300 p-4 font-medium">{log.region}</td>
+                          <td className="border-b border-gray-300 p-4 font-medium">{log.country}</td>
+                          <td className="border-b border-gray-300 p-4 font-medium">{new Date(log.time).toLocaleString()}</td>
                         </tr>
-                      </thead>
-                      {/* <tbody>
-                        {visitorLogs.map((log, i) => (
-                          <tr key={i}>
-                            <td>{log.ip}</td>
-                            <td>{log.city}</td>
-                            <td>{log.region}</td>
-                            <td>{log.country}</td>
-                            <td>{new Date(log.time).toLocaleString()}</td>
-                          </tr>
-                        ))}
-                      </tbody> */}
-                      <tbody>
-  {Array.isArray(visitorLogs) && visitorLogs.map((log, i) => (
-    <tr key={i}>
-      <td>{log.ip}</td>
-      <td>{log.city}</td>
-      <td>{log.region}</td>
-      <td>{log.country}</td>
-      <td>{new Date(log.time).toLocaleString()}</td>
-    </tr>
-  ))}
-</tbody>
+                      ))}
+                    </tbody>
 
-                    </table>
-                  </div>
+                  </table>
                 </div>
               </div>
             </div>

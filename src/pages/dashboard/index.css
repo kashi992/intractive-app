@@ -1,6 +1,14 @@
 .dashboardWrap{
     padding-left: 256px;
+    min-height: 100vh;
 }
 .dashboardWrap .menuSidebar {
 width: 256px;
+}
+.dashboardWrap .dashboardInner {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "aa aa aa" "bb bb bb";
+}
+.dashboardWrap table tr:last-of-type td {
+    border: 0;
 }
