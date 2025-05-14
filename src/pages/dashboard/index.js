@@ -19,16 +19,16 @@ const Dashboard = () => {
     navigate("/login");
   };
 
-  
+
   useEffect(() => {
-  fetch("https://ozxbfdemyg.execute-api.us-east-1.amazonaws.com/prod/getVisitors")
-    .then(res => res.json())
-    .then(data => {
-      setVisitorCount(data.count);
-      setVisitorLogs(data.logs);
-    })
-    .catch(err => console.error("getVisitors error", err));
-}, []);
+    fetch("https://ozxbfdemyg.execute-api.us-east-1.amazonaws.com/prod/getVisitors")
+      .then(res => res.json())
+      .then(data => {
+        setVisitorCount(data.count);
+        setVisitorLogs(data.logs);
+      })
+      .catch(err => console.error("getVisitors error", err));
+  }, []);
 
   return (
     <div className="dashboardWrap flex w-full">
@@ -74,8 +74,8 @@ const Dashboard = () => {
               <div className='grid gap-4'>
                 <div className="bg-white rounded-xl shadow-md p-8">
                   <div className="flex items-center gap-4 mb-8">
-                    {/* <h1>Total Visitors: {visitorCount}</h1> */}
-                    <h1>Total Visitors:</h1>
+                    <h1>Total Visitors: {visitorCount}</h1>
+                    {/* <h1>Total Visitors:</h1> */}
                   </div>
                 </div>
                 <div className="bg-white rounded-xl shadow-md p-8">
@@ -92,29 +92,17 @@ const Dashboard = () => {
                           <th>Visited At</th>
                         </tr>
                       </thead>
-                      {/* <tbody>
-          {visitorLogs.map((log, i) => (
-            <tr key={i}>
-              <td>{log.ip}</td>
-              <td>{log.city}</td>
-              <td>{log.region}</td>
-              <td>{log.country}</td>
-              <td>{new Date(log.time).toLocaleString()}</td>
-            </tr>
-          ))}
-        </tbody> */}
-        <tbody>
-  {visitorLogs.map((log, i) => (
-    <tr key={i}>
-      <td>{log.ip}</td>
-      <td>{log.city}</td>
-      <td>{log.region}</td>
-      <td>{log.country}</td>
-      <td>{new Date(log.time).toLocaleString()}</td>
-    </tr>
-  ))}
-</tbody>
-
+                      <tbody>
+                        {visitorLogs.map((log, i) => (
+                          <tr key={i}>
+                            <td>{log.ip}</td>
+                            <td>{log.city}</td>
+                            <td>{log.region}</td>
+                            <td>{log.country}</td>
+                            <td>{new Date(log.time).toLocaleString()}</td>
+                          </tr>
+                        ))}
+                      </tbody>
                     </table>
                   </div>
                 </div>
