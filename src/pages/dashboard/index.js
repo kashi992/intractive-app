@@ -21,7 +21,7 @@ const Dashboard = () => {
 
 
   useEffect(() => {
-    fetch("https://ozxbfdemyg.execute-api.us-east-1.amazonaws.com/prod/getVisitors")
+    fetch("https://0zxbfdemyg.execute-api.us-east-1.amazonaws.com/prod/getVisitors")
       .then(res => res.json())
       .then(data => {
         setVisitorCount(data.count);
