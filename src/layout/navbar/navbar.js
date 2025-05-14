@@ -25,7 +25,7 @@ const location = useLocation();
         {isLoggedIn && (
           <button
             onClick={handleLogout}
-            className={`bg-[#294245] text-white py-4 px-8 leading-none rounded-[30px] shadow-md hover:bg-red-700 ${location.pathname != '/login' ? 'block' : 'hidden'}`}
+            className={`bg-[#294245] text-white py-4 px-8 leading-none rounded-[30px] shadow-md hover:bg-red-700 ${location.pathname !== '/login' ? 'block' : 'hidden'}`}
           >
             Logout
           </button>

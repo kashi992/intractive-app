@@ -27,7 +27,10 @@ const Dashboard = () => {
         setVisitorCount(data.count);
         setVisitorLogs(data.logs);
       })
-      .catch(err => console.error("getVisitors error", err));
+      .catch(err => {
+  console.error("getVisitors error", err);
+  setError("Failed to load visitor logs.");
+});
   }, []);
 
   return (
@@ -61,7 +64,7 @@ const Dashboard = () => {
             {isLoggedIn && (
               <button
                 onClick={handleLogout}
-                className={`bg-[#294245] text-white py-4 px-8 leading-none rounded-[30px] shadow-md hover:bg-red-700 ${location.pathname != '/login' ? 'block' : 'hidden'}`}
+                className={`bg-[#294245] text-white py-4 px-8 leading-none rounded-[30px] shadow-md hover:bg-red-700 ${location.pathname !== '/login' ? 'block' : 'hidden'}`}
               >
                 Logout
               </button>
@@ -92,7 +95,7 @@ const Dashboard = () => {
                           <th>Visited At</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      {/* <tbody>
                         {visitorLogs.map((log, i) => (
                           <tr key={i}>
                             <td>{log.ip}</td>
@@ -102,7 +105,19 @@ const Dashboard = () => {
                             <td>{new Date(log.time).toLocaleString()}</td>
                           </tr>
                         ))}
-                      </tbody>
+                      </tbody> */}
+                      <tbody>
+  {Array.isArray(visitorLogs) && visitorLogs.map((log, i) => (
+    <tr key={i}>
+      <td>{log.ip}</td>
+      <td>{log.city}</td>
+      <td>{log.region}</td>
+      <td>{log.country}</td>
+      <td>{new Date(log.time).toLocaleString()}</td>
+    </tr>
+  ))}
+</tbody>
+
                     </table>
                   </div>
                 </div>
