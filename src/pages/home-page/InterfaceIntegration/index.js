@@ -77,7 +77,7 @@ const InterfaceIntegration = () => {
                             src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Interface_Integration_14032025_finalVO_1.mp4"
                             controls
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/Interface%26IntegrationThumb.jpg"
-                                 onPlay={() => handleFirstClick("vid_interf")}
+                                 onPlay={() => handleFirstClick("InterfaceVideo")}
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={() => videoRef.current.play()}>

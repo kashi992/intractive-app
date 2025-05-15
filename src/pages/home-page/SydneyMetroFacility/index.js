@@ -78,7 +78,7 @@ const SydneyMetroFacility = () => {
               src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/Sydney_Metro_Facility_FlyThrough_2+(3).mp4"
               controls
               poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/SydneyMetroThumb2+(2).jpg"
-                onPlay={() => handleFirstClick("vid_sydney")}
+                onPlay={() => handleFirstClick("SydneyVideo")}
             />
             {!isPlaying && (
               <div

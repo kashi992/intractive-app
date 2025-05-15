@@ -35,19 +35,20 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-  const fetchStats = async () => {
-    try {
-       const res = await fetch("https://ax3oqjtahf.execute-api.us-east-1.amazonaws.com/prod/get-first-click-stats");
-      const data = await res.json();
-      setStats(data);
-    } catch (err) {
-      console.error("Error loading stats", err);
-      setError("Failed to load first click stats.");
-    }
-  };
+    const fetchStats = async () => {
+      try {
+        const res = await fetch("https://ax3oqjtahf.execute-api.us-east-1.amazonaws.com/prod/get-first-click-stats");
+        const data = await res.json();
+        console.log(data);
+        setStats(data);
+      } catch (err) {
+        console.error("Error loading stats", err);
+        setError("Failed to load first click stats.");
+      }
+    };
 
-  fetchStats();
-}, []);
+    fetchStats();
+  }, []);
 
 
   return (
@@ -76,7 +77,7 @@ const Dashboard = () => {
         </nav>
       </div>
       <div className="page-wrapper-sub flex flex-col w-full">
-        <header className="sticky top-0 z-[5] bg-white">
+        <header className="sticky top-0 z-[5] bg-white dashHeader">
           <nav className="dark:border-gray-700 rounded-none bg-transparent dark:bg-transparent py-3 px-4 flex justify-end h-[72px]">
             {isLoggedIn && (
               <button
@@ -138,19 +139,27 @@ const Dashboard = () => {
                   <table className="w-full">
                     <thead>
                       <tr>
-                        <th className="font-medium p-4 text-start bg-gray-200">Video ID</th>
-                        <th className="font-medium p-4 text-start bg-gray-200">Click Count</th>
+                       <th className="font-medium p-4 text-start bg-gray-200">Video ID</th>
+        <th className="font-medium p-4 text-start bg-gray-200">Click Count</th>
+        <th className="font-medium p-4 text-start bg-gray-200">IP Address</th>
+        <th className="font-medium p-4 text-start bg-gray-200">Timestamp</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {Array.isArray(stats) && stats.map((videoId, count) => (
-                         <tr key={videoId}>
-                          <td className="border-b border-gray-300 p-4 font-medium">{videoId}</td>
-                          <td className="border-b border-gray-300 p-4 font-medium">{count}</td>
-                        </tr>
-                      ))}
+                      {Array.isArray(stats) && stats.length > 0 &&
+        stats.map(({ videoId, count, clicks }, i) => (
+          clicks.map((click, j) => (
+            <tr key={`${videoId}-${j}`}>
+              <td className="border-b border-gray-300 p-4 font-medium">{j === 0 ? videoId : ''}</td>
+              <td className="border-b border-gray-300 p-4 font-medium">{j === 0 ? count : ''}</td>
+              <td className="border-b border-gray-300 p-4 font-medium">{click.ip}</td>
+              <td className="border-b border-gray-300 p-4 font-medium">
+                {new Date(click.timestamp).toLocaleString()}
+              </td>
+            </tr>
+          ))
+        ))}
                     </tbody>
-
                   </table>
                 </div>
               </div>

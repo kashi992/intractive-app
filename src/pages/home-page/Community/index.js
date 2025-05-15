@@ -77,7 +77,7 @@ const Community = () => {
                             src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Community_Final_250325.mp4_1.mp4"
                             controls
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/communityThumb.jpg"
-                            onPlay={() => handleFirstClick("vid_comm")}
+                            onPlay={() => handleFirstClick("CommunityVideo")}
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={() => videoRef.current.play()}>

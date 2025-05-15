@@ -114,7 +114,7 @@ const ConstructionMethodology = () => {
                             ? "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/ConstructionSequenceThumb+(2).jpg"
                             : "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/constructionMeth2Thumb.jpg"
                     }
-                    onPlay={() => handleFirstClick(selectedVideo === 1 ? "vid_ConMeth_1" : "vid_ConMeth_2")}
+                    onPlay={() => handleFirstClick(selectedVideo === 1 ? "ConMethVideo1" : "ConMethVideo2")}
 
                   />
                   {!isPlaying && (
