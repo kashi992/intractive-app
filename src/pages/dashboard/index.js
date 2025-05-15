@@ -5,12 +5,18 @@ import DashboardIcon from '../../assets/images/DashboardIcon.js'
 import HomeIcon from '../../assets/images/HomeIcon.js'
 import { useLocation, useNavigate } from "react-router-dom";
 import UsersIcon from "../../assets/images/UsersIcon.js";
+import {
+  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell
+} from 'recharts';
+
+
 
 const Dashboard = () => {
   const [visitorCount, setVisitorCount] = useState(0);
   const [visitorLogs, setVisitorLogs] = useState([]);
   const [error, setError] = useState(null); // Error state for handling fetch errors
   const [stats, setStats] = useState([]);
+  const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   // Check if user is logged in (based on token)
@@ -40,7 +46,8 @@ const Dashboard = () => {
         const res = await fetch("https://ax3oqjtahf.execute-api.us-east-1.amazonaws.com/prod/get-first-click-stats");
         const data = await res.json();
         console.log(data);
-        setStats(data);
+        const sorted = data.sort((a, b) => b.count - a.count);
+        setStats(sorted);
       } catch (err) {
         console.error("Error loading stats", err);
         setError("Failed to load first click stats.");
@@ -49,6 +56,26 @@ const Dashboard = () => {
 
     fetchStats();
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 30);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const getBarColor = (videoId, index, maxCount) => {
+    const colorPalette = [
+      "#4B9DFE", "#62C2A2", "#FFA573", "#ED5A9E", "#6A5ACD", "#00CED1", "#FF69B4"
+    ];
+
+    if (index === 0) return "#FF4C4C"; // 🔴 highest clicked video in red
+    return colorPalette[index % colorPalette.length];
+  };
 
 
   return (
@@ -77,7 +104,7 @@ const Dashboard = () => {
         </nav>
       </div>
       <div className="page-wrapper-sub flex flex-col w-full">
-        <header className="sticky top-0 z-[5] bg-white dashHeader">
+        <header className={`sticky top-0 z-[5] bg-white ${isScrolled ? 'border-b' : ''}`}>
           <nav className="dark:border-gray-700 rounded-none bg-transparent dark:bg-transparent py-3 px-4 flex justify-end h-[72px]">
             {isLoggedIn && (
               <button
@@ -133,34 +160,63 @@ const Dashboard = () => {
                   </table>
                 </div>
                 <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "cc" }}>
-                  <h2 className="sf text-[30px] font-bold mb-6">🎬 First Click Video Stats</h2>
+                  <h2 className="sf text-[30px] font-bold mb-6">First Click Video Stats</h2>
                   {/* Display error message if fetch failed */}
                   {error && <p className="text-red-500">{error}</p>}
-                  <table className="w-full">
-                    <thead>
+                  <div className="flex">
+                    <div className="h-[400px] overflow-auto w-full">
+<table className="w-full overflow-auto">
+                    <thead className="sticky top-0">
                       <tr>
-                       <th className="font-medium p-4 text-start bg-gray-200">Video ID</th>
-        <th className="font-medium p-4 text-start bg-gray-200">Click Count</th>
-        <th className="font-medium p-4 text-start bg-gray-200">IP Address</th>
-        <th className="font-medium p-4 text-start bg-gray-200">Timestamp</th>
+                        <th className="font-medium p-4 text-start bg-gray-200">Video Name</th>
+                        {/* <th className="font-medium p-4 text-start bg-gray-200">Click Count</th> */}
+                        <th className="font-medium p-4 text-start bg-gray-200">IP Address</th>
+                        {/* <th className="font-medium p-4 text-start bg-gray-200">Timestamp</th> */}
                       </tr>
                     </thead>
                     <tbody>
                       {Array.isArray(stats) && stats.length > 0 &&
-        stats.map(({ videoId, count, clicks }, i) => (
-          clicks.map((click, j) => (
-            <tr key={`${videoId}-${j}`}>
-              <td className="border-b border-gray-300 p-4 font-medium">{j === 0 ? videoId : ''}</td>
-              <td className="border-b border-gray-300 p-4 font-medium">{j === 0 ? count : ''}</td>
-              <td className="border-b border-gray-300 p-4 font-medium">{click.ip}</td>
-              <td className="border-b border-gray-300 p-4 font-medium">
-                {new Date(click.timestamp).toLocaleString()}
-              </td>
-            </tr>
-          ))
-        ))}
+                        stats.flatMap(({ videoId, clicks }) =>
+                          clicks.map((click, index) => (
+                            <tr key={`${videoId}-${index}`}>
+                              <td className="border-b border-gray-300 p-4 font-medium">{videoId}</td>
+                              {/* <td className="border-b border-gray-300 p-4 font-medium">1</td> */}
+                              <td className="border-b border-gray-300 p-4 font-medium">{click.ip}</td>
+                              {/* <td className="border-b border-gray-300 p-4 font-medium">
+                                {new Date(click.timestamp).toLocaleString()}
+                              </td> */}
+                            </tr>
+                          ))
+                        )}
                     </tbody>
                   </table>
+                    </div>
+                    <ResponsiveContainer width="100%" height={300}>
+                      <BarChart
+                        data={stats}
+                        margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="videoId" />
+                        <YAxis />
+                        <Tooltip />
+                        <Bar
+                          dataKey="count"
+                          barSize={40} // 🔹 narrower bars
+                          fill="#8884d8"
+                        >
+                          {
+                            stats.map((entry, index) => (
+                              <Cell
+                                key={`cell-${index}`}
+                                fill={getBarColor(entry.videoId, index, stats[0].count)}
+                              />
+                            ))
+                          }
+                        </Bar>
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
                 </div>
               </div>
             </div>
