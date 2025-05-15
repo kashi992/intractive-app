@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-
+import { handleFirstClick } from "../../../utils/TrackFirstClick";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const SocialInclusion = () => {
@@ -77,6 +77,7 @@ const SocialInclusion = () => {
                             src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23INCLUSION_MASTER_250325.mp4.mp4"
                             controls
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/socialInclusionThumb.jpg"
+                                     onPlay={() => handleFirstClick("vid_social")}
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={() => videoRef.current.play()}>

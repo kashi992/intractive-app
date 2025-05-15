@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { handleFirstClick } from "../../../utils/TrackFirstClick";
 
 const Vision = () => {
     const [viewState, setViewState] = useState("thumbnail"); // States: "thumbnail", "video"
@@ -74,6 +75,7 @@ const Vision = () => {
                             src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/THE_VISION.mp4+(1).mp4"
                             controls
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/visionThumb2.jpg"
+                              onPlay={() => handleFirstClick("vid_vision")}
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`}

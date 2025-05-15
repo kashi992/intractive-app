@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { handleFirstClick } from "../../../utils/TrackFirstClick";
 
 const ConstructionMethodology = () => {
     const [viewState, setViewState] = useState("thumbnail"); // States: "thumbnail", "video"
@@ -113,6 +114,8 @@ const ConstructionMethodology = () => {
                             ? "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/ConstructionSequenceThumb+(2).jpg"
                             : "https://cpb-uglsolution-videos.s3.us-east-1.amazonaws.com/constructionMeth2Thumb.jpg"
                     }
+                    onPlay={() => handleFirstClick(selectedVideo === 1 ? "vid_ConMeth_1" : "vid_ConMeth_2")}
+
                   />
                   {!isPlaying && (
                       <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={() => videoRef.current.play()}>

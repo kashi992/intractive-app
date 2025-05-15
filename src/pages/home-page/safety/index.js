@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-
+import { handleFirstClick } from "../../../utils/TrackFirstClick";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Safety = () => {
@@ -76,6 +76,7 @@ const Safety = () => {
                             src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Scott_Hunter_safety_250325.mp4.mp4"
                             controls
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/safetyThumb.jpg"
+                                     onPlay={() => handleFirstClick("vid_safe")}
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={() => videoRef.current.play()}>

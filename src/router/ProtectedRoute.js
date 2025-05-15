@@ -1,54 +1,65 @@
-import React, { useEffect } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 const ProtectedRoute = () => {
-    const isAuthenticated = localStorage.getItem("authToken");
-    const expiryDuration = 30 * 60 * 1000;
+    const [checkingAuth, setCheckingAuth] = useState(true);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const expiryDuration = 30 * 60 * 1000; // 30 minutes
+    const location = useLocation();
 
     useEffect(() => {
+        const token = localStorage.getItem("authToken");
+        const lastActive = localStorage.getItem("lastActiveTime");
+
+        // Check session validity
+        const sessionValid = token && lastActive && (Date.now() - parseInt(lastActive) <= expiryDuration);
+
+        if (sessionValid) {
+            setIsAuthenticated(true);
+        } else {
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("lastActiveTime");
+        }
+
+        setCheckingAuth(false); // We’re done checking
+    }, []);
+
+    useEffect(() => {
+        if (!isAuthenticated) return;
+
         const updateLastActiveTime = () => {
-            localStorage.setItem("lastActiveTime", new Date().getTime());
+            localStorage.setItem("lastActiveTime", Date.now().toString());
         };
 
-        const activityEvents = [
-            "mousemove",
-            "mousedown",
-            "click",
-            "scroll",
-            "keypress",
-            "touchstart",
-        ];
-
-        activityEvents.forEach((event) => {
-            window.addEventListener(event, updateLastActiveTime);
-        });
-
-        // Set initial time on load
+        const events = ["mousemove", "mousedown", "click", "scroll", "keypress", "touchstart"];
+        events.forEach(e => window.addEventListener(e, updateLastActiveTime));
         updateLastActiveTime();
 
         const interval = setInterval(() => {
-            const lastActiveTime = localStorage.getItem("lastActiveTime");
-
-            if (
-                !lastActiveTime ||
-                new Date().getTime() - lastActiveTime > expiryDuration
-            ) {
+            const lastActive = localStorage.getItem("lastActiveTime");
+            if (!lastActive || Date.now() - parseInt(lastActive) > expiryDuration) {
                 localStorage.removeItem("authToken");
                 localStorage.removeItem("lastActiveTime");
-                window.location.href = "/login"; // Force redirect to login
+                window.location.href = "/login";
             }
-        }, 1000); // Check every second
+        }, 1000);
 
         return () => {
             clearInterval(interval);
-            activityEvents.forEach((event) => {
-                window.removeEventListener(event, updateLastActiveTime);
-            });
+            events.forEach(e => window.removeEventListener(e, updateLastActiveTime));
         };
-    }, []);
+    }, [isAuthenticated]);
+
+    if (checkingAuth) return null; // Prevent flash
 
     if (!isAuthenticated) {
-        return <Navigate to="/login" replace />;
+        return (
+            <Navigate
+                to="/login"
+                replace
+                state={{ from: location.pathname, message: "Please login first" }}
+            />
+        );
     }
 
     return <Outlet />;

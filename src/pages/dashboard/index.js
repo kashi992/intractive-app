@@ -10,6 +10,7 @@ const Dashboard = () => {
   const [visitorCount, setVisitorCount] = useState(0);
   const [visitorLogs, setVisitorLogs] = useState([]);
   const [error, setError] = useState(null); // Error state for handling fetch errors
+  const [stats, setStats] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
   // Check if user is logged in (based on token)
@@ -33,13 +34,29 @@ const Dashboard = () => {
       });
   }, []);
 
+  useEffect(() => {
+  const fetchStats = async () => {
+    try {
+       const res = await fetch("https://ax3oqjtahf.execute-api.us-east-1.amazonaws.com/prod/get-first-click-stats");
+      const data = await res.json();
+      setStats(data);
+    } catch (err) {
+      console.error("Error loading stats", err);
+      setError("Failed to load first click stats.");
+    }
+  };
+
+  fetchStats();
+}, []);
+
+
   return (
     <div className="dashboardWrap flex w-full">
       <div className="xl:block hidden">
         <nav aria-label="Sidebar with multi-level dropdown example"
           className="h-full fixed menuSidebar bg-white left-0">
           <div className="bg-white dark:bg-transparent rounded-none">
-            <h2 className="px-6 py-4 flex items-center sidebarlogo font-bold">UGL Solution</h2>
+            <h2 className="px-6 py-4 flex items-center sidebarlogo font-bold h-[72px]">UGL Solution</h2>
             <div className="h-[calc(100vh_-_0px)] simplebar-scrollable-y">
               <nav
                 className="mt-6 sidebar-nav list-none px-5 flex flex-col gap-4">
@@ -60,7 +77,7 @@ const Dashboard = () => {
       </div>
       <div className="page-wrapper-sub flex flex-col w-full">
         <header className="sticky top-0 z-[5] bg-white">
-          <nav className="dark:border-gray-700 rounded-none bg-transparent dark:bg-transparent py-6 px-4 flex justify-end">
+          <nav className="dark:border-gray-700 rounded-none bg-transparent dark:bg-transparent py-3 px-4 flex justify-end h-[72px]">
             {isLoggedIn && (
               <button
                 onClick={handleLogout}
@@ -87,7 +104,7 @@ const Dashboard = () => {
                   </div>
                 </div>
                 <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "bb" }}>
-                  <h2 className="sf text-[30px] font-bold mb-6">Statistics by Geolocation</h2>
+                  <h2 className="sf text-[30px] font-bold mb-6">Visitor Analytics by Location</h2>
                   {/* Display error message if fetch failed */}
                   {error && <p className="text-red-500">{error}</p>}
                   <table className="w-full">
@@ -108,6 +125,28 @@ const Dashboard = () => {
                           <td className="border-b border-gray-300 p-4 font-medium">{log.region}</td>
                           <td className="border-b border-gray-300 p-4 font-medium">{log.country}</td>
                           <td className="border-b border-gray-300 p-4 font-medium">{new Date(log.time).toLocaleString()}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+
+                  </table>
+                </div>
+                <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "cc" }}>
+                  <h2 className="sf text-[30px] font-bold mb-6">🎬 First Click Video Stats</h2>
+                  {/* Display error message if fetch failed */}
+                  {error && <p className="text-red-500">{error}</p>}
+                  <table className="w-full">
+                    <thead>
+                      <tr>
+                        <th className="font-medium p-4 text-start bg-gray-200">Video ID</th>
+                        <th className="font-medium p-4 text-start bg-gray-200">Click Count</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {Array.isArray(stats) && stats.map((videoId, count) => (
+                         <tr key={videoId}>
+                          <td className="border-b border-gray-300 p-4 font-medium">{videoId}</td>
+                          <td className="border-b border-gray-300 p-4 font-medium">{count}</td>
                         </tr>
                       ))}
                     </tbody>

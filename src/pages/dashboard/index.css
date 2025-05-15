@@ -7,7 +7,7 @@ width: 256px;
 }
 .dashboardWrap .dashboardInner {
     grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: "aa aa aa" "bb bb bb";
+    grid-template-areas: "aa aa aa" "bb bb bb" "cc cc cc";
 }
 .dashboardWrap table tr:last-of-type td {
     border: 0;

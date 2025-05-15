@@ -18,9 +18,9 @@ const Routers = () => {
   <Routes>
     <Route index element={<HomePage/>} />
     <Route path="/login" element={<LoginForm/>} />
-    <Route path="/dashboard" element={<Dashboard/>} />
-
+   
     <Route element={<ProtectedRoute />}>
+     <Route path="/dashboard" element={<Dashboard/>} />
     <Route path="/home" element={<HeroSlider/>} />
     <Route path="/vision" element={<Vision/>} />
     <Route path="/safety" element={<Safety/>} />

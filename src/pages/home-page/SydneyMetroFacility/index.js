@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-
+import { handleFirstClick } from "../../../utils/TrackFirstClick";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const SydneyMetroFacility = () => {
@@ -78,6 +78,7 @@ const SydneyMetroFacility = () => {
               src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/Sydney_Metro_Facility_FlyThrough_2+(3).mp4"
               controls
               poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/SydneyMetroThumb2+(2).jpg"
+                onPlay={() => handleFirstClick("vid_sydney")}
             />
             {!isPlaying && (
               <div
