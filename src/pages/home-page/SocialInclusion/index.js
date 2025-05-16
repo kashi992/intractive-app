@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { handleFirstClick, handleAllClicks } from "../../../utils/TrackFirstClick";
-import useWatchTime from "../../../utils/useWatchTime";
+import UseWatchTime from "../../../utils/UseWatchTime";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const SocialInclusion = () => {
@@ -12,7 +12,7 @@ const SocialInclusion = () => {
     const videoRef = useRef(null);
 const hasTrackedRef = useRef(false);
     const videoId = "SocialVideo";
-    useWatchTime(videoRef, "SocialVideo", viewState === "video");
+    UseWatchTime(videoRef, "SocialVideo", viewState === "video");
     // Play video when switching to "video" view
     useEffect(() => {
         if (viewState === "video" && videoRef.current) {

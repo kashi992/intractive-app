@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const useWatchTime = (videoRef, videoId, shouldTrack = true) => {
+const UseWatchTime = (videoRef, videoId, shouldTrack = true) => {
   const watchStartRef = useRef(null);
   const watchedTimeRef = useRef(0);
 
@@ -46,11 +46,11 @@ const useWatchTime = (videoRef, videoId, shouldTrack = true) => {
 
     const video = videoRef.current;
     if (!video) {
-      console.warn("❌ useWatchTime: videoRef.current is null!");
+      console.warn("❌ UseWatchTime: videoRef.current is null!");
       return;
     }
 
-    console.log("🟢 useWatchTime running for", videoId);
+    console.log("🟢 UseWatchTime running for", videoId);
 
     video.addEventListener("timeupdate", handleTimeUpdate);
     video.addEventListener("ended", handleSendWatchTime);
@@ -63,4 +63,4 @@ const useWatchTime = (videoRef, videoId, shouldTrack = true) => {
   }, [videoId, shouldTrack]);
 };
 
-export default useWatchTime;
+export default UseWatchTime;

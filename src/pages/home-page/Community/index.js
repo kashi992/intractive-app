@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { handleFirstClick, handleAllClicks } from "../../../utils/TrackFirstClick";
-import useWatchTime from "../../../utils/useWatchTime";
+import UseWatchTime from "../../../utils/UseWatchTime";
 
 const Community = () => {
     const [viewState, setViewState] = useState("thumbnail"); // States: "thumbnail", "video"
@@ -12,7 +12,7 @@ const Community = () => {
     const videoRef = useRef(null);
     const hasTrackedRef = useRef(false);
     const videoId = "CommunityVideo";
-    useWatchTime(videoRef, "CommunityVideo", viewState === "video");
+    UseWatchTime(videoRef, "CommunityVideo", viewState === "video");
     // Play video when switching to "video" view
     useEffect(() => {
         if (viewState === "video" && videoRef.current) {
