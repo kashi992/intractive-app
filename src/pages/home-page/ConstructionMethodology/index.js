@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { handleFirstClick, handleAllClicks } from "../../../utils/TrackFirstClick";
+import UseWatchTime from "../../../utils/UseWatchTime";
 
 const ConstructionMethodology = () => {
     const [viewState, setViewState] = useState("thumbnail"); // States: "thumbnail", "video"
@@ -12,6 +13,7 @@ const ConstructionMethodology = () => {
     const videoRef = useRef(null);
 const hasTrackedRef = useRef(false);
     const videoId = selectedVideo === 1 ? "ConMethVideo1" : "ConMethVideo2";
+    UseWatchTime(videoRef, videoId);
     // Play video when switching to "video" view
     useEffect(() => {
         if (viewState === "video" && videoRef.current) {

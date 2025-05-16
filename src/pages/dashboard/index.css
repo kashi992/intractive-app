@@ -6,8 +6,8 @@
 width: 256px;
 }
 .dashboardWrap .dashboardInner {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: "aa aa aa" "bb bb bb" "cc cc cc" "dd dd dd";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "aa aa bb bb" "cc cc cc cc" "dd dd dd dd" "ee ee ee ee" "ff ff ff ff";
 }
 .dashboardWrap table tr:last-of-type td {
     border: 0;

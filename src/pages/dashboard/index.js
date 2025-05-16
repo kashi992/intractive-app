@@ -18,6 +18,8 @@ const Dashboard = () => {
   const [stats, setStats] = useState([]);
   const [isScrolled, setIsScrolled] = useState(false);
   const [allClickStats, setAllClickStats] = useState([]);
+  const [mostClickedVideo, setMostClickedVideo] = useState(null);
+  const [watchStats, setWatchStats] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
   // Check if user is logged in (based on token)
@@ -78,19 +80,49 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-  const fetchAllClicks = async () => {
-    try {
-      const res = await fetch("https://ax3oqjtahf.execute-api.us-east-1.amazonaws.com/prod/allClicks");
-      const data = await res.json();
-      setAllClickStats(data);
-      console.log(data);
-    } catch (err) {
-      console.error("Error loading all click stats", err);
-    }
-  };
+    const fetchAllClicks = async () => {
+      try {
+        const res = await fetch("https://ax3oqjtahf.execute-api.us-east-1.amazonaws.com/prod/allClicks");
+        const data = await res.json();
+        setAllClickStats(data);
+        // Aggregate total clicks per videoId
+        const videoClickMap = {};
+        data.forEach(({ videoId, count }) => {
+          if (!videoClickMap[videoId]) {
+            videoClickMap[videoId] = 0;
+          }
+          videoClickMap[videoId] += count;
+        });
 
-  fetchAllClicks();
-}, []);
+        // Identify most clicked video
+        const sorted = Object.entries(videoClickMap).sort((a, b) => b[1] - a[1]);
+        if (sorted.length > 0) {
+          const [videoId, totalClicks] = sorted[0];
+          setMostClickedVideo({ videoId, totalClicks });
+        }
+      } catch (err) {
+        console.error("Error loading all click stats", err);
+      }
+    };
+
+    fetchAllClicks();
+  }, []);
+
+  useEffect(() => {
+    const fetchWatchStats = async () => {
+      try {
+        const res = await fetch("https://db30bn6w66.execute-api.us-east-1.amazonaws.com/prod/getWatchStats");
+        const data = await res.json();
+        setWatchStats(data);
+        console.log(data);
+      } catch (err) {
+        console.error("Error loading watch stats", err);
+      }
+    };
+
+    fetchWatchStats();
+  }, []);
+
 
   return (
     <div className="dashboardWrap flex w-full">
@@ -134,18 +166,25 @@ const Dashboard = () => {
           <div className="w-full">
             <div className="container py-8">
               <div className='grid gap-7 dashboardInner'>
-                <div style={{ gridArea: "aa" }}>
-                  <div className="bg-white rounded-xl shadow-md py-6 px-8 w-fit" >
-                    <div className="flex items-center gap-4">
-                      <div className="bg-[#16CDC740] text-secondary p-3 rounded-md">
-                        <UsersIcon className="w-[24px] h-[24px]" iconClr="#16CDC7" />
-                      </div>
-                      <h4 className="sf text-[20px] font-semibold">Total users visitors</h4>
+                <div className="bg-white rounded-xl shadow-md py-6 px-8 w-full" style={{ gridArea: "aa" }}>
+                  <div className="flex items-center gap-4">
+                    <div className="bg-[#16CDC740] text-secondary p-3 rounded-md">
+                      <UsersIcon className="w-[24px] h-[24px]" iconClr="#16CDC7" />
                     </div>
-                    <h1 className="sf text-[50px] font-bold text-center">{visitorCount}</h1>
+                    <h4 className="sf text-[20px] font-semibold">Total users visitors</h4>
                   </div>
+                  <h1 className="sf text-[50px] font-bold text-center">{visitorCount}</h1>
                 </div>
-                <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "bb" }}>
+                <div className="bg-white rounded-xl shadow-md py-6 px-8 w-full" style={{ gridArea: "bb" }}>
+                  <div className="flex items-center gap-4">
+                    <div className="bg-[#16CDC740] text-secondary p-3 rounded-md">
+                      <UsersIcon className="w-[24px] h-[24px]" iconClr="#16CDC7" />
+                    </div>
+                    <h4 className="sf text-[20px] font-semibold">Most Clicked Video: <span className="text-black">{mostClickedVideo.videoId}</span></h4>
+                  </div>
+                  <h1 className="sf text-[50px] font-bold text-center">Total Clicks: {mostClickedVideo.totalClicks}</h1>
+                </div>
+                <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "cc" }}>
                   <h2 className="sf text-[30px] font-bold mb-6">Visitor Analytics by Location</h2>
                   {/* Display error message if fetch failed */}
                   {error && <p className="text-red-500">{error}</p>}
@@ -173,40 +212,89 @@ const Dashboard = () => {
 
                   </table>
                 </div>
-                <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "cc" }}>
+                <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "dd" }}>
                   <h2 className="sf text-[30px] font-bold mb-6">First Click Video Stats</h2>
                   {/* Display error message if fetch failed */}
                   {error && <p className="text-red-500">{error}</p>}
-                <div className="h-[400px] overflow-auto w-full">
-<table className="w-full overflow-auto">
-                    <thead className="sticky top-0">
-                      <tr>
-                        <th className="font-medium p-4 text-start bg-gray-200">Video Name</th>
-                        <th className="font-medium p-4 text-start bg-gray-200">Click Count</th>
-                        <th className="font-medium p-4 text-start bg-gray-200">IP Address</th>
-                        <th className="font-medium p-4 text-start bg-gray-200">Timestamp</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {Array.isArray(stats) && stats.length > 0 &&
-                        stats.flatMap(({ videoId, clicks }) =>
-                          clicks.map((click, index) => (
-                            <tr key={`${videoId}-${index}`}>
-                              <td className="border-b border-gray-300 p-4 font-medium">{videoId}</td>
-                              <td className="border-b border-gray-300 p-4 font-medium">1</td>
-                              <td className="border-b border-gray-300 p-4 font-medium">{click.ip}</td>
-                              <td className="border-b border-gray-300 p-4 font-medium">
-                                {new Date(click.timestamp).toLocaleString()}
-                              </td>
-                            </tr>
+                  <div className="h-[400px] overflow-auto w-full">
+                    <table className="w-full overflow-auto">
+                      <thead className="sticky top-0">
+                        <tr>
+                          <th className="font-medium p-4 text-start bg-gray-200">Video Name</th>
+                          <th className="font-medium p-4 text-start bg-gray-200">Click Count</th>
+                          <th className="font-medium p-4 text-start bg-gray-200">IP Address</th>
+                          <th className="font-medium p-4 text-start bg-gray-200">Timestamp</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {Array.isArray(stats) && stats.length > 0 &&
+                          stats.flatMap(({ videoId, clicks }) =>
+                            clicks.map((click, index) => (
+                              <tr key={`${videoId}-${index}`}>
+                                <td className="border-b border-gray-300 p-4 font-medium">{videoId}</td>
+                                <td className="border-b border-gray-300 p-4 font-medium">1</td>
+                                <td className="border-b border-gray-300 p-4 font-medium">{click.ip}</td>
+                                <td className="border-b border-gray-300 p-4 font-medium">
+                                  {new Date(click.timestamp).toLocaleString()}
+                                </td>
+                              </tr>
+                            ))
+                          )}
+                      </tbody>
+                    </table>
+                  </div>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <BarChart
+                      data={stats}
+                      margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="videoId" />
+                      <YAxis />
+                      <Tooltip />
+                      <Bar
+                        dataKey="count"
+                        barSize={40} // 🔹 narrower bars
+                        fill="#8884d8"
+                      >
+                        {
+                          stats.map((entry, index) => (
+                            <Cell
+                              key={`cell-${index}`}
+                              fill={getBarColor(entry.videoId, index, stats[0].count)}
+                            />
                           ))
-                        )}
-                    </tbody>
-                  </table>
-                    </div>
+                        }
+                      </Bar>
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+                <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "ee" }}>
+                  <h2 className="sf text-[30px] font-bold mb-6">Total Click Video Statistics</h2>
+                  {/* Display error message if fetch failed */}
+                  {error && <p className="text-red-500">{error}</p>}
+                  <div className="h-[400px] overflow-auto w-full">
+                    <table className="w-full overflow-auto">
+                      <thead className="sticky top-0">
+                        <tr>
+                          <th className="font-medium p-4 text-start bg-gray-200">IP Address</th>
+                          <th className="font-medium p-4 text-start bg-gray-200">Video ID</th>
+                          <th className="font-medium p-4 text-start bg-gray-200">Total Clicks</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {Array.isArray(allClickStats) && allClickStats.map((row, i) => (
+                          <tr key={i}>
+                            <td className="border-b border-gray-300 p-4 font-medium">{row.ip}</td>
+                            <td className="border-b border-gray-300 p-4 font-medium">{row.videoId}</td>
+                            <td className="border-b border-gray-300 p-4 font-medium">{row.count}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                     <ResponsiveContainer width="100%" height={300}>
                       <BarChart
-                        data={stats}
+                        data={allClickStats}
                         margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
                       >
                         <CartesianGrid strokeDasharray="3 3" />
@@ -229,31 +317,33 @@ const Dashboard = () => {
                         </Bar>
                       </BarChart>
                     </ResponsiveContainer>
+                  </div>
                 </div>
-                <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "dd" }}>
-                  <h2 className="sf text-[30px] font-bold mb-6">First Click Video Stats</h2>
-                  {/* Display error message if fetch failed */}
-                  {error && <p className="text-red-500">{error}</p>}
-                <div className="h-[400px] overflow-auto w-full">
-<table className="w-full overflow-auto">
-      <thead className="sticky top-0">
-        <tr>
-          <th className="font-medium p-4 text-start bg-gray-200">IP Address</th>
-          <th className="font-medium p-4 text-start bg-gray-200">Video ID</th>
-          <th className="font-medium p-4 text-start bg-gray-200">Total Clicks</th>
-        </tr>
-      </thead>
-      <tbody>
-        {Array.isArray(allClickStats) && allClickStats.map((row, i) => (
-          <tr key={i}>
-            <td className="border-b border-gray-300 p-4 font-medium">{row.ip}</td>
-            <td className="border-b border-gray-300 p-4 font-medium">{row.videoId}</td>
-            <td className="border-b border-gray-300 p-4 font-medium">{row.count}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-                    </div>
+                <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "ff" }}>
+                  <h2 className="sf text-[30px] font-bold mb-6">Most Watched Video Statistics</h2>
+                  {watchStats.length > 0 ? (
+                    <ResponsiveContainer width="100%" height={300}>
+                      <BarChart
+                        data={watchStats}
+                        margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="videoId" />
+                        <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} />
+                        <Tooltip formatter={(value) => `${value}%`} />
+                        <Bar dataKey="avgWatchPercent" barSize={40}>
+                          {watchStats.map((entry, index) => (
+                            <Cell
+                              key={`bar-${index}`}
+                              fill={index === 0 ? "#FF4C4C" : "#8884d8"} // 🔴 Red bar for top watched
+                            />
+                          ))}
+                        </Bar>
+                      </BarChart>
+                    </ResponsiveContainer>
+                  ) : (
+                    <p className="text-gray-500">No watch data available yet.</p>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { handleFirstClick, handleAllClicks } from "../../../utils/TrackFirstClick";
+import UseWatchTime from "../../../utils/UseWatchTime";
 
 const Community = () => {
     const [viewState, setViewState] = useState("thumbnail"); // States: "thumbnail", "video"
@@ -9,8 +10,9 @@ const Community = () => {
     const fromSlideIndex = location.state?.fromSlideIndex || 0;
     const [isPlaying, setIsPlaying] = useState(''); // Controls playback state
     const videoRef = useRef(null);
-const hasTrackedRef = useRef(false);
+    const hasTrackedRef = useRef(false);
     const videoId = "CommunityVideo";
+    UseWatchTime(videoRef, videoId);
     // Play video when switching to "video" view
     useEffect(() => {
         if (viewState === "video" && videoRef.current) {
@@ -18,18 +20,17 @@ const hasTrackedRef = useRef(false);
             setIsPlaying(true);
 
             // Add event listeners for play and pause detection
-              if (!hasTrackedRef.current) {
-            handleFirstClick(videoId);
-            handleAllClicks(videoId);
-            hasTrackedRef.current = true;
-        }
+            if (!hasTrackedRef.current) {
+                handleFirstClick(videoId);
+                handleAllClicks(videoId);
+                hasTrackedRef.current = true;
+            }
             // Add event listeners for play and pause detection
             videoRef.current.addEventListener("play", () => setIsPlaying(true));
             videoRef.current.addEventListener("pause", () => setIsPlaying(false));
         }
     }, [viewState]);
 
-   
 
     return (
         <>
