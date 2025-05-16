@@ -6,32 +6,43 @@ const UseWatchTime = (videoRef, videoId, shouldTrack = true) => {
 
   const handleTimeUpdate = () => {
     const currentTime = videoRef.current?.currentTime ?? 0;
-    const lastTime = watchStartRef.current ?? currentTime;
-    const delta = currentTime - lastTime;
 
-    console.log("⏰ timeupdate | delta:", delta, "| currentTime:", currentTime);
+    if (watchStartRef.current === null) {
+      watchStartRef.current = currentTime;
+      return;
+    }
+
+    const delta = currentTime - watchStartRef.current;
 
     if (delta > 0) {
       watchedTimeRef.current += delta;
       watchStartRef.current = currentTime;
     }
+
+    console.log("⏰ timeupdate | delta:", delta, "| currentTime:", currentTime);
   };
 
   const handleSendWatchTime = async () => {
     const watchTime = watchedTimeRef.current;
-    const duration = videoRef.current?.duration;
+    const video = videoRef.current;
 
-    // Skip sending data if watch time is too short
     if (!watchTime || watchTime < 5) {
       console.warn("⏱ Skipping short watch time:", watchTime);
       return;
     }
 
+    if (!video || !video.duration) {
+      console.warn("❌ Video or duration not available.");
+      return;
+    }
+
+    const duration = video.duration;
+
     try {
       const ipRes = await fetch("https://ipinfo.io/json?token=0451d8a1ae05e5");
       const ip = (await ipRes.json()).ip;
 
-      await fetch("https://db30bn6w66.execute-api.us-east-1.amazonaws.com/prod/trackWatchTime", {
+      const response = await fetch("https://db30bn6w66.execute-api.us-east-1.amazonaws.com/prod/trackWatchTime", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -42,14 +53,8 @@ const UseWatchTime = (videoRef, videoId, shouldTrack = true) => {
           timestamp: new Date().toISOString(),
         }),
       });
-
-      console.log("⏱ Sending watch time data:", {
-        videoId,
-        watchTime,
-        duration,
-      });
-      console.log("📹 Ref status:", videoRef.current);
-      console.log(`[WatchTime] Submitted: ${videoId}, ${watchTime.toFixed(2)}s`);
+      const result = await response.text();
+      console.log("✅ Watch time API response:", response.status, result);
     } catch (err) {
       console.error("Watch time submission error:", err);
     }
@@ -58,7 +63,7 @@ const UseWatchTime = (videoRef, videoId, shouldTrack = true) => {
   useEffect(() => {
     if (!shouldTrack) return;
 
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       const video = videoRef.current;
       if (!video) {
         console.warn("❌ useWatchTime: videoRef.current still null after delay!");
@@ -69,12 +74,23 @@ const UseWatchTime = (videoRef, videoId, shouldTrack = true) => {
       video.addEventListener("timeupdate", handleTimeUpdate);
       video.addEventListener("ended", handleSendWatchTime);
 
+      // Optional: Track tab close or page hide
+      window.addEventListener("beforeunload", handleSendWatchTime);
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "hidden") {
+          handleSendWatchTime();
+        }
+      });
+
       return () => {
         video.removeEventListener("timeupdate", handleTimeUpdate);
         video.removeEventListener("ended", handleSendWatchTime);
-        handleSendWatchTime(); // Also submit on unmount
+        window.removeEventListener("beforeunload", handleSendWatchTime);
+        handleSendWatchTime(); // Final fallback
       };
-    }, 300); // Slight delay ensures videoRef is ready
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
   }, [videoId, shouldTrack]);
 };
 
