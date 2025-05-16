@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const UseWatchTime = (videoRef, videoId) => {
+const useWatchTime = (videoRef, videoId, shouldTrack = true) => {
   const watchStartRef = useRef(null);
   const watchedTimeRef = useRef(0);
 
@@ -35,15 +35,22 @@ const UseWatchTime = (videoRef, videoId) => {
         }),
       });
 
-      console.log(`[WatchTime] Submitted: ${videoId}, ${watchTime}s`);
+      console.log(`[WatchTime] Submitted: ${videoId}, ${watchTime.toFixed(2)}s`);
     } catch (err) {
       console.error("Watch time submission error:", err);
     }
   };
 
   useEffect(() => {
+    if (!shouldTrack) return;
+
     const video = videoRef.current;
-    if (!video) return;
+    if (!video) {
+      console.warn("❌ useWatchTime: videoRef.current is null!");
+      return;
+    }
+
+    console.log("🟢 useWatchTime running for", videoId);
 
     video.addEventListener("timeupdate", handleTimeUpdate);
     video.addEventListener("ended", handleSendWatchTime);
@@ -51,9 +58,9 @@ const UseWatchTime = (videoRef, videoId) => {
     return () => {
       video.removeEventListener("timeupdate", handleTimeUpdate);
       video.removeEventListener("ended", handleSendWatchTime);
-      handleSendWatchTime(); // also on unmount
+      handleSendWatchTime(); // Also on unmount
     };
-  }, [videoId]);
+  }, [videoId, shouldTrack]);
 };
 
-export default UseWatchTime;
+export default useWatchTime;

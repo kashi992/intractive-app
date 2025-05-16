@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { handleFirstClick, handleAllClicks } from "../../../utils/TrackFirstClick";
-import UseWatchTime from "../../../utils/UseWatchTime";
+import useWatchTime from "../../../utils/useWatchTime";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const SystemEngineering2 = () => {
@@ -12,7 +12,7 @@ const SystemEngineering2 = () => {
     const videoRef = useRef(null);
 const hasTrackedRef = useRef(false);
     const videoId = "SystemVideo";
-    UseWatchTime(videoRef, videoId);
+    useWatchTime(videoRef, "SystemVideo", viewState === "video");
     // Play video when switching to "video" view
     useEffect(() => {
         if (viewState === "video" && videoRef.current) {

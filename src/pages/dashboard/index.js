@@ -114,7 +114,7 @@ const Dashboard = () => {
         const res = await fetch("https://db30bn6w66.execute-api.us-east-1.amazonaws.com/prod/getWatchStats");
         const data = await res.json();
         setWatchStats(data);
-        console.log(data);
+        console.log("watched", data);
       } catch (err) {
         console.error("Error loading watch stats", err);
       }
@@ -180,9 +180,11 @@ const Dashboard = () => {
                     <div className="bg-[#16CDC740] text-secondary p-3 rounded-md">
                       <UsersIcon className="w-[24px] h-[24px]" iconClr="#16CDC7" />
                     </div>
-                    <h4 className="sf text-[20px] font-semibold">Most Clicked Video: <span className="text-black">{mostClickedVideo.videoId}</span></h4>
+                    <h4 className="sf text-[20px] font-semibold">Most Clicked Video:  <span className="text-black">
+        {mostClickedVideo ? mostClickedVideo.videoId : "Loading..."}
+      </span></h4>
                   </div>
-                  <h1 className="sf text-[50px] font-bold text-center">Total Clicks: {mostClickedVideo.totalClicks}</h1>
+                  <h1 className="sf text-[50px] font-bold text-center"> Total Clicks: {mostClickedVideo ? mostClickedVideo.totalClicks : 0}</h1>
                 </div>
                 <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "cc" }}>
                   <h2 className="sf text-[30px] font-bold mb-6">Visitor Analytics by Location</h2>
