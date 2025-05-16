@@ -42,7 +42,7 @@ const UseWatchTime = (videoRef, videoId, shouldTrack = true) => {
       const ipRes = await fetch("https://ipinfo.io/json?token=0451d8a1ae05e5");
       const ip = (await ipRes.json()).ip;
 
-      const response = await fetch("https://db30bn6w66.execute-api.us-east-1.amazonaws.com/prod/trackWatchTime", {
+      await fetch("https://db30bn6w66.execute-api.us-east-1.amazonaws.com/prod/trackWatchTime", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -53,8 +53,8 @@ const UseWatchTime = (videoRef, videoId, shouldTrack = true) => {
           timestamp: new Date().toISOString(),
         }),
       });
-      const result = await response.text();
-      console.log("✅ Watch time API response:", response.status, result);
+      // const result = await response.text();
+      // console.log("✅ Watch time API response:", response.status, result);
     } catch (err) {
       console.error("Watch time submission error:", err);
     }
