@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { handleFirstClick } from "../../../utils/TrackFirstClick";
+import { handleFirstClick, handleAllClicks } from "../../../utils/TrackFirstClick";
 
 const Vision = () => {
     const [viewState, setViewState] = useState("thumbnail"); // States: "thumbnail", "video"
@@ -9,12 +9,18 @@ const Vision = () => {
     const fromSlideIndex = location.state?.fromSlideIndex || 0;
     const [isPlaying, setIsPlaying] = useState(''); // Controls playback state
     const videoRef = useRef(null);
+const hasTrackedRef = useRef(false);
+    const videoId = "VisionVideo";
     // Play video when switching to "video" view
     useEffect(() => {
         if (viewState === "video" && videoRef.current) {
             videoRef.current.play();
             setIsPlaying(true);
-
+            if (!hasTrackedRef.current) {
+            handleFirstClick(videoId);
+            handleAllClicks(videoId);
+            hasTrackedRef.current = true;
+        }
             // Add event listeners for play and pause detection
             videoRef.current.addEventListener("play", () => setIsPlaying(true));
             videoRef.current.addEventListener("pause", () => setIsPlaying(false));
@@ -67,7 +73,7 @@ const Vision = () => {
 
             {viewState === "video" && (
                 <div className="videoView h-full relative flex flex-col justify-center container">
-                    <div className="relative min-[1680px]:w-[65%] min-[1200px]:w-[55%] w-full mx-auto"                   >
+                    <div className="relative min-[1680px]:w-[65%] min-[1200px]:w-[55%] w-full mx-auto">
                         {/* Video Player */}
                         <video
                             ref={videoRef}
@@ -75,11 +81,10 @@ const Vision = () => {
                             src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/THE_VISION.mp4+(1).mp4"
                             controls
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/visionThumb2.jpg"
-                              onPlay={() => handleFirstClick("VisionVideo")}
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`}
-                            onClick={() => videoRef.current.play()}
+                                onClick={() => videoRef.current.play()}
                             >
                                 <img
                                     src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/playBtn.png"
@@ -106,7 +111,7 @@ const Vision = () => {
                         The Vision
                     </h2>
                     <p className="text-center text-white min-[1680px]:text-[20px] font-semibold text-[18px]">
-                Meet Project Director Scott Hunter and Leadership Team
+                        Meet Project Director Scott Hunter and Leadership Team
                     </p>
                 </div>
             )}

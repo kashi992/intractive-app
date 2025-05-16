@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { handleFirstClick } from "../../../utils/TrackFirstClick";
+import { handleFirstClick, handleAllClicks } from "../../../utils/TrackFirstClick";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const SydneyMetroFacility = () => {
@@ -9,6 +9,8 @@ const SydneyMetroFacility = () => {
   const fromSlideIndex = location.state?.fromSlideIndex || 0;
   const [isPlaying, setIsPlaying] = useState(""); // Controls playback state
   const videoRef = useRef(null);
+const hasTrackedRef = useRef(false);
+    const videoId = "SydneyVideo";
   // Play video when switching to "video" view
   useEffect(() => {
     if (viewState === "video" && videoRef.current) {
@@ -16,7 +18,13 @@ const SydneyMetroFacility = () => {
       setIsPlaying(true);
 
       // Add event listeners for play and pause detection
-      videoRef.current.addEventListener("play", () => setIsPlaying(true));
+        if (!hasTrackedRef.current) {
+            handleFirstClick(videoId);
+            handleAllClicks(videoId);
+            hasTrackedRef.current = true;
+        }
+            // Add event listeners for play and pause detection
+            videoRef.current.addEventListener("play", () => setIsPlaying(true));
       videoRef.current.addEventListener("pause", () => setIsPlaying(false));
     }
   }, [viewState]);
@@ -78,7 +86,6 @@ const SydneyMetroFacility = () => {
               src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/Sydney_Metro_Facility_FlyThrough_2+(3).mp4"
               controls
               poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/SydneyMetroThumb2+(2).jpg"
-                onPlay={() => handleFirstClick("SydneyVideo")}
             />
             {!isPlaying && (
               <div

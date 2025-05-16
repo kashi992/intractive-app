@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { handleFirstClick } from "../../../utils/TrackFirstClick";
+import { handleFirstClick, handleAllClicks } from "../../../utils/TrackFirstClick";
 
 const Community = () => {
     const [viewState, setViewState] = useState("thumbnail"); // States: "thumbnail", "video"
@@ -9,6 +9,8 @@ const Community = () => {
     const fromSlideIndex = location.state?.fromSlideIndex || 0;
     const [isPlaying, setIsPlaying] = useState(''); // Controls playback state
     const videoRef = useRef(null);
+const hasTrackedRef = useRef(false);
+    const videoId = "CommunityVideo";
     // Play video when switching to "video" view
     useEffect(() => {
         if (viewState === "video" && videoRef.current) {
@@ -16,11 +18,18 @@ const Community = () => {
             setIsPlaying(true);
 
             // Add event listeners for play and pause detection
+              if (!hasTrackedRef.current) {
+            handleFirstClick(videoId);
+            handleAllClicks(videoId);
+            hasTrackedRef.current = true;
+        }
+            // Add event listeners for play and pause detection
             videoRef.current.addEventListener("play", () => setIsPlaying(true));
             videoRef.current.addEventListener("pause", () => setIsPlaying(false));
         }
     }, [viewState]);
-    
+
+   
 
     return (
         <>
@@ -49,7 +58,7 @@ const Community = () => {
                                     src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/communityThumb.jpg"
                                     alt="Thumbnail Commnunity"
                                     className="w-full min-[1680px]:h-[600px] min-[1370px]:h-[450px] md:h-[350px] h-[200px] object-cover"
-                                    
+
                                 />
                                 <img
                                     src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/playBtn.png"
@@ -62,7 +71,7 @@ const Community = () => {
                         </div>
                     </div>
                     <h2 className="min-[1680px]:text-[40px] min-[1370px]:text-[30px] text-[20px] text-[#4ec0b0] md:text-3xl text-xl font-bold text-center min-[1600px]:mt-6 min-[1370px]:mt-4 lg:mt-3 mt-4">
-                    Community
+                        Community
                     </h2>
                 </div>
             )}
@@ -72,16 +81,15 @@ const Community = () => {
                     <div className="relative min-[1680px]:w-[65%] min-[1200px]:w-[55%] w-full mx-auto">
                         {/* Video Player */}
                         <video
-                        ref={videoRef}
+                            ref={videoRef}
                             className="w-full h-full custom-video-player"
                             src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Community_Final_250325.mp4_1.mp4"
                             controls
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/communityThumb.jpg"
-                            onPlay={() => handleFirstClick("CommunityVideo")}
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={() => videoRef.current.play()}>
-                                
+
                                 <img
                                     src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/playBtn.png"
                                     alt=""
@@ -104,10 +112,10 @@ const Community = () => {
 
                     {/* Video Title and Description */}
                     <h2 className="sf min-[1370px]:text-4xl text-2xl text-center font-semibold min-[1370px]:mt-6 mt-2 min-[1370px]:mb-3 mb-1 text-[#50beb1]">
-                    Community
+                        Community
                     </h2>
                     <p className="text-center text-white min-[1680px]:text-[20px] font-semibold text-[18px]">
-                    
+
                     </p>
                 </div>
             )}

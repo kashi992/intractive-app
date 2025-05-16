@@ -17,6 +17,7 @@ const Dashboard = () => {
   const [error, setError] = useState(null); // Error state for handling fetch errors
   const [stats, setStats] = useState([]);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [allClickStats, setAllClickStats] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
   // Check if user is logged in (based on token)
@@ -45,7 +46,6 @@ const Dashboard = () => {
       try {
         const res = await fetch("https://ax3oqjtahf.execute-api.us-east-1.amazonaws.com/prod/get-first-click-stats");
         const data = await res.json();
-        console.log(data);
         const sorted = data.sort((a, b) => b.count - a.count);
         setStats(sorted);
       } catch (err) {
@@ -77,6 +77,20 @@ const Dashboard = () => {
     return colorPalette[index % colorPalette.length];
   };
 
+  useEffect(() => {
+  const fetchAllClicks = async () => {
+    try {
+      const res = await fetch("https://ax3oqjtahf.execute-api.us-east-1.amazonaws.com/prod/allClicks");
+      const data = await res.json();
+      setAllClickStats(data);
+      console.log(data);
+    } catch (err) {
+      console.error("Error loading all click stats", err);
+    }
+  };
+
+  fetchAllClicks();
+}, []);
 
   return (
     <div className="dashboardWrap flex w-full">
@@ -163,15 +177,14 @@ const Dashboard = () => {
                   <h2 className="sf text-[30px] font-bold mb-6">First Click Video Stats</h2>
                   {/* Display error message if fetch failed */}
                   {error && <p className="text-red-500">{error}</p>}
-                  <div className="flex">
-                    <div className="h-[400px] overflow-auto w-full">
+                <div className="h-[400px] overflow-auto w-full">
 <table className="w-full overflow-auto">
                     <thead className="sticky top-0">
                       <tr>
                         <th className="font-medium p-4 text-start bg-gray-200">Video Name</th>
-                        {/* <th className="font-medium p-4 text-start bg-gray-200">Click Count</th> */}
+                        <th className="font-medium p-4 text-start bg-gray-200">Click Count</th>
                         <th className="font-medium p-4 text-start bg-gray-200">IP Address</th>
-                        {/* <th className="font-medium p-4 text-start bg-gray-200">Timestamp</th> */}
+                        <th className="font-medium p-4 text-start bg-gray-200">Timestamp</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -180,11 +193,11 @@ const Dashboard = () => {
                           clicks.map((click, index) => (
                             <tr key={`${videoId}-${index}`}>
                               <td className="border-b border-gray-300 p-4 font-medium">{videoId}</td>
-                              {/* <td className="border-b border-gray-300 p-4 font-medium">1</td> */}
+                              <td className="border-b border-gray-300 p-4 font-medium">1</td>
                               <td className="border-b border-gray-300 p-4 font-medium">{click.ip}</td>
-                              {/* <td className="border-b border-gray-300 p-4 font-medium">
+                              <td className="border-b border-gray-300 p-4 font-medium">
                                 {new Date(click.timestamp).toLocaleString()}
-                              </td> */}
+                              </td>
                             </tr>
                           ))
                         )}
@@ -216,7 +229,31 @@ const Dashboard = () => {
                         </Bar>
                       </BarChart>
                     </ResponsiveContainer>
-                  </div>
+                </div>
+                <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "dd" }}>
+                  <h2 className="sf text-[30px] font-bold mb-6">First Click Video Stats</h2>
+                  {/* Display error message if fetch failed */}
+                  {error && <p className="text-red-500">{error}</p>}
+                <div className="h-[400px] overflow-auto w-full">
+<table className="w-full overflow-auto">
+      <thead className="sticky top-0">
+        <tr>
+          <th className="font-medium p-4 text-start bg-gray-200">IP Address</th>
+          <th className="font-medium p-4 text-start bg-gray-200">Video ID</th>
+          <th className="font-medium p-4 text-start bg-gray-200">Total Clicks</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Array.isArray(allClickStats) && allClickStats.map((row, i) => (
+          <tr key={i}>
+            <td className="border-b border-gray-300 p-4 font-medium">{row.ip}</td>
+            <td className="border-b border-gray-300 p-4 font-medium">{row.videoId}</td>
+            <td className="border-b border-gray-300 p-4 font-medium">{row.count}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+                    </div>
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { handleFirstClick } from "../../../utils/TrackFirstClick";
+import { handleFirstClick, handleAllClicks } from "../../../utils/TrackFirstClick";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const SocialInclusion = () => {
@@ -9,6 +9,8 @@ const SocialInclusion = () => {
     const fromSlideIndex = location.state?.fromSlideIndex || 0;
     const [isPlaying, setIsPlaying] = useState(''); // Controls playback state
     const videoRef = useRef(null);
+const hasTrackedRef = useRef(false);
+    const videoId = "SocialVideo";
     // Play video when switching to "video" view
     useEffect(() => {
         if (viewState === "video" && videoRef.current) {
@@ -16,11 +18,18 @@ const SocialInclusion = () => {
             setIsPlaying(true);
 
             // Add event listeners for play and pause detection
+              if (!hasTrackedRef.current) {
+            handleFirstClick(videoId);
+            handleAllClicks(videoId);
+            hasTrackedRef.current = true;
+        }
+            // Add event listeners for play and pause detection
             videoRef.current.addEventListener("play", () => setIsPlaying(true));
             videoRef.current.addEventListener("pause", () => setIsPlaying(false));
         }
     }, [viewState]);
     
+      
 
     return (
         <>
@@ -77,7 +86,6 @@ const SocialInclusion = () => {
                             src="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23INCLUSION_MASTER_250325.mp4.mp4"
                             controls
                             poster="https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/socialInclusionThumb.jpg"
-                                     onPlay={() => handleFirstClick("SocialVideo")}
                         />
                         {!isPlaying && (
                             <div className={`absolute top-0 right-0 left-0 bottom-0 h-ull w-full flex flex-col`} onClick={() => videoRef.current.play()}>
