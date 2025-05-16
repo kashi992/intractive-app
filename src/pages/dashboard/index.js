@@ -175,7 +175,16 @@ const Dashboard = () => {
                   </div>
                   <h1 className="sf text-[50px] font-bold text-center">{visitorCount}</h1>
                 </div>
-             
+               <div className="bg-white rounded-xl shadow-md py-6 px-8 w-full" style={{ gridArea: "bb" }}>
+                  <div className="flex items-center gap-4">
+                    <div className="bg-[#16CDC740] text-secondary p-3 rounded-md">
+                      <UsersIcon className="w-[24px] h-[24px]" iconClr="#16CDC7" />
+                    </div>
+                    <h4 className="sf text-[20px] font-semibold">Most Clicked Video:          {mostClickedVideo?.videoId || "N/A"}
+</h4>
+                  </div>
+                  <h1 className="sf text-[50px] font-bold text-center">  Total Clicks: {mostClickedVideo?.totalClicks || 0}</h1>
+                </div>
                 <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "cc" }}>
                   <h2 className="sf text-[30px] font-bold mb-6">Visitor Analytics by Location</h2>
                   {/* Display error message if fetch failed */}
