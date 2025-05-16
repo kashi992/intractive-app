@@ -13,7 +13,7 @@ const ConstructionMethodology = () => {
     const videoRef = useRef(null);
 const hasTrackedRef = useRef(false);
     const videoId = selectedVideo === 1 ? "ConMethVideo1" : "ConMethVideo2";
-     UseWatchTime(videoRef, selectedVideo === 1 ? "ConMethVideo1" : "ConMethVideo2", viewState === "video");
+        UseWatchTime(videoRef, selectedVideo === 1 ? "ConMethVideo1" : "ConMethVideo2", viewState === "video");
     // Play video when switching to "video" view
     useEffect(() => {
         if (viewState === "video" && videoRef.current) {
@@ -32,7 +32,7 @@ const hasTrackedRef = useRef(false);
         }
     }, [viewState, selectedVideo]);
     
-   
+
     
     return (
         <>

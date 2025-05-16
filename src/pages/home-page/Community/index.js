@@ -30,7 +30,6 @@ const Community = () => {
         }
     }, [viewState]);
 
-
     return (
         <>
             {viewState === "thumbnail" && (

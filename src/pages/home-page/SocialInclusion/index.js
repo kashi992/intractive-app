@@ -12,7 +12,7 @@ const SocialInclusion = () => {
     const videoRef = useRef(null);
 const hasTrackedRef = useRef(false);
     const videoId = "SocialVideo";
-    UseWatchTime(videoRef, "SocialVideo", viewState === "video");
+      UseWatchTime(videoRef, "SocialVideo", viewState === "video");
     // Play video when switching to "video" view
     useEffect(() => {
         if (viewState === "video" && videoRef.current) {
@@ -30,7 +30,7 @@ const hasTrackedRef = useRef(false);
             videoRef.current.addEventListener("pause", () => setIsPlaying(false));
         }
     }, [viewState]);
-    
+      
       
 
     return (

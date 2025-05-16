@@ -183,13 +183,14 @@ const Dashboard = () => {
                     <h4 className="sf text-[20px] font-semibold">Most Clicked Video:          {mostClickedVideo?.videoId || "N/A"}
 </h4>
                   </div>
-                  <h1 className="sf text-[50px] font-bold text-center">  Total Clicks: {mostClickedVideo?.totalClicks || 0}</h1>
+                  <h1 className="sf text-[50px] font-bold text-center flex justify-center items-center gap-3"> <span className="text-[70%]">Total Clicks:</span>   {mostClickedVideo?.totalClicks || 0}</h1>
                 </div>
                 <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "cc" }}>
                   <h2 className="sf text-[30px] font-bold mb-6">Visitor Analytics by Location</h2>
                   {/* Display error message if fetch failed */}
                   {error && <p className="text-red-500">{error}</p>}
-                  <table className="w-full">
+                  <div className="h-[400px] overflow-auto w-full">
+ <table className="w-full">
                     <thead>
                       <tr>
                         <th className="font-medium p-4 text-start bg-gray-200">IP</th>
@@ -210,8 +211,8 @@ const Dashboard = () => {
                         </tr>
                       ))}
                     </tbody>
-
                   </table>
+                  </div>
                 </div>
                 <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "dd" }}>
                   <h2 className="sf text-[30px] font-bold mb-6">First Click Video Stats</h2>
@@ -293,7 +294,8 @@ const Dashboard = () => {
                         ))}
                       </tbody>
                     </table>
-                    <ResponsiveContainer width="100%" height={300}>
+                  </div>
+                  <ResponsiveContainer width="100%" height={300}>
                       <BarChart
                         data={allClickStats}
                         margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
@@ -318,7 +320,6 @@ const Dashboard = () => {
                         </Bar>
                       </BarChart>
                     </ResponsiveContainer>
-                  </div>
                 </div>
                 <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "ff" }}>
                   <h2 className="sf text-[30px] font-bold mb-6">Most Watched Video Statistics</h2>

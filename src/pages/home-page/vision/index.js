@@ -29,6 +29,7 @@ const hasTrackedRef = useRef(false);
         }
     }, [viewState]);
 
+
     return (
         <>
             {viewState === "thumbnail" && (

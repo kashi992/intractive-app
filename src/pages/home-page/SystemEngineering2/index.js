@@ -12,7 +12,7 @@ const SystemEngineering2 = () => {
     const videoRef = useRef(null);
 const hasTrackedRef = useRef(false);
     const videoId = "SystemVideo";
-    UseWatchTime(videoRef, "SystemVideo", viewState === "video");
+  UseWatchTime(videoRef, "SystemVideo", viewState === "video");
     // Play video when switching to "video" view
     useEffect(() => {
         if (viewState === "video" && videoRef.current) {
@@ -30,9 +30,7 @@ const hasTrackedRef = useRef(false);
             videoRef.current.addEventListener("pause", () => setIsPlaying(false));
         }
     }, [viewState]);
-
-      
-    
+        
 
     return (
         <>

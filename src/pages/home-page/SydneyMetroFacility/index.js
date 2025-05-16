@@ -31,6 +31,7 @@ UseWatchTime(videoRef, "SydneyVideo", viewState === "video");
     }
   }, [viewState]);
 
+
   return (
     <>
       {viewState === "thumbnail" && (
