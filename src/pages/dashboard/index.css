@@ -27,3 +27,17 @@ z-index: 2;
 font-size: 12px;
 font-weight: 600;
 }
+
+@media screen and (max-width: 1199.98px) {
+    .dashboardWrap .dashboardInner {
+    grid-template-columns: 1fr;
+}
+}
+@media screen and (max-width: 575px) {
+.dashboardWrap .recharts-wrapper text {
+    font-size: 10px;
+    height: 75px !important;
+    max-height: 75px !important;
+    min-height: 75px !important;
+}
+}

@@ -180,52 +180,52 @@ const toggleSidebar = () => {
         </nav>
       <div className="page-wrapper-sub flex flex-col w-full">
         <header className={`sticky top-0 z-[1] bg-white ${isScrolled ? 'border-b' : ''}`}>
-          <nav className="dark:border-gray-700 rounded-none bg-transparent dark:bg-transparent py-3 px-8 flex justify-between items-center h-[72px]">
+          <nav className="dark:border-gray-700 rounded-none bg-transparent dark:bg-transparent py-3 md:px-8 px-4 flex justify-between items-center h-[72px]">
             <Hamburger onClick={toggleSidebar} iconClr="#294245" className="w-[20px] h-[20px] cursor-pointer"/>
             {isLoggedIn && (
               <button
                 onClick={handleLogout}
-                className={`bg-[#294245] text-white py-4 px-8 leading-none rounded-[30px] shadow-md hover:bg-red-700 ${location.pathname !== '/login' ? 'block' : 'hidden'}`}
+                className={`bg-[#294245] text-white py-4 md:px-8 px-4 leading-none rounded-[30px] shadow-md hover:bg-red-700 ${location.pathname !== '/login' ? 'block' : 'hidden'}`}
               >
                 Logout
               </button>
             )}
           </nav>
         </header>
-        <div className="h-full rounded-[20px] bg-[#F4F7FB] px-8 py-8 pb-[65px]" style={{ borderTopRightRadius: '0px' }}>
+        <div className="h-full rounded-[20px] bg-[#F4F7FB] md:px-8 px-4 md:pt-8 pt-6 pb-[65px]" style={{ borderTopRightRadius: '0px' }}>
           <div className="w-full">
               <div className='grid gap-6 dashboardInner'>
-                <div className="bg-white rounded-xl shadow-md py-6 px-8 w-full">
-                  <div className="flex items-center gap-4">
-                    <div className="bg-[#16CDC740] text-secondary p-3 rounded-md">
+                <div className="bg-white rounded-xl shadow-md md:py-6 py-4 md:px-8 px-4 w-full xl:block flex md:gap-6 gap-3 flex-wrap items-center">
+                  <div className="flex items-center md:gap-4 gap-3">
+                    <div className="bg-[#16CDC740] text-secondary md:p-3 p-2 rounded-md">
                       <UsersIcon className="w-[24px] h-[24px]" iconClr="#16CDC7" />
                     </div>
-                    <h4 className="sf text-[20px] font-semibold">Total Unique Visitors</h4>
+                    <h4 className="sf xl:xl:text-[26px] md:text-[22px] text-[16px] font-semibold">Total Unique Visitors</h4>
                   </div>
-                  <h1 className="sf text-[50px] font-bold text-center">{visitorCount}</h1>
+                  <h1 className="sf xl:text-[50px] md:text-[36px] text-[26px] md:w-fit w-full font-bold text-center">{visitorCount}</h1>
                 </div>
-               <div className="bg-white rounded-xl shadow-md py-6 px-8 w-full">
-                  <div className="flex items-center gap-4">
-                    <div className="bg-[#16CDC740] text-secondary p-3 rounded-md">
+               <div className="bg-white rounded-xl shadow-md md:py-6 py-4 md:px-8 px-4 w-full">
+                  <div className="flex items-center md:gap-4 gap-3">
+                    <div className="bg-[#16CDC740] text-secondary md:p-3 p-2 rounded-md">
                       <ChartLine className="w-[24px] h-[24px]" iconClr="#16CDC7" />
                     </div>
-                    <h4 className="sf text-[20px] font-semibold">Top Performing Video (By Clicks): {mostClickedVideo?.videoId || "N/A"}
+                    <h4 className="sf xl:text-[26px] md:text-[22px] text-[16px] font-semibold">Top Performing Video (By Clicks): {mostClickedVideo?.videoId || "N/A"}
 </h4>
                   </div>
-                  <h1 className="sf text-[50px] font-bold text-center flex justify-center items-center gap-3"> <span className="text-[70%]">Total Clicks:</span>   {mostClickedVideo?.totalClicks || 0}</h1>
+                  <h1 className="sf xl:text-[50px] md:text-[36px] text-[26px] xl:mt-0 mt-3 font-bold text-center flex xl:justify-center items-center gap-3 md:justify-start justify-center"> <span className="text-[70%]">Total Clicks:</span>   {mostClickedVideo?.totalClicks || 0}</h1>
                 </div>
-                <div className="bg-white rounded-xl shadow-md p-6">
-                  <h2 className="sf text-[30px] font-bold mb-6">First Interaction Per Video</h2>
+                <div className="bg-white rounded-xl shadow-md md:px-6 px-4 md:py-6 py-4">
+                  <h2 className="sf xl:text-[26px] md:text-[22px] text-[16px] font-bold mb-6">First Interaction Per Video</h2>
                   {/* Display error message if fetch failed */}
                   {error && <p className="text-red-500">{error}</p>}
                   <div className="h-[400px] overflow-auto w-full">
                     <table className="w-full overflow-auto">
                       <thead className="sticky top-0">
                         <tr>
-                          <th className="font-medium p-4 text-start bg-gray-200">Video Name</th>
-                          <th className="font-medium p-4 text-start bg-gray-200">Click Count</th>
-                          <th className="font-medium p-4 text-start bg-gray-200">IP Address</th>
-                          {/* <th className="font-medium p-4 text-start bg-gray-200">Timestamp</th> */}
+                          <th className="font-medium md:p-4 p-2 text-start bg-gray-200 md:text-[16px] text-[14px]">Video Name</th>
+                          <th className="font-medium md:p-4 p-2 text-start bg-gray-200 md:text-[16px] text-[14px]">Click Count</th>
+                          <th className="font-medium md:p-4 p-2 text-start bg-gray-200 md:text-[16px] text-[14px]">IP Address</th>
+                          {/* <th className="font-medium md:p-4 p-2 text-start bg-gray-200 md:text-[16px] text-[14px]">Timestamp</th> */}
                         </tr>
                       </thead>
                       <tbody>
@@ -233,10 +233,10 @@ const toggleSidebar = () => {
                           stats.flatMap(({ videoId, clicks }) =>
                             clicks.map((click, index) => (
                               <tr key={`${videoId}-${index}`}>
-                                <td className="border-b border-gray-300 p-4 font-medium">{videoId}</td>
-                                <td className="border-b border-gray-300 p-4 font-medium">1</td>
-                                <td className="border-b border-gray-300 p-4 font-medium">{click.ip}</td>
-                                {/* <td className="border-b border-gray-300 p-4 font-medium">
+                                <td className="border-b border-gray-300 md:p-4 p-2 font-medium md:text-[16px] text-[14px]">{videoId}</td>
+                                <td className="border-b border-gray-300 md:p-4 p-2 font-medium md:text-[16px] text-[14px]">1</td>
+                                <td className="border-b border-gray-300 md:p-4 p-2 font-medium md:text-[16px] text-[14px]">{click.ip}</td>
+                                {/* <td className="border-b border-gray-300 md:p-4 p-2 font-medium md:text-[16px] text-[14px]">
                                   {new Date(click.timestamp).toLocaleString()}
                                 </td> */}
                               </tr>
@@ -246,8 +246,8 @@ const toggleSidebar = () => {
                     </table>
                   </div>
                 </div>
-                <div className="bg-white rounded-xl shadow-md p-6">
-                  <h2 className="sf text-[30px] font-bold mb-6">First Click Distribution</h2>
+                <div className="bg-white rounded-xl shadow-md md:px-6 px-4 md:py-6 py-4">
+                  <h2 className="sf xl:text-[26px] md:text-[22px] text-[16px] font-bold mb-6">First Click Distribution</h2>
                   <ResponsiveContainer width="100%" height={400}>
                     <BarChart
                       data={stats}
@@ -274,31 +274,31 @@ const toggleSidebar = () => {
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
-                <div className="bg-white rounded-xl shadow-md p-6">
-                  <h2 className="sf text-[30px] font-bold mb-6">Cumulative Video Click Counts</h2>
+                <div className="bg-white rounded-xl shadow-md md:px-6 px-4 md:py-6 py-4">
+                  <h2 className="sf xl:text-[26px] md:text-[22px] text-[16px] font-bold mb-6">Cumulative Video Click Counts</h2>
                   {/* Display error message if fetch failed */}
                   {error && <p className="text-red-500">{error}</p>}
                   <div className="h-[400px] overflow-auto w-full">
                     <table className="w-full overflow-auto">
                       <thead className="sticky top-0">
                         <tr>
-                          <th className="font-medium p-4 text-start bg-gray-200">Video Name</th>
-                          <th className="font-medium p-4 text-start bg-gray-200">Total Clicks</th>
+                          <th className="font-medium md:p-4 p-2 text-start bg-gray-200 md:text-[16px] text-[14px]">Video Name</th>
+                          <th className="font-medium md:p-4 p-2 text-start bg-gray-200 md:text-[16px] text-[14px]">Total Clicks</th>
                         </tr>
                       </thead>
                       <tbody>
                         {Array.isArray(allClickStats) && allClickStats.map((row, i) => (
                           <tr key={i}>
-        <td className="border-b border-gray-300 p-4 font-medium">{row.videoId}</td>
-        <td className="border-b border-gray-300 p-4 font-medium">{row.totalClicks}</td>
+        <td className="border-b border-gray-300 md:p-4 p-2 font-medium md:text-[16px] text-[14px]">{row.videoId}</td>
+        <td className="border-b border-gray-300 md:p-4 p-2 font-medium md:text-[16px] text-[14px]">{row.totalClicks}</td>
       </tr>
                         ))}
                       </tbody>
                     </table>
                   </div>
                 </div>
-                <div className="bg-white rounded-xl shadow-md p-6 w-full" >
-                  <h2 className="sf text-[30px] font-bold mb-6">Total Clicks by Video</h2>
+                <div className="bg-white rounded-xl shadow-md md:px-6 px-4 md:py-6 py-4 w-full" >
+                  <h2 className="sf xl:text-[26px] md:text-[22px] text-[16px] font-bold mb-6">Total Clicks by Video</h2>
                   <ResponsiveContainer width="100%" height={400}>
                       <BarChart
                         data={allClickStats}
@@ -324,8 +324,8 @@ const toggleSidebar = () => {
                       </BarChart>
                     </ResponsiveContainer>
                 </div>
-                <div className="bg-white rounded-xl shadow-md p-6 col-span-2">
-                  <h2 className="sf text-[30px] font-bold mb-6">Top Watched Videos (By Average Watch Time)</h2>
+                <div className="bg-white rounded-xl shadow-md md:px-6 px-4 md:py-6 py-4 xl:col-span-2">
+                  <h2 className="sf xl:text-[26px] md:text-[22px] text-[16px] font-bold mb-6">Top Watched Videos (By Average Watch Time)</h2>
                   {watchStats.length > 0 ? (
                     <ResponsiveContainer width="100%" height={400}>
                       <BarChart
@@ -351,7 +351,7 @@ const toggleSidebar = () => {
                   )}
                 </div>
               </div>
-              <p className="fixed w-full bg-white py-3 text-[14px] leading-none px-8 shadow-xl border-t bottom-0 text-end right-0">
+              <p className="fixed w-full bg-white py-3 text-[14px] leading-none md:px-8 px-4 shadow-xl border-t bottom-0 text-end right-0">
                 Powered by LUCID EDGE
               </p>
           </div>
