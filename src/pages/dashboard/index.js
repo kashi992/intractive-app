@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from 'react-router-dom'
 import './index.css'
 import DashboardIcon from '../../assets/images/DashboardIcon.js'
@@ -8,6 +8,9 @@ import UsersIcon from "../../assets/images/UsersIcon.js";
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell
 } from 'recharts';
+import Hamburger from "../../assets/images/Hamburger.js";
+import ChartLine from "../../assets/images/ChartLine.js";
+import CrossIcon from "../../assets/images/CrossIcon.js";
 
 
 
@@ -20,6 +23,12 @@ const Dashboard = () => {
   const [allClickStats, setAllClickStats] = useState([]);
   const [mostClickedVideo, setMostClickedVideo] = useState(null);
   const [watchStats, setWatchStats] = useState([]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const sidebarRef = useRef();
+const toggleSidebar = () => {
+  setIsSidebarOpen(prev => !prev);
+};
+
   const navigate = useNavigate();
   const location = useLocation();
   // Check if user is logged in (based on token)
@@ -28,6 +37,7 @@ const Dashboard = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("lastActiveTime");
     navigate("/login");
+    setIsSidebarOpen(false);
   };
 
   useEffect(() => {
@@ -94,12 +104,14 @@ const Dashboard = () => {
           videoClickMap[videoId] += count;
         });
 
-        // Identify most clicked video
-        const sorted = Object.entries(videoClickMap).sort((a, b) => b[1] - a[1]);
-        if (sorted.length > 0) {
-          const [videoId, totalClicks] = sorted[0];
-          setMostClickedVideo({ videoId, totalClicks });
-        }
+        // Identify Top Performing Video (By Clicks)
+        if (data.length > 0) {
+  const topVideo = data.reduce((max, video) =>
+    video.totalClicks > max.totalClicks ? video : max,
+    data[0]
+  );
+  setMostClickedVideo(topVideo);
+}
       } catch (err) {
         console.error("Error loading all click stats", err);
       }
@@ -123,12 +135,30 @@ const Dashboard = () => {
     fetchWatchStats();
   }, []);
 
+  useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (
+      isSidebarOpen &&
+      sidebarRef.current &&
+      !sidebarRef.current.contains(event.target)
+    ) {
+      setIsSidebarOpen(false); // 👈 Close sidebar if clicked outside
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, [isSidebarOpen]);
 
   return (
     <div className="dashboardWrap flex w-full">
-      <div className="xl:block hidden">
-        <nav aria-label="Sidebar with multi-level dropdown example"
-          className="h-full fixed menuSidebar bg-white left-0">
+      <div className={`backDrop ${isSidebarOpen ? 'block' : 'hidden'}`}></div>
+         <nav aria-label="Sidebar"
+         ref={sidebarRef}
+          className={`h-full fixed menuSidebar bg-white z-[2] shadow-md ${isSidebarOpen ? "open" : ""}`}>
+            <CrossIcon onClick={() => setIsSidebarOpen(false)} className={`w-[30px] h-[30px] cursor-pointer absolute right-[10px] top-[10px]`} iconClr="#294245" />
           <div className="bg-white dark:bg-transparent rounded-none">
             <h2 className="px-6 py-4 flex items-center sidebarlogo font-bold h-[72px]">UGL Solution</h2>
             <div className="h-[calc(100vh_-_0px)] simplebar-scrollable-y">
@@ -139,19 +169,19 @@ const Dashboard = () => {
                     <DashboardIcon className="w-[18px] h-[18px]" iconClr="#fff" />  Dashboard
                   </Link>
                 </li>
-                <li>
-                  <Link className="flex gap-3 items-center px-4 py-3">
-                    <HomeIcon className="w-[18px] h-[18px]" iconClr="#000" />  Home
+                <li onClick={handleLogout}>
+                  <Link  className="flex gap-3 items-center px-4 py-3">
+                    <HomeIcon  className="w-[18px] h-[18px]" iconClr="#000" />  Home
                   </Link>
                 </li>
               </nav>
             </div>
           </div>
         </nav>
-      </div>
       <div className="page-wrapper-sub flex flex-col w-full">
-        <header className={`sticky top-0 z-[5] bg-white ${isScrolled ? 'border-b' : ''}`}>
-          <nav className="dark:border-gray-700 rounded-none bg-transparent dark:bg-transparent py-3 px-4 flex justify-end h-[72px]">
+        <header className={`sticky top-0 z-[1] bg-white ${isScrolled ? 'border-b' : ''}`}>
+          <nav className="dark:border-gray-700 rounded-none bg-transparent dark:bg-transparent py-3 px-8 flex justify-between items-center h-[72px]">
+            <Hamburger onClick={toggleSidebar} iconClr="#294245" className="w-[20px] h-[20px] cursor-pointer"/>
             {isLoggedIn && (
               <button
                 onClick={handleLogout}
@@ -162,60 +192,30 @@ const Dashboard = () => {
             )}
           </nav>
         </header>
-        <div className="bg-lightgray dark:bg-dark  h-full rounded-[20px] bg-[#F4F7FB]" style={{ borderTopRightRadius: '0px' }}>
+        <div className="h-full rounded-[20px] bg-[#F4F7FB] px-8 py-8 pb-[65px]" style={{ borderTopRightRadius: '0px' }}>
           <div className="w-full">
-            <div className="container py-8">
-              <div className='grid gap-7 dashboardInner'>
-                <div className="bg-white rounded-xl shadow-md py-6 px-8 w-full" style={{ gridArea: "aa" }}>
+              <div className='grid gap-6 dashboardInner'>
+                <div className="bg-white rounded-xl shadow-md py-6 px-8 w-full">
                   <div className="flex items-center gap-4">
                     <div className="bg-[#16CDC740] text-secondary p-3 rounded-md">
                       <UsersIcon className="w-[24px] h-[24px]" iconClr="#16CDC7" />
                     </div>
-                    <h4 className="sf text-[20px] font-semibold">Total users visitors</h4>
+                    <h4 className="sf text-[20px] font-semibold">Total Unique Visitors</h4>
                   </div>
                   <h1 className="sf text-[50px] font-bold text-center">{visitorCount}</h1>
                 </div>
-               <div className="bg-white rounded-xl shadow-md py-6 px-8 w-full" style={{ gridArea: "bb" }}>
+               <div className="bg-white rounded-xl shadow-md py-6 px-8 w-full">
                   <div className="flex items-center gap-4">
                     <div className="bg-[#16CDC740] text-secondary p-3 rounded-md">
-                      <UsersIcon className="w-[24px] h-[24px]" iconClr="#16CDC7" />
+                      <ChartLine className="w-[24px] h-[24px]" iconClr="#16CDC7" />
                     </div>
-                    <h4 className="sf text-[20px] font-semibold">Most Clicked Video:          {mostClickedVideo?.videoId || "N/A"}
+                    <h4 className="sf text-[20px] font-semibold">Top Performing Video (By Clicks): {mostClickedVideo?.videoId || "N/A"}
 </h4>
                   </div>
                   <h1 className="sf text-[50px] font-bold text-center flex justify-center items-center gap-3"> <span className="text-[70%]">Total Clicks:</span>   {mostClickedVideo?.totalClicks || 0}</h1>
                 </div>
-                <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "cc" }}>
-                  <h2 className="sf text-[30px] font-bold mb-6">Visitor Analytics by Location</h2>
-                  {/* Display error message if fetch failed */}
-                  {error && <p className="text-red-500">{error}</p>}
-                  <div className="h-[400px] overflow-auto w-full">
- <table className="w-full">
-                    <thead>
-                      <tr>
-                        <th className="font-medium p-4 text-start bg-gray-200">IP</th>
-                        <th className="font-medium p-4 text-start bg-gray-200">City</th>
-                        <th className="font-medium p-4 text-start bg-gray-200">County</th>
-                        <th className="font-medium p-4 text-start bg-gray-200">Country</th>
-                        <th className="font-medium p-4 text-start bg-gray-200">Visited at</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {Array.isArray(visitorLogs) && visitorLogs.map((log, i) => (
-                        <tr key={i}>
-                          <td className="border-b border-gray-300 p-4 font-medium">{log.ip}</td>
-                          <td className="border-b border-gray-300 p-4 font-medium">{log.city}</td>
-                          <td className="border-b border-gray-300 p-4 font-medium">{log.region}</td>
-                          <td className="border-b border-gray-300 p-4 font-medium">{log.country}</td>
-                          <td className="border-b border-gray-300 p-4 font-medium">{new Date(log.time).toLocaleString()}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  </div>
-                </div>
-                <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "dd" }}>
-                  <h2 className="sf text-[30px] font-bold mb-6">First Click Video Stats</h2>
+                <div className="bg-white rounded-xl shadow-md p-6">
+                  <h2 className="sf text-[30px] font-bold mb-6">First Interaction Per Video</h2>
                   {/* Display error message if fetch failed */}
                   {error && <p className="text-red-500">{error}</p>}
                   <div className="h-[400px] overflow-auto w-full">
@@ -225,7 +225,7 @@ const Dashboard = () => {
                           <th className="font-medium p-4 text-start bg-gray-200">Video Name</th>
                           <th className="font-medium p-4 text-start bg-gray-200">Click Count</th>
                           <th className="font-medium p-4 text-start bg-gray-200">IP Address</th>
-                          <th className="font-medium p-4 text-start bg-gray-200">Timestamp</th>
+                          {/* <th className="font-medium p-4 text-start bg-gray-200">Timestamp</th> */}
                         </tr>
                       </thead>
                       <tbody>
@@ -236,22 +236,25 @@ const Dashboard = () => {
                                 <td className="border-b border-gray-300 p-4 font-medium">{videoId}</td>
                                 <td className="border-b border-gray-300 p-4 font-medium">1</td>
                                 <td className="border-b border-gray-300 p-4 font-medium">{click.ip}</td>
-                                <td className="border-b border-gray-300 p-4 font-medium">
+                                {/* <td className="border-b border-gray-300 p-4 font-medium">
                                   {new Date(click.timestamp).toLocaleString()}
-                                </td>
+                                </td> */}
                               </tr>
                             ))
                           )}
                       </tbody>
                     </table>
                   </div>
-                  <ResponsiveContainer width="100%" height={300}>
+                </div>
+                <div className="bg-white rounded-xl shadow-md p-6">
+                  <h2 className="sf text-[30px] font-bold mb-6">First Click Distribution</h2>
+                  <ResponsiveContainer width="100%" height={400}>
                     <BarChart
                       data={stats}
-                      margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+                      
                     >
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="videoId" />
+                      <XAxis dataKey="videoId" angle={-45} textAnchor="end" interval={0} height={100}/>
                       <YAxis />
                       <Tooltip />
                       <Bar
@@ -271,41 +274,41 @@ const Dashboard = () => {
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
-                <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "ee" }}>
-                  <h2 className="sf text-[30px] font-bold mb-6">Total Click Video Statistics</h2>
+                <div className="bg-white rounded-xl shadow-md p-6">
+                  <h2 className="sf text-[30px] font-bold mb-6">Cumulative Video Click Counts</h2>
                   {/* Display error message if fetch failed */}
                   {error && <p className="text-red-500">{error}</p>}
                   <div className="h-[400px] overflow-auto w-full">
                     <table className="w-full overflow-auto">
                       <thead className="sticky top-0">
                         <tr>
-                          <th className="font-medium p-4 text-start bg-gray-200">IP Address</th>
-                          <th className="font-medium p-4 text-start bg-gray-200">Video ID</th>
+                          <th className="font-medium p-4 text-start bg-gray-200">Video Name</th>
                           <th className="font-medium p-4 text-start bg-gray-200">Total Clicks</th>
                         </tr>
                       </thead>
                       <tbody>
                         {Array.isArray(allClickStats) && allClickStats.map((row, i) => (
                           <tr key={i}>
-                            <td className="border-b border-gray-300 p-4 font-medium">{row.ip}</td>
-                            <td className="border-b border-gray-300 p-4 font-medium">{row.videoId}</td>
-                            <td className="border-b border-gray-300 p-4 font-medium">{row.count}</td>
-                          </tr>
+        <td className="border-b border-gray-300 p-4 font-medium">{row.videoId}</td>
+        <td className="border-b border-gray-300 p-4 font-medium">{row.totalClicks}</td>
+      </tr>
                         ))}
                       </tbody>
                     </table>
                   </div>
-                  <ResponsiveContainer width="100%" height={300}>
+                </div>
+                <div className="bg-white rounded-xl shadow-md p-6 w-full" >
+                  <h2 className="sf text-[30px] font-bold mb-6">Total Clicks by Video</h2>
+                  <ResponsiveContainer width="100%" height={400}>
                       <BarChart
                         data={allClickStats}
-                        margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
                       >
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="videoId" />
+                        <XAxis dataKey="videoId" angle={-45} textAnchor="end" interval={0} height={100} />
                         <YAxis />
                         <Tooltip />
                         <Bar
-                          dataKey="count"
+                          dataKey="totalClicks"
                           barSize={40} // 🔹 narrower bars
                           fill="#8884d8"
                         >
@@ -321,16 +324,16 @@ const Dashboard = () => {
                       </BarChart>
                     </ResponsiveContainer>
                 </div>
-                <div className="bg-white rounded-xl shadow-md p-6" style={{ gridArea: "ff" }}>
-                  <h2 className="sf text-[30px] font-bold mb-6">Most Watched Video Statistics</h2>
+                <div className="bg-white rounded-xl shadow-md p-6 col-span-2">
+                  <h2 className="sf text-[30px] font-bold mb-6">Top Watched Videos (By Average Watch Time)</h2>
                   {watchStats.length > 0 ? (
-                    <ResponsiveContainer width="100%" height={300}>
+                    <ResponsiveContainer width="100%" height={400}>
                       <BarChart
                         data={watchStats}
-                        margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+                        
                       >
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="videoId" />
+                        <XAxis dataKey="videoId" angle={-45} textAnchor="end" interval={0} height={100} />
                         <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} />
                         <Tooltip formatter={(value) => `${value}%`} />
                         <Bar dataKey="avgWatchPercent" barSize={40}>
@@ -348,7 +351,9 @@ const Dashboard = () => {
                   )}
                 </div>
               </div>
-            </div>
+              <p className="fixed w-full bg-white py-3 text-[14px] leading-none px-8 shadow-xl border-t bottom-0 text-end right-0">
+                Powered by LUCID EDGE
+              </p>
           </div>
         </div>
       </div>
