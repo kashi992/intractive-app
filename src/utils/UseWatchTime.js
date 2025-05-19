@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 const UseWatchTime = (videoRef, videoId, shouldTrack = true) => {
   const watchStartRef = useRef(null);
   const watchedTimeRef = useRef(0);
+  const hasTriggeredRef = useRef(false);
 
   const handleTimeUpdate = () => {
     const currentTime = videoRef.current?.currentTime ?? 0;
@@ -18,45 +19,79 @@ const UseWatchTime = (videoRef, videoId, shouldTrack = true) => {
       watchedTimeRef.current += delta;
       watchStartRef.current = currentTime;
     }
+const video = videoRef.current;
+    const watchTime = watchedTimeRef.current;
 
+    if (video?.duration && !hasTriggeredRef.current) {
+      const watchRatio = watchTime / video.duration;
+
+      if (watchRatio >= 0.7) {
+        hasTriggeredRef.current = true; // ✅ prevent re-trigger
+
+        submitWatch(video.duration, watchTime);
+      }
+    }
     console.log("⏰ timeupdate | delta:", delta, "| currentTime:", currentTime);
   };
 
-  const handleSendWatchTime = async () => {
-    const watchTime = watchedTimeRef.current;
-    const video = videoRef.current;
+  // const handleSendWatchTime = async () => {
+  //   const watchTime = watchedTimeRef.current;
+  //   const video = videoRef.current;
 
-    if (!watchTime || watchTime < 5) {
-      console.warn("⏱ Skipping short watch time:", watchTime);
-      return;
-    }
+  //   if (!watchTime || watchTime < 5) {
+  //     console.warn("⏱ Skipping short watch time:", watchTime);
+  //     return;
+  //   }
 
-    if (!video || !video.duration) {
-      console.warn("❌ Video or duration not available.");
-      return;
-    }
+  //   if (!video || !video.duration) {
+  //     console.warn("❌ Video or duration not available.");
+  //     return;
+  //   }
 
-    const duration = video.duration;
+  //   const duration = video.duration;
 
+  //   try {
+  //     const ipRes = await fetch("https://ipinfo.io/json?token=0451d8a1ae05e5");
+  //     const ip = (await ipRes.json()).ip;
+
+  //   await fetch("https://db30bn6w66.execute-api.us-east-1.amazonaws.com/prod/trackWatchTime", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         videoId,
+  //         watchTime,
+  //         videoDuration: duration,
+  //         ip,
+  //         timestamp: new Date().toISOString(),
+  //       }),
+  //     });
+  //     // const result = await response.text();
+  //     // console.log("✅ Watch time API response:", response.status, result);
+  //   } catch (err) {
+  //     console.error("Watch time submission error:", err);
+  //   }
+  // };
+
+  const submitWatch = async (videoDuration, watchTime) => {
     try {
       const ipRes = await fetch("https://ipinfo.io/json?token=0451d8a1ae05e5");
       const ip = (await ipRes.json()).ip;
 
-    await fetch("https://db30bn6w66.execute-api.us-east-1.amazonaws.com/prod/trackWatchTime", {
+      await fetch("https://db30bn6w66.execute-api.us-east-1.amazonaws.com/prod/trackWatchTime", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           videoId,
           watchTime,
-          videoDuration: duration,
+          videoDuration,
           ip,
           timestamp: new Date().toISOString(),
         }),
       });
-      // const result = await response.text();
-      // console.log("✅ Watch time API response:", response.status, result);
+
+      console.log("✅ Watch time API triggered for", videoId);
     } catch (err) {
-      console.error("Watch time submission error:", err);
+      console.error("❌ Watch time submission failed", err);
     }
   };
 
@@ -65,32 +100,29 @@ const UseWatchTime = (videoRef, videoId, shouldTrack = true) => {
 
     const timeoutId = setTimeout(() => {
       const video = videoRef.current;
-      if (!video) {
-        console.warn("❌ useWatchTime: videoRef.current still null after delay!");
-        return;
-      }
+      if (!video) return;
 
       console.log("🟢 UseWatchTime activated for", videoId);
-      video.addEventListener("timeupdate", handleTimeUpdate);
-      video.addEventListener("ended", handleSendWatchTime);
 
-      // Optional: Track tab close or page hide
-      window.addEventListener("beforeunload", handleSendWatchTime);
+      video.addEventListener("timeupdate", handleTimeUpdate);
+      video.addEventListener("ended", handleTimeUpdate); // ✅ Final progress check
+      window.addEventListener("beforeunload", handleTimeUpdate);
       document.addEventListener("visibilitychange", () => {
         if (document.visibilityState === "hidden") {
-          handleSendWatchTime();
+          handleTimeUpdate(); // Last check
         }
       });
-
-      return () => {
-        video.removeEventListener("timeupdate", handleTimeUpdate);
-        video.removeEventListener("ended", handleSendWatchTime);
-        window.removeEventListener("beforeunload", handleSendWatchTime);
-        handleSendWatchTime(); // Final fallback
-      };
     }, 300);
 
-    return () => clearTimeout(timeoutId);
+    return () => {
+      const video = videoRef.current;
+      if (video) {
+        video.removeEventListener("timeupdate", handleTimeUpdate);
+        video.removeEventListener("ended", handleTimeUpdate);
+      }
+      window.removeEventListener("beforeunload", handleTimeUpdate);
+      document.removeEventListener("visibilitychange", handleTimeUpdate);
+    };
   }, [videoId, shouldTrack]);
 };
 
