@@ -31,7 +31,6 @@ const video = videoRef.current;
         submitWatch(video.duration, watchTime);
       }
     }
-    console.log("⏰ timeupdate | delta:", delta, "| currentTime:", currentTime);
   };
 
   // const handleSendWatchTime = async () => {
@@ -88,8 +87,6 @@ const video = videoRef.current;
           timestamp: new Date().toISOString(),
         }),
       });
-
-      console.log("✅ Watch time API triggered for", videoId);
     } catch (err) {
       console.error("❌ Watch time submission failed", err);
     }
@@ -101,9 +98,6 @@ const video = videoRef.current;
     const timeoutId = setTimeout(() => {
       const video = videoRef.current;
       if (!video) return;
-
-      console.log("🟢 UseWatchTime activated for", videoId);
-
       video.addEventListener("timeupdate", handleTimeUpdate);
       video.addEventListener("ended", handleTimeUpdate); // ✅ Final progress check
       window.addEventListener("beforeunload", handleTimeUpdate);

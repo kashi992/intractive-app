@@ -9,8 +9,8 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   // Credentials
-  const correctAdminUsername = "admin";
-  const correctAdminPassword = "123";
+  const correctAdminUsername = "info@admin";
+  const correctAdminPassword = "linewidepanel";
   const correctUsername = "cpbugljv";
   const correctPassword = "rs9";
 

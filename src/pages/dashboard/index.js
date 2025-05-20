@@ -126,7 +126,6 @@ const toggleSidebar = () => {
         const res = await fetch("https://db30bn6w66.execute-api.us-east-1.amazonaws.com/prod/getWatchStats");
         const data = await res.json();
         setWatchStats(data);
-        console.log("watched", data);
       } catch (err) {
         console.error("Error loading watch stats", err);
       }
